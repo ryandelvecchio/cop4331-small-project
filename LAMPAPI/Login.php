@@ -3,26 +3,29 @@
 	$inData = getRequestInfo();
 	
 	$id = 0;
-	$firstName = "";
-	$lastName = "";
+	$firstname = "";
+	$lastname = "";
 
-	$conn = new mysqli("localhost", "ricklein_leinecker", "WeLoveCOP4331", "ricklein_COP4331");
+	// Use the server's public IP to connect to the mysql database.
+	// login into mysql with a user named root, whose password is "password"
+	// We can change this later
+	$conn = new mysqli("161.35.52.252", "root", "password", "contactmanager");
 	if ($conn->connect_error) 
 	{
 		returnWithError( $conn->connect_error );
 	} 
 	else
 	{
-		$sql = "SELECT ID,firstName,lastName FROM Users where Login='" . $inData["login"] . "' and Password='" . $inData["password"] . "'";
+		$sql = "SELECT user_id, firstname, lastname FROM users where username='" . $inData["login"] . "' and password='" . $inData["password"] . "'";
 		$result = $conn->query($sql);
 		if ($result->num_rows > 0)
 		{
 			$row = $result->fetch_assoc();
-			$firstName = $row["firstName"];
-			$lastName = $row["lastName"];
-			$id = $row["ID"];
+			$firstname = $row['firstname'];
+			$lastname = $row['lastname'];
+			$id = $row['user_id'];
 			
-			returnWithInfo($firstName, $lastName, $id );
+			returnWithInfo($firstname, $lastname, $id);
 		}
 		else
 		{
@@ -44,13 +47,13 @@
 	
 	function returnWithError( $err )
 	{
-		$retValue = '{"id":0,"firstName":"","lastName":"","error":"' . $err . '"}';
+		$retValue = '{"id":0,"firstname":"","lastname":"","error":"' . $err . '"}';
 		sendResultInfoAsJson( $retValue );
 	}
 	
-	function returnWithInfo( $firstName, $lastName, $id )
+	function returnWithInfo( $firstname, $lastname, $id )
 	{
-		$retValue = '{"id":' . $id . ',"firstName":"' . $firstName . '","lastName":"' . $lastName . '","error":""}';
+		$retValue = '{"id":' . $id . ',"firstname":"' . $firstname . '","lastname":"' . $lastname . '","error":""}';
 		sendResultInfoAsJson( $retValue );
 	}
 	

@@ -1,15 +1,14 @@
-var urlBase = 'http://COP4331-3.com/LAMPAPI';
 var extension = 'php';
 
 var userId = 0;
-var firstName = "";
-var lastName = "";
+var firstname = "";
+var lastname = "";
 
 function doLogin()
 {
 	userId = 0;
-	firstName = "";
-	lastName = "";
+	firstname = "";
+	lastname = "";
 	
 	var login = document.getElementById("loginName").value;
 	var password = document.getElementById("loginPassword").value;
@@ -19,10 +18,10 @@ function doLogin()
 
 //	var jsonPayload = '{"login" : "' + login + '", "password" : "' + hash + '"}';
 	var jsonPayload = '{"login" : "' + login + '", "password" : "' + password + '"}';
-	var url = urlBase + '/Login.' + extension;
+	var url = 'LAMPAPI//Login.' + extension;
 
 	var xhr = new XMLHttpRequest();
-	xhr.open("POST", url, false);
+	xhr.open("POST", url, true);
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 	try
 	{
@@ -38,8 +37,8 @@ function doLogin()
 			return;
 		}
 		
-		firstName = jsonObject.firstName;
-		lastName = jsonObject.lastName;
+		firstname = jsonObject.firstname;
+		lastname = jsonObject.lastname;
 
 		saveCookie();
 	
@@ -57,7 +56,7 @@ function saveCookie()
 	var minutes = 20;
 	var date = new Date();
 	date.setTime(date.getTime()+(minutes*60*1000));	
-	document.cookie = "firstName=" + firstName + ",lastName=" + lastName + ",userId=" + userId + ";expires=" + date.toGMTString();
+	document.cookie = "firstname=" + firstname + ",lastname=" + lastname + ",userId=" + userId + ";expires=" + date.toGMTString();
 }
 
 function readCookie()
@@ -69,13 +68,13 @@ function readCookie()
 	{
 		var thisOne = splits[i].trim();
 		var tokens = thisOne.split("=");
-		if( tokens[0] == "firstName" )
+		if( tokens[0] == "firstname" )
 		{
-			firstName = tokens[1];
+			firstname = tokens[1];
 		}
-		else if( tokens[0] == "lastName" )
+		else if( tokens[0] == "lastname" )
 		{
-			lastName = tokens[1];
+			lastname = tokens[1];
 		}
 		else if( tokens[0] == "userId" )
 		{
@@ -89,16 +88,16 @@ function readCookie()
 	}
 	else
 	{
-		document.getElementById("userName").innerHTML = "Logged in as " + firstName + " " + lastName;
+		document.getElementById("userName").innerHTML = "Logged in as " + firstname + " " + lastname;
 	}
 }
 
 function doLogout()
 {
 	userId = 0;
-	firstName = "";
-	lastName = "";
-	document.cookie = "firstName= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
+	firstname = "";
+	lastname = "";
+	document.cookie = "firstname= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
 	window.location.href = "index.html";
 }
 
