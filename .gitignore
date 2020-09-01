@@ -1,1 +1,15 @@
-.DS_Store
+First thing I'd do.
+Open Powershell and Run as Admin.
+Run 'Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux'
+Reboot.
+
+Other things from googling.
+
+Check that there isn't any security software preventing big changes from being made.
+Several results on google lead to something called "Checkpoint VPN", so make sure that you don't have that (or have it on)
+
+Several people seemed to like this reply https://github.com/microsoft/WSL/issues/931#issuecomment-358095796
+
+Another possible solution, not sure if credible and would be careful around anything relating to System32 http://yetanotherbug.com/fix-couldnt-complete-update-undoing-changes-error-installing-wsl/
+
+
