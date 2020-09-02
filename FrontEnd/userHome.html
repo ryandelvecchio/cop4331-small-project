@@ -15,46 +15,98 @@
   color: white;
   text-align: center;
 }
-#myHeader
+.hide
 {
-  background-color: grey;
-  color: white;
-  text-align: center;
+  display:none;
+}
+.show
+{
+  display:block;
 }
 </style>
 <body>
 
   <h1 id=title class=display-4>UCF Contact Manager</h1>
+
   <br>
 
   <div style = "max-width: 1400px; margin: 1; padding: 15px">
+    <!-- There must be a way to pass in the user's first name -->
     <h1 class="display-4">Welcome "Name"</h1>
+
       <p>Choose an action:</p>
-      <button type="button" id="searchButton" class="btn btn-primary">Search Users
+      <!-- Search for users in the database -->
+      <input class="btn btn-primary" type="button" value="Search Users" onclick="searchUsers()"/>
+      <input class="hide" type="text" id="textInput" placeholder="First Name"/>
+      <input class="hide" type="text" id="textInput2" placeholder="Last Name"/>
+      <input class="hide btn btn-primary" type="button" id="searchButton" value="Search" onclick="submitSearch()"/>
+      <p class="hide" id="searching">Searching For User...</p>
+
+      <!-- Update the  user's current records -->
+      <input type="button" class="btn btn-primary" value="Update Records" onclick="updateRecords()"/>
+      <input class="hide" type="text" id="updateFirst" placeholder="New First Name"/>
+      <input class="hide" type="text" id="updateLast" placeholder="New Last Name"/>
+      <input class="hide" type="text" id="updateEmail" placeholder="New Email"/>
+      <input class="hide" type="text" id="updatePhone" placeholder="New Phone Number"/>
+      <input class="hide btn btn-primary" type="button" id="updateButton" value="Update" onclick="submitUpdate()">
+      <p class="hide" id="updated">User Information Updated!</p>
+
+      <br>
+      <p> </p>
+      <br>
+
+      <!-- Reset Password -->
+      <input class="btn btn-primary" type="button" value="Reset Password" onclick="resetPassword()"/>
+      <input class="hide" type="password" id="oldPW" placeholder="Old Password"/>
+      <input class="hide" type="password" id="newPW" placeholder="New Password"/>
+      <input class="hide" type="password" id="newPW2" placeholder="Confirm New Password"/>
+      <input class="hide btn btn-primary" type="button" id="resetButton" value="Reset Password" onclick="changePassword()"/>
+      <p class="hide" id="reset">Password Reset Successful!</p>
+
+
+      <button type="button" class="btn btn-primary">
+        <a href="home.html" style="color:inherit">Sign Out</a>
       </button>
-      <form>
-      <!-- First and Last Name Row -->
-        <div class="form-group col-md-2">
-          <label for="inputFirstName">First</label>
-          <input type="text" class="form-control" id="inputFirstName" placeholder="Johnny">
-        </div>
-        <div class="form-group col-md-2">
-          <label for="inputLastName">Last</label>
-          <input type="text" class="form-control" id="inputLastName" placeholder="Appleseed">
-        </div>
-    </form>
-        <button type="submit" class="btn btn-primary">Search Users</button>
-        <br>
-        <p> </p>
-        <br>
-        <button type="button" class="btn btn-primary">
-          <a href="home.html" style="color:inherit">Sign Out</a>
-        </button>
   </div>
 
   <script>
 
+  // Display input boxes for the user to search
+    function searchUsers()
+    {
+      document.getElementById('textInput').className="show";
+      document.getElementById('textInput2').className="show";
+      document.getElementById('searchButton').className="show";
+    }
+    // Display input boxes for the user to update
+    function updateRecords()
+    {
+      document.getElementById('updateFirst').className="show";
+      document.getElementById('updateLast').className="show";
+      document.getElementById('updateEmail').className="show";
+      document.getElementById('updatePhone').className="show";
+      document.getElementById('updateButton').className="show";
+    }
+    // Display input boxes for the user to update password
+    function resetPassword()
+    {
+      document.getElementById('oldPW').className="show";
+      document.getElementById('newPW').className="show";
+      document.getElementById('newPW2').className="show";
+      document.getElementById('resetButton').className="show";
+    }
+    function submitSearch()
+    {
+      document.getElementById('searching').className="show";
+    }
+    function submitUpdate()
+    {
+      document.getElementById('updated').className="show";
+    }
+    function changePassword()
+    {
+      document.getElementById('reset').className="show";
+    }
   </script>
-
 </body>
 </html>
