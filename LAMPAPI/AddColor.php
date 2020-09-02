@@ -1,4 +1,4 @@
-<?php
+<!-- <?php
 	$inData = getRequestInfo();
 	
 	$color = $inData["color"];
@@ -38,4 +38,4 @@
 		sendResultInfoAsJson( $retValue );
 	}
 	
-?>
+?> -->

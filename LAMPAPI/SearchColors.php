@@ -1,4 +1,4 @@
-<?php
+<!-- <?php
 
 	$inData = getRequestInfo();
 	
@@ -58,4 +58,4 @@
 		sendResultInfoAsJson( $retValue );
 	}
 	
-?>
+?> -->

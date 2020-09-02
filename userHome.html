@@ -4,26 +4,13 @@
   <meta name="author" content="Brandon Mitchell">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <script type="text/javascript" src="js/code.js"></script>
+  <link href="css/styles.css" rel="stylesheet">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
   integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
   crossorigin="anonymous">
 </head>
-<style>
-#title
-{
-  background-color: black;
-  color: white;
-  text-align: center;
-}
-.hide
-{
-  display:none;
-}
-.show
-{
-  display:block;
-}
-</style>
+
 <body>
 
   <h1 id=title class=display-4>UCF Contact Manager</h1>
@@ -65,48 +52,9 @@
 
 
       <button type="button" class="btn btn-primary">
-        <a href="home.html" style="color:inherit">Sign Out</a>
+        <a href="index.html" style="color:inherit">Sign Out</a>
       </button>
   </div>
 
-  <script>
-
-  // Display input boxes for the user to search
-    function searchUsers()
-    {
-      document.getElementById('textInput').className="show";
-      document.getElementById('textInput2').className="show";
-      document.getElementById('searchButton').className="show";
-    }
-    // Display input boxes for the user to update
-    function updateRecords()
-    {
-      document.getElementById('updateFirst').className="show";
-      document.getElementById('updateLast').className="show";
-      document.getElementById('updateEmail').className="show";
-      document.getElementById('updatePhone').className="show";
-      document.getElementById('updateButton').className="show";
-    }
-    // Display input boxes for the user to update password
-    function resetPassword()
-    {
-      document.getElementById('oldPW').className="show";
-      document.getElementById('newPW').className="show";
-      document.getElementById('newPW2').className="show";
-      document.getElementById('resetButton').className="show";
-    }
-    function submitSearch()
-    {
-      document.getElementById('searching').className="show";
-    }
-    function submitUpdate()
-    {
-      document.getElementById('updated').className="show";
-    }
-    function changePassword()
-    {
-      document.getElementById('reset').className="show";
-    }
-  </script>
 </body>
 </html>

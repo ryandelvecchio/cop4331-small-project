@@ -10,11 +10,11 @@ function doLogin()
 	firstname = "";
 	lastname = "";
 	
-	var login = document.getElementById("loginName").value;
-	var password = document.getElementById("loginPassword").value;
+	var login = document.getElementById("usrname").value;
+	var password = document.getElementById("passwrd").value;
 //	var hash = md5( password );
 	
-	document.getElementById("loginResult").innerHTML = "";
+	//document.getElementById("loginResult").innerHTML = "";
 
 //	var jsonPayload = '{"login" : "' + login + '", "password" : "' + hash + '"}';
 	var jsonPayload = '{"login" : "' + login + '", "password" : "' + password + '"}';
@@ -33,7 +33,7 @@ function doLogin()
 		
 		if( userId < 1 )
 		{
-			document.getElementById("loginResult").innerHTML = "User/Password combination incorrect";
+			//document.getElementById("loginResult").innerHTML = "User/Password combination incorrect";
 			return;
 		}
 		
@@ -42,11 +42,11 @@ function doLogin()
 
 		saveCookie();
 	
-		window.location.href = "color.html";
+		window.location.href = "userHome.html";
 	}
 	catch(err)
 	{
-		document.getElementById("loginResult").innerHTML = err.message;
+		//document.getElementById("loginResult").innerHTML = err.message;
 	}
 
 }
@@ -88,7 +88,7 @@ function readCookie()
 	}
 	else
 	{
-		document.getElementById("userName").innerHTML = "Logged in as " + firstname + " " + lastname;
+		document.getElementById("usrname").innerHTML = "Logged in as " + firstname + " " + lastname;
 	}
 }
 
