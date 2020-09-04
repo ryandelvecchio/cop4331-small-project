@@ -1,3 +1,17 @@
+<?php
+  session_start();
+
+  // Send user to login if user_id is not set
+  if(isset($_SESSION['user_id'])=="") {
+      header("Location: login.php");
+  }
+
+  include_once 'config.php';
+
+  $userId = $_SESSION['user_id'];
+  $username = $_SESSION['username'];
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,7 +33,7 @@
 
   <div style = "max-width: 1400px; margin: 1; padding: 15px">
     <!-- There must be a way to pass in the user's first name -->
-    <h1 class="display-4">Welcome "Name"</h1>
+    <h1 class="display-4">Welcome <?php echo $_SESSION['username']; ?></h1>
 
       <p>Choose an action:</p>
       <!-- Search for users in the database -->
