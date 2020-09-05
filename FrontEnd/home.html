@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="author" content="Brandon Mitchell">
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta property="og:image"
+    content="https://repository-images.githubusercontent.com/194995309/38db8f80-9db7-11e9-998f-43f2a26d9e0b">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta property="og:title" content="Contact Manager">
+  <meta property="og:description" content="User Home Page">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+  integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+  crossorigin="anonymous">
+  <link rel="stylesheet" href="dark-mode.css">
+</head>
+<style>
+#title
+{
+  background-color: #000;
+  color: white;
+  text-align: center;
+}
+#myHeader
+{
+  background-color: grey;
+  color: white;
+  text-align: center;
+}
+</style>
+<body>
+
+  <h1 id=title class=display-4>UCF Contact Manager</h1>
+
+  <div class="container d-flex p-3 mx-auto flex-column">
+    <header class="mb-auto">
+      <nav class="nav justify-content-cent er float-right">
+        <div class="nav-link">
+
+        <div class="custom-control custom-switch">
+          <input type="checkbox" class="custom-control-input" id="darkSwitch" />
+          <label class="custom-control-label" for="darkSwitch">🌓  Dark Mode</label>
+        </div>
+        <script src="dark-mode-switch.min.js"></script>
+        </div>
+      </nav>
+    </header>
+  </div>
+  <br>
+
+  <div style = "max-width: 1400px; margin: 1; padding: 75px">
+
+    <img src="PinClipart.png" class="rounded float-right" height="400" width="400" alt="...">
+
+    <h1 class="display-4">Welcome</h1>
+      <p>Sign in below:</p>
+      <form>
+        <div class = "form-group col-md-4 pl-0">
+          <label for="usrname">Username:</label>
+          <input type="text" class="form-control" id="usrname" placeholder="Username">
+        </div>
+        <div class = "form-group col-md-4 pl-0">
+          <label for="passwrd">Password:</label>
+          <input type="text" class="form-control" id="passwrd" placeholder="*********">
+        </div>
+          <button type="button" class="btn btn-primary">
+            <a href="userHome.html" style="color:inherit">Sign In</a>
+          </button>
+          <br>
+          <a href="register.html" class"btn btn-primary"
+          role="button">New User? Register Here</a>
+      </form>
+  </div>
+
+  <script>
+
+  </script>
+
+</body>
+</html>
