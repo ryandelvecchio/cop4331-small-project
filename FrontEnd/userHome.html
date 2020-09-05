@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="author" content="Brandon Mitchell">
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta property="og:image"
+    content="https://repository-images.githubusercontent.com/194995309/38db8f80-9db7-11e9-998f-43f2a26d9e0b">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta property="og:title" content="Home">
+  <meta property="og:description" content="User Home Page">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+  crossorigin="anonymous">
+  <link rel="stylesheet" href="dark-mode.css">
+</head>
+<style>
+#title
+{
+  background-color: black;
+  color: white;
+  text-align: center;
+}
+.hide
+{
+  display:none;
+}
+.show
+{
+  display:block;
+}
+</style>
+<body>
+
+  <h1 id=title class=display-4>UCF Contact Manager</h1>
+
+  <div class="container d-flex p-3 mx-auto flex-column">
+    <header class="mb-auto">
+      <nav class="nav justify-content-cent er float-right">
+        <a class="nav-link active" href="home.html">Sign Out</a>
+        <div class="nav-link">
+
+        <div class="custom-control custom-switch">
+          <input type="checkbox" class="custom-control-input" id="darkSwitch" />
+          <label class="custom-control-label" for="darkSwitch">🌓  Dark Mode</label>
+        </div>
+        <script src="dark-mode-switch.min.js"></script>
+
+
+        </div>
+      </nav>
+    </header>
+  </div>
+
+  <br>
+
+  <div style = "max-width: 1400px; margin: 1; padding: 50px">
+    <!-- There must be a way to pass in the user's first name -->
+    <h1 class="display-4">Welcome "Name"</h1>
+
+      <p>Choose an action:</p>
+      <!-- Search for users in the database -->
+      <input class="btn btn-primary" type="button" value="Search Users" onclick="searchUsers()"/>
+      <input class="hide" type="text" id="textInput" placeholder="First Name"/>
+      <input class="hide" type="text" id="textInput2" placeholder="Last Name"/>
+      <input class="hide btn btn-primary" type="button" id="searchButton" value="Search" onclick="submitSearch()"/>
+      <p class="hide" id="searching">Searching For User...</p>
+
+      <br>
+      <p> </p>
+      <br>
+
+      <!-- Update the  user's current records -->
+      <input type="button" class="btn btn-primary" value="Update Records" onclick="updateRecords()"/>
+      <input class="hide" type="text" id="updateFirst" placeholder="New First Name"/>
+      <input class="hide" type="text" id="updateLast" placeholder="New Last Name"/>
+      <input class="hide" type="text" id="updateEmail" placeholder="New Email"/>
+      <input class="hide" type="text" id="updatePhone" placeholder="New Phone Number"/>
+      <input class="hide btn btn-primary" type="button" id="updateButton" value="Update" onclick="submitUpdate()">
+      <p class="hide" id="updated">User Information Updated!</p>
+
+      <br>
+      <p> </p>
+      <br>
+
+      <!-- Reset Password -->
+      <input class="btn btn-primary" type="button" value="Reset Password" onclick="resetPassword()"/>
+      <input class="hide" type="password" id="oldPW" placeholder="Old Password"/>
+      <input class="hide" type="password" id="newPW" placeholder="New Password"/>
+      <input class="hide" type="password" id="newPW2" placeholder="Confirm New Password"/>
+      <input class="hide btn btn-primary" type="button" id="resetButton" value="Reset Password" onclick="changePassword()"/>
+      <p class="hide" id="reset">Password Reset Successful!</p>
+
+  </div>
+
+  <script>
+
+  // Display input boxes for the user to search
+    function searchUsers()
+    {
+      document.getElementById('textInput').className="show";
+      document.getElementById('textInput2').className="show";
+      document.getElementById('searchButton').className="show";
+    }
+    // Display input boxes for the user to update
+    function updateRecords()
+    {
+      document.getElementById('updateFirst').className="show";
+      document.getElementById('updateLast').className="show";
+      document.getElementById('updateEmail').className="show";
+      document.getElementById('updatePhone').className="show";
+      document.getElementById('updateButton').className="show";
+    }
+    // Display input boxes for the user to update password
+    function resetPassword()
+    {
+      document.getElementById('oldPW').className="show";
+      document.getElementById('newPW').className="show";
+      document.getElementById('newPW2').className="show";
+      document.getElementById('resetButton').className="show";
+    }
+    function submitSearch()
+    {
+      document.getElementById('searching').className="show";
+    }
+    function submitUpdate()
+    {
+      document.getElementById('updated').className="show";
+    }
+    function changePassword()
+    {
+      document.getElementById('reset').className="show";
+    }
+  </script>
+</body>
+</html>
