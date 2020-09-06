@@ -14,12 +14,6 @@
   <link rel="stylesheet" href="dark-mode.css">
 </head>
 <style>
-#title
-{
-  background-color: black;
-  color: white;
-  text-align: center;
-}
 .hide
 {
   display:none;
@@ -29,67 +23,59 @@
   display:block;
 }
 </style>
-<body>
-
-  <h1 id=title class=display-4>UCF Contact Manager</h1>
+<body style="body">
 
   <div class="container d-flex p-3 mx-auto flex-column">
     <header class="mb-auto">
       <nav class="nav justify-content-cent er float-right">
-        <a class="nav-link active" href="home.html">Sign Out</a>
+        <a class="nav-link active" id="homeButton" href="home.html">Sign Out</a>
         <div class="nav-link">
-
-        <div class="custom-control custom-switch">
-          <input type="checkbox" class="custom-control-input" id="darkSwitch" />
-          <label class="custom-control-label" for="darkSwitch">🌓  Dark Mode</label>
-        </div>
-        <script src="dark-mode-switch.min.js"></script>
-
-
+          <div class="custom-control custom-switch">
+            <input type="checkbox" class="custom-control-input" id="darkSwitch" />
+            <label class="custom-control-label" for="darkSwitch">🌓  Dark Mode</label>
+          </div>
+          <script src="dark-mode-switch.min.js"></script>
         </div>
       </nav>
     </header>
   </div>
-
   <br>
 
-  <div style = "max-width: 1400px; margin: 1; padding: 50px">
-    <!-- There must be a way to pass in the user's first name -->
-    <h1 class="display-4">Welcome "Name"</h1>
+    <div class="container">
+      <div class="transbox">
+        <!-- There must be a way to pass in the user's first name -->
+        <h1 class="display-4">Welcome "Name"</h1>
+        <p>Choose an action:</p>
 
-      <p>Choose an action:</p>
-      <!-- Search for users in the database -->
-      <input class="btn btn-primary" type="button" value="Search Users" onclick="searchUsers()"/>
-      <input class="hide" type="text" id="textInput" placeholder="First Name"/>
-      <input class="hide" type="text" id="textInput2" placeholder="Last Name"/>
-      <input class="hide btn btn-primary" type="button" id="searchButton" value="Search" onclick="submitSearch()"/>
-      <p class="hide" id="searching">Searching For User...</p>
-
-      <br>
-      <p> </p>
-      <br>
-
-      <!-- Update the  user's current records -->
-      <input type="button" class="btn btn-primary" value="Update Records" onclick="updateRecords()"/>
-      <input class="hide" type="text" id="updateFirst" placeholder="New First Name"/>
-      <input class="hide" type="text" id="updateLast" placeholder="New Last Name"/>
-      <input class="hide" type="text" id="updateEmail" placeholder="New Email"/>
-      <input class="hide" type="text" id="updatePhone" placeholder="New Phone Number"/>
-      <input class="hide btn btn-primary" type="button" id="updateButton" value="Update" onclick="submitUpdate()">
-      <p class="hide" id="updated">User Information Updated!</p>
-
-      <br>
-      <p> </p>
-      <br>
-
-      <!-- Reset Password -->
-      <input class="btn btn-primary" type="button" value="Reset Password" onclick="resetPassword()"/>
-      <input class="hide" type="password" id="oldPW" placeholder="Old Password"/>
-      <input class="hide" type="password" id="newPW" placeholder="New Password"/>
-      <input class="hide" type="password" id="newPW2" placeholder="Confirm New Password"/>
-      <input class="hide btn btn-primary" type="button" id="resetButton" value="Reset Password" onclick="changePassword()"/>
-      <p class="hide" id="reset">Password Reset Successful!</p>
-
+        <form>
+            <div class="form-group col-md-6">
+              <!-- Search for users in the database -->
+              <input class="btn btn-dark" type="button" value="Search Users" onclick="searchUsers()"/>
+              <input class="hide" type="text" id="textInput" placeholder="First Name"/>
+              <input class="hide" type="text" id="textInput2" placeholder="Last Name"/>
+              <input class="hide btn btn-primary" type="button" id="searchButton" value="Search" onclick="submitSearch()"/>
+              <p class="hide" id="searching">Searching For User...</p>
+            </div>
+            <div class="form-group col-md-6">
+              <!-- Update the  user's current records -->
+              <input type="button" class="btn btn-dark" value="Update Records" onclick="updateRecords()"/>
+              <input class="hide" type="text" id="updateFirst" placeholder="New First Name"/>
+              <input class="hide" type="text" id="updateLast" placeholder="New Last Name"/>
+              <input class="hide" type="text" id="updateEmail" placeholder="New Email"/>
+              <input class="hide" type="text" id="updatePhone" placeholder="New Phone Number"/>
+              <input class="hide btn btn-primary" type="button" id="updateButton" value="Update" onclick="submitUpdate()">
+              <p class="hide" id="updated">User Information Updated!</p>
+          </div>
+            <div class="form-group col-md-6">
+              <!-- Reset Password -->
+              <input class="btn btn-dark" type="button" value="Reset Password" onclick="resetPassword()"/>
+              <input class="hide" type="password" id="oldPW" placeholder="Old Password"/>
+              <input class="hide" type="password" id="newPW" placeholder="New Password"/>
+              <input class="hide" type="password" id="newPW2" placeholder="Confirm New Password"/>
+              <input class="hide btn btn-primary" type="button" id="resetButton" value="Reset Password" onclick="changePassword()"/>
+              <p class="hide" id="reset">Password Reset Successful!</p>
+            </div>
+    </div>
   </div>
 
   <script>

@@ -1,6 +1,88 @@
+
+body {
+    background-image: url("mtn.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+head {
+    font-style: normal;
+}
+.center {
+    margin: auto;
+    width: 40%;
+    border: 3px solid #333;
+    padding: 5px;
+}
+div.transbox
+{
+  margin: 30px;
+  padding: 15px;
+  max-width: 1400px;
+  background-color: #c2d1e0;
+  border: 5px solid #c2cae0;
+  opacity: 0.9;
+}
+.container
+{
+  display: flex;
+}
+.show
+{
+  display:block;
+}
+div.regContainer
+{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+div.regTransbox
+{
+  position: relative;
+  margin: 15px;
+  padding: 5px;
+  width: 600px;
+  background-color: #c2d1e0;
+  border: 5px solid #c2cae0;
+  opacity: 0.8;
+}
+#mojaveTitle {
+  color: #fff !important;
+}
+#signIn {
+  color: #fff !important;
+}
+#homeButton {
+  color: #fff !important;
+}
+#hUsername {
+  color: #fff !important;
+}
+#hPassword {
+  color: #fff !important;
+}
+#register
+{
+  color: #fff !important;
+}
+label {
+  color: #fff !important;
+}
+h1
+{
+  color: #fff;
+}
+p
+{
+  color: #fff;
+}
+/*Dark Theme references provided by Christian Oliff
+ https://github.com/coliff/dark-mode-switch/commit/00e0ed339aca6938063f87ce398055259755410e
+*/
 [data-theme="dark"] {
   background-color: #222 !important;
-  color: #eee;
+  background-image: url("dkmtn.jpg");
 }
 
 [data-theme="dark"] .bg-light {
@@ -14,7 +96,35 @@
 [data-theme="dark"] .bg-black {
   background-color: #eee !important;
 }
+[data-theme="dark"] h1 {
+  color: #333 !important;
+}
+[data-theme="dark"] p {
+  color: #333 !important;
+}
 
+[data-theme="dark"] #mojaveTitle {
+  color: #333 !important;
+}
+[data-theme="dark"] #signIn {
+  color: #333 !important;
+}
+[data-theme="dark"] label {
+  color: #333 !important;
+}
+[data-theme="dark"] #homeButton {
+  color: #333 !important;
+}
+[data-theme="dark"] #hUsername {
+  color: #333 !important;
+}
+[data-theme="dark"] #hPassword {
+  color: #333 !important;
+}
+[data-theme="dark"] #register
+{
+  color: #333 !important;
+}
 .rounded{
-  position:relative;
+  position: relative;
 }

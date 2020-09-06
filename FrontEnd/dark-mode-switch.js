@@ -1,3 +1,5 @@
+// Dark Theme references provided by Christian Oliff
+// https://github.com/coliff/dark-mode-switch/commit/00e0ed339aca6938063f87ce398055259755410e
 const darkSwitch = document.getElementById('darkSwitch');
 window.addEventListener('load', () => {
   if (darkSwitch) {

@@ -15,22 +15,9 @@
   <link rel="stylesheet" href="dark-mode.css">
 </head>
 <style>
-#title
-{
-  background-color: #000;
-  color: white;
-  text-align: center;
-}
-#myHeader
-{
-  background-color: grey;
-  color: white;
-  text-align: center;
-}
-</style>
-<body>
 
-  <h1 id=title class=display-4>UCF Contact Manager</h1>
+</style>
+<body style="body">
 
   <div class="container d-flex p-3 mx-auto flex-column">
     <header class="mb-auto">
@@ -48,28 +35,34 @@
   </div>
   <br>
 
-  <div style = "max-width: 1400px; margin: 1; padding: 75px">
-
-    <img src="PinClipart.png" class="rounded float-right" height="400" width="400" alt="...">
-
-    <h1 class="display-4">Welcome</h1>
-      <p>Sign in below:</p>
-      <form>
-        <div class = "form-group col-md-4 pl-0">
-          <label for="usrname">Username:</label>
-          <input type="text" class="form-control" id="usrname" placeholder="Username">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="transbox">
+          <h1 class="display-4" id="mojaveTitle">Contacts</h1>
+            <p id="signIn">Sign in below:</p>
+            <form>
+              <div class = "form-group col-md-10 pl-0">
+                <label for="usrname" id="hUsername">Username:</label>
+                <input type="text" class="form-control" id="usrname" placeholder="Username">
+              </div>
+              <div class = "form-group col-md-10 pl-0">
+                <label for="passwrd" id="hPassword">Password:</label>
+                <input type="text" class="form-control" id="passwrd" placeholder="*********">
+              </div>
+                <button type="button" class="btn btn-light">
+                  <a href="userHome.html" style="color:inherit">Sign In</a>
+                </button>
+                <br>
+                <a href="register.html" id="register" class"btn btn-primary"
+                role="button"><strong>New User? Register Here</strong></a>
+            </form>
         </div>
-        <div class = "form-group col-md-4 pl-0">
-          <label for="passwrd">Password:</label>
-          <input type="text" class="form-control" id="passwrd" placeholder="*********">
-        </div>
-          <button type="button" class="btn btn-primary">
-            <a href="userHome.html" style="color:inherit">Sign In</a>
-          </button>
-          <br>
-          <a href="register.html" class"btn btn-primary"
-          role="button">New User? Register Here</a>
-      </form>
+      </div>
+      <div class="col-md-6">
+        <img src="contactIcon.png" height="500" width="650" alt="...">
+      </div>
+    </div>
   </div>
 
   <script>
