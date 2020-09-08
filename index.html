@@ -12,7 +12,8 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
   integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
   crossorigin="anonymous">
-  <link rel="stylesheet" href="dark-mode.css">
+  <link rel="stylesheet" href="css/dark-mode.css">
+  <script type="text/javascript" src="js/code.js"></script>
 </head>
 <style>
 
@@ -28,7 +29,7 @@
           <input type="checkbox" class="custom-control-input" id="darkSwitch" />
           <label class="custom-control-label" for="darkSwitch">🌓  Dark Mode</label>
         </div>
-        <script src="dark-mode-switch.min.js"></script>
+        <script src="js/dark-mode-switch.min.js"></script>
         </div>
       </nav>
     </header>
@@ -50,8 +51,8 @@
                 <label for="passwrd" id="hPassword">Password:</label>
                 <input type="text" class="form-control" id="passwrd" placeholder="*********">
               </div>
-                <button type="button" class="btn btn-light">
-                  <a href="userHome.html" style="color:inherit">Sign In</a>
+                <button type="button" class="btn btn-light" onclick="doLogin();">
+                  <a style="color:inherit">Sign In</a>
                 </button>
                 <br>
                 <a href="register.html" id="register" class"btn btn-primary"
@@ -60,14 +61,9 @@
         </div>
       </div>
       <div class="col-md-6">
-        <img src="contactIcon.png" height="500" width="650" alt="...">
+        <img src="images/contactIcon.png" height="500" width="650" alt="...">
       </div>
     </div>
   </div>
-
-  <script>
-
-  </script>
-
 </body>
 </html>
