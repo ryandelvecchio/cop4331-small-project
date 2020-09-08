@@ -1,9 +1,9 @@
 <?php
 	// Connec to database
-	$connection = mysqli_connect('localhost', 'root', '', 'contactmanager');
-	
+	$conn = new mysqli("161.35.52.252", "root", "password", "contactmanager");
+
 	// Check connection
-	if($connection === false){
+	if($conn === false){
 		die("ERROR: Could not connect. " . mysqli_connect_error());
 	}
 ?>
