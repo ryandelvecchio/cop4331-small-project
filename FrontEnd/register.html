@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <title>New User</title>
   <meta name="author" content="Brandon Mitchell">
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -20,12 +21,14 @@
 
   <div class="container d-flex p-3 mx-auto flex-column">
     <header class="mb-auto">
-      <nav class="nav justify-content-cent er float-right">
+      <nav>
+        <h2 id="pageTitle">Contact Manager</h2>
+
         <a id="homeButton" class="nav-link active" href="home.html">Home</a>
         <div class="nav-link">
           <div class="custom-control custom-switch">
             <input type="checkbox" class="custom-control-input" id="darkSwitch" />
-            <label class="custom-control-label" for="darkSwitch">🌓  Dark Mode</label>
+            <label class="custom-control-label" for="darkSwitch">🌓 </label>
           </div>
           <script src="dark-mode-switch.min.js"></script>
         </div>
@@ -34,6 +37,7 @@
   </div>
   <br>
 
+  <br>
   <div class="regContainer">
     <div class="regTransbox">
 
@@ -75,7 +79,7 @@
           </div>
         </div>
 
-        <button type="submit" class="btn btn-primary">Sign Up</button>
+        <button id="button" type="submit" class="btn btn-light">Sign Up</button>
 
       </form>
     </div>

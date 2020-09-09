@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <title>User Home Page</title>
   <meta name="author" content="Brandon Mitchell">
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -27,12 +28,13 @@
 
   <div class="container d-flex p-3 mx-auto flex-column">
     <header class="mb-auto">
-      <nav class="nav justify-content-cent er float-right">
+      <nav>
+        <h2 id="pageTitle">Contact Manager</h2>
         <a class="nav-link active" id="homeButton" href="home.html">Sign Out</a>
         <div class="nav-link">
           <div class="custom-control custom-switch">
             <input type="checkbox" class="custom-control-input" id="darkSwitch" />
-            <label class="custom-control-label" for="darkSwitch">🌓  Dark Mode</label>
+            <label class="custom-control-label" for="darkSwitch">🌓 </label>
           </div>
           <script src="dark-mode-switch.min.js"></script>
         </div>
@@ -40,15 +42,18 @@
     </header>
   </div>
   <br>
-
+  <br>
+  <br>
+  <br>
     <div class="container">
-      <div class="transbox">
+      <div class="uTransbox">
         <!-- There must be a way to pass in the user's first name -->
         <h1 class="display-4">Welcome "Name"</h1>
-        <p>Choose an action:</p>
 
         <form>
             <div class="form-group col-md-6">
+              <p>Choose an action:</p>
+
               <!-- Search for users in the database -->
               <input class="btn btn-dark" type="button" value="Search Users" onclick="searchUsers()"/>
               <input class="hide" type="text" id="textInput" placeholder="First Name"/>

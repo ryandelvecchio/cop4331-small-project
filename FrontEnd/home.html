@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <title>Contact Manager</title>
   <meta name="author" content="Brandon Mitchell">
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -21,12 +22,14 @@
 
   <div class="container d-flex p-3 mx-auto flex-column">
     <header class="mb-auto">
-      <nav class="nav justify-content-cent er float-right">
+      <nav>
+        <h2 id="pageTitle">Contact Manager</h2>
+
         <div class="nav-link">
 
         <div class="custom-control custom-switch">
           <input type="checkbox" class="custom-control-input" id="darkSwitch" />
-          <label class="custom-control-label" for="darkSwitch">🌓  Dark Mode</label>
+          <label class="custom-control-label" for="darkSwitch">🌓</label>
         </div>
         <script src="dark-mode-switch.min.js"></script>
         </div>
@@ -34,33 +37,36 @@
     </header>
   </div>
   <br>
-
+  <br>
+  <br>
+  <br>
   <div class="container">
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-5">
         <div class="transbox">
-          <h1 class="display-4" id="mojaveTitle">Contacts</h1>
-            <p id="signIn">Sign in below:</p>
+          <h1 class="display-4 pl-2" id="mojaveTitle">Sign In:</h1>
             <form>
-              <div class = "form-group col-md-10 pl-0">
+              <div class = "form-group col-md-10 pl-2">
                 <label for="usrname" id="hUsername">Username:</label>
                 <input type="text" class="form-control" id="usrname" placeholder="Username">
               </div>
-              <div class = "form-group col-md-10 pl-0">
+              <div class = "form-group col-md-10 pl-2">
                 <label for="passwrd" id="hPassword">Password:</label>
                 <input type="text" class="form-control" id="passwrd" placeholder="*********">
               </div>
-                <button type="button" class="btn btn-light">
+              <div class = "form-group col-md-10 pl-2">
+                <button type="button" id="button" class="btn btn-light pl-2">
                   <a href="userHome.html" style="color:inherit">Sign In</a>
                 </button>
                 <br>
-                <a href="register.html" id="register" class"btn btn-primary"
+                <a href="register.html" id="register" class"btn btn-primary pl-2"
                 role="button"><strong>New User? Register Here</strong></a>
+              </div>
             </form>
         </div>
       </div>
-      <div class="col-md-6">
-        <img src="contactIcon.png" height="500" width="650" alt="...">
+      <div class="col-md-7">
+        <img src="contactIcon.png" height="400" width="800" alt="...">
       </div>
     </div>
   </div>
