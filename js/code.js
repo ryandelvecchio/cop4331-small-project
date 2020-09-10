@@ -1,48 +1,56 @@
 var extension = 'php';
-
+// DELETE ME
 var userId = 0;
 var firstname = "";
 var lastname = "";
 
 function doLogin()
 {
-	var login = document.getElementById("usrname").value;
-	var password = document.getElementById("passwrd").value;
-//	var hash = md5( password );
+	userId = 0;
+	firstname = "";
+	lastname = "";
+
+	var login = document.getElementById("hUsername").value;
+	var password = document.getElementById("hPassword").value;
+
+	// encode the password using md5.min.js hash function
+	var hash = md5(password);
+
+	//document.getElementById("loginResult").innerHTML = "";
+
 //	var jsonPayload = '{"login" : "' + login + '", "password" : "' + hash + '"}';
 	var jsonPayload = '{"login" : "' + login + '", "password" : "' + password + '"}';
-	var url = 'api/login.' + extension;
-
-  console.log(url);
+	var url = 'api//login.' + extension;
 
 	var xhr = new XMLHttpRequest();
-	xhr.open("POST", url, false);
+	xhr.open("POST", url, true);
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-	xhr.send(jsonPayload);
+	try
+	{
+		xhr.send(jsonPayload);
 
-      try
-      {
-  		  var jsonObject = JSON.parse(xhr.responseText);
+		var jsonObject = JSON.parse( xhr.responseText );
 
-    		userId = jsonObject.id;
+		userId = jsonObject.id;
 
-    		if (userId < 1)
-    		{
-    			alert("User/Password combination incorrect");
-    			return;
-    		}
+		if( userId < 1 )
+		{
+			//document.getElementById("loginResult").innerHTML = "User/Password combination incorrect";
+			return;
+		}
 
-    		firstname = jsonObject.firstname;
-    		lastname = jsonObject.lastname;
+		firstname = jsonObject.firstname;
+		lastname = jsonObject.lastname;
 
-    		saveCookie();
+		saveCookie();
 
-    		window.location.href = "html/home.html";
-    }
-    catch(err)
-    {
-      alert(err.message);
-    }
+		window.location.href = "home.html";
+	}
+	catch(err)
+	{
+		//document.getElementById("loginResult").innerHTML = err.message;
+	}
+
 }
 
 function saveCookie()
@@ -82,7 +90,7 @@ function readCookie()
 	}
 	else
 	{
-		document.getElementById("userName").innerHTML = "Logged in as " + firstname + " " + lastname;
+		document.getElementById("usrname").innerHTML = "Logged in as " + firstname + " " + lastname;
 	}
 }
 
