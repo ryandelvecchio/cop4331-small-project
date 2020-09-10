@@ -10,15 +10,15 @@ function doLogin()
 	firstname = "";
 	lastname = "";
 
-	var login = document.getElementById("hUsername").value;
-	var password = document.getElementById("hPassword").value;
+	var login = document.getElementById("usrname").value;
+	var password = document.getElementById("passwrd").value;
 
 	// encode the password using md5.min.js hash function
 	var hash = md5(password);
 
 	//document.getElementById("loginResult").innerHTML = "";
 
-//	var jsonPayload = '{"login" : "' + login + '", "password" : "' + hash + '"}';
+  //var jsonPayload = '{"login" : "' + login + '", "password" : "' + hash + '"}';
 	var jsonPayload = '{"login" : "' + login + '", "password" : "' + password + '"}';
 	var url = 'api//login.' + extension;
 
