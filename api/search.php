@@ -27,7 +27,8 @@
           $contact = array('firstname' => $row['firstname'],
                            'lastname'  => $row['lastname'],
                            'phone'     => $row['phone'],
-                           'email'     => $row['email']);
+                           'email'     => $row['email'],
+                           'contactID' => $row['contact_id']);
 
           array_push($searchResults, $contact);
       }
