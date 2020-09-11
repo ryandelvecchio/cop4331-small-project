@@ -15,7 +15,7 @@
 
     $sql =
       "SELECT * FROM contacts WHERE user_id={$userID}
-      AND (firstname LIKE '%{$userQuery}' OR lastname LIKE '%{$userQuery}' OR phone LIKE '%{$userQuery}' OR email LIKE '%{$userQuery}')";
+      AND (firstname LIKE '%{$userQuery}%' OR lastname LIKE '%{$userQuery}%' OR phone LIKE '%{$userQuery}%' OR email LIKE '%{$userQuery}%')";
 
 		$result = $conn->query($sql);
 
