@@ -8,7 +8,7 @@
 
   include_once 'config.php';
 
-	if ($connection->connect_error)
+	if ($conn->connect_error)
 	{
 		returnWithError( $conn->connect_error );
 	}
