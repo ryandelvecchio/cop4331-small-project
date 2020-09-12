@@ -149,7 +149,7 @@ function addContact()
 
 
 // Search for a contact by first name
-function searchContacts()
+function submitSearch()
 {
 	var srch = document.getElementById("firstnameSearch").value;
 
