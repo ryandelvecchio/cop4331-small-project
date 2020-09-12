@@ -50,6 +50,7 @@ div.transbox
 .container
 {
   display: flex;
+  max-width: inherit;
 }
 .show
 {
