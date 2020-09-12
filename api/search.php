@@ -28,7 +28,7 @@
                            'lastname'  => $row['lastname'],
                            'phone'     => $row['phone'],
                            'email'     => $row['email'],
-                           'contactID' => $row['contact_id']);
+                           'contact_id' => intval($row['contact_id']));
 
           array_push($searchResults, $contact);
       }

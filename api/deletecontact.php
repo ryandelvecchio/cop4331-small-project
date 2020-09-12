@@ -1,14 +1,10 @@
 <?php
 
+	// TODO: Should probably not allow users to delete other users contacts lol...
+
 	$inData = getRequestInfo();
 
-	$user_id = $inData["user_id"];
-	$firstname = $inData["firstname"];
-	$lastname = $inData["lastname"];
-	$email = $inData["email"];
-	$phone = $inData["phone"];
-	// TODO: I'm pretty sure I set the DB to do this automatically
-	$createtime = date("Y-m-d h:i:sa");
+	$contact_id = $inData["contact_id"];
 
 	include_once 'config.php';
 
@@ -18,7 +14,7 @@
 	}
 	else
 	{
-		$sql = "INSERT INTO contacts (firstname, lastname, email, phone, createtime, user_id) VALUES ('". $firstname ."','". $lastname ."','". $email ."','". $phone ."','". $createtime ."','". $user_id  ."')";
+		$sql = "DELETE FROM contacts WHERE contact_id={$contact_id}";
 
 		$result = $conn->query($sql);
 
@@ -28,7 +24,7 @@
 		}
 		else
 		{
-			returnWithError("Error inserting record");
+			returnWithError("Error deleting record");
 		}
 		$conn->close();
 	}
@@ -38,7 +34,7 @@
 		return json_decode(file_get_contents('php://input'), true);
 	}
 
-	function sendResultInfoAsJson($obj)
+	function sendResultInfoAsJson( $obj )
 	{
 		header('Content-type: application/json');
 		echo $obj;
