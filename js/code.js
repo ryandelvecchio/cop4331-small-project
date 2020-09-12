@@ -1,5 +1,5 @@
 var extension = 'php';
-// DELETE ME
+
 var userId = 0;
 var firstname = "";
 var lastname = "";
@@ -13,8 +13,8 @@ function doLogin()
 	var login = document.getElementById("usrname").value;
 	var password = document.getElementById("passwrd").value;
 
-	// encode the password using md5.min.js hash function
-	var hash = md5(password);
+	//encode the password using md5.js hash function
+	//var hash = md5(password);
 
 	//document.getElementById("loginResult").innerHTML = "";
 
@@ -103,13 +103,27 @@ function doLogout()
 	window.location.href = "index.html";
 }
 
-function addColor()
+// Add a new contact
+// Returns a JSON payload with new contact info
+function addContact()
 {
-	var newColor = document.getElementById("colorText").value;
-	document.getElementById("colorAddResult").innerHTML = "";
+	// variables for JSON payload
+	// FIXME: Didn't see these fields in the HTML code so we need to make
+	// an input for them
+	var newFirstName = document.getElementById("newFirstName").value;
+	var newLastName = document.getElementById("newLastName").value;
+	var newEmail = document.getElementById("newEmail").value;
+	var newPhoneNumber = document.getElementById("newPhoneNumber").value;
 
-	var jsonPayload = '{"color" : "' + newColor + '", "userId" : ' + userId + '}';
-	var url = urlBase + '/AddColor.' + extension;
+
+	document.getElementById("addResult").innerHTML = "";
+
+	// JSON payload with all new contact info from HTML page
+	var jsonPayload = '{"first name" : "' + newFirstName + '", "last name" : ' + newLastName +
+	'", "email" : ' + newEmail +  '", "phone number" : ' + newPhoneNumber + '}';
+
+	// FIXME: rename based on endpoint name for the PHP file
+	var url = urlBase + '/api/addContact.' + extension;
 
 	var xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
@@ -120,27 +134,35 @@ function addColor()
 		{
 			if (this.readyState == 4 && this.status == 200)
 			{
-				document.getElementById("colorAddResult").innerHTML = "Color has been added";
+				document.getElementById("addResult").innerHTML = "Contact Added to your list";
 			}
 		};
 		xhr.send(jsonPayload);
 	}
 	catch(err)
 	{
-		document.getElementById("colorAddResult").innerHTML = err.message;
+		document.getElementById("addResult").innerHTML = err.message;
 	}
 
 }
 
-function searchColor()
+
+// Search for a contact by first name
+function searchContacts()
 {
-	var srch = document.getElementById("searchText").value;
+	var srch = document.getElementById("firstnameSearch").value;
+
+
+	// FIXME: where is the search result in the register.HTML?
 	document.getElementById("colorSearchResult").innerHTML = "";
 
-	var colorList = "";
+	var searchList = "";
 
-	var jsonPayload = '{"search" : "' + srch + '","userId" : ' + userId + '}';
-	var url = urlBase + '/SearchColors.' + extension;
+	// json payload with first name to search and userID of person searching
+	var jsonPayload = '{"first name" : "' + srch + '","userId" : ' + userId + '}';
+
+	// FIXME: change /SearchNames to whatever PHP file name we use
+	var url = urlBase + '/api/SearchNames.' + extension;
 
 	var xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
@@ -151,26 +173,32 @@ function searchColor()
 		{
 			if (this.readyState == 4 && this.status == 200)
 			{
-				document.getElementById("colorSearchResult").innerHTML = "Color(s) has been retrieved";
+				document.getElementById("SearchResult").innerHTML = "Processing Names...";
 				var jsonObject = JSON.parse( xhr.responseText );
 
+				// build json array of results
 				for( var i=0; i<jsonObject.results.length; i++ )
 				{
-					colorList += jsonObject.results[i];
+					searchList += jsonObject.results[i];
+
+					// Add a formatting break to each search result displayed
 					if( i < jsonObject.results.length - 1 )
 					{
-						colorList += "<br />\r\n";
+						searchList += "<br />\r\n";
 					}
 				}
 
-				document.getElementsByTagName("p")[0].innerHTML = colorList;
+				// FIXME: Not 100% sure what this does but I think it
+				// just displays the results as a paragraph. This may need to be worked
+				// in a bit better
+				document.getElementsByTagName("p")[0].innerHTML = SearchList;
 			}
 		};
 		xhr.send(jsonPayload);
 	}
 	catch(err)
 	{
-		document.getElementById("colorSearchResult").innerHTML = err.message;
+		document.getElementById("SearchResult").innerHTML = err.message;
 	}
 
 }
