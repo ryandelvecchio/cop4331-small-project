@@ -120,10 +120,11 @@ function addContact()
 
 	// JSON payload with all new contact info from HTML page
 	var jsonPayload = '{"first name" : "' + newFirstName + '", "last name" : ' + newLastName +
-	'", "email" : ' + newEmail +  '", "phone number" : ' + newPhoneNumber + '}';
+	'", "email" : ' + newEmail +  '", "phone number" : ' + newPhoneNumber +
+	'", "userId" : ' + userId +  '}';
 
 	// FIXME: rename based on endpoint name for the PHP file
-	var url = urlBase + '/api/addContact.' + extension;
+	var url = urlBase + '/api/addcontact.' + extension;
 
 	var xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
@@ -161,8 +162,7 @@ function searchContacts()
 	// json payload with first name to search and userID of person searching
 	var jsonPayload = '{"first name" : "' + srch + '","userId" : ' + userId + '}';
 
-	// FIXME: change /SearchNames to whatever PHP file name we use
-	var url = urlBase + '/api/SearchNames.' + extension;
+	var url = urlBase + '/api/search.' + extension;
 
 	var xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
