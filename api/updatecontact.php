@@ -2,23 +2,27 @@
 
 	$inData = getRequestInfo();
 
-	$user_id = $inData["user_id"];
+	$contact_id = $inData["contact_id"];
 	$firstname = $inData["firstname"];
 	$lastname = $inData["lastname"];
 	$email = $inData["email"];
 	$phone = $inData["phone"];
-	// TODO: I'm pretty sure I set the DB to do this automatically
-	$createtime = date("Y-m-d h:i:sa");
 
 	include_once 'config.php';
 
 	if ($conn->connect_error)
 	{
-		returnWithError($conn->connect_error);
+		returnWithError( $conn->connect_error );
 	}
 	else
 	{
-		$sql = "INSERT INTO contacts (firstname, lastname, email, phone, createtime, user_id) VALUES ('". $firstname ."','". $lastname ."','". $email ."','". $phone ."','". $createtime ."','". $user_id  ."')";
+		$sql
+			= "UPDATE contacts SET
+			firstname='{$firstname}',
+			lastname='{$lastname}',
+			email='{$email}',
+			phone='{$phone}'
+			WHERE contact_id={$contact_id}";
 
 		$result = $conn->query($sql);
 
@@ -28,7 +32,7 @@
 		}
 		else
 		{
-			returnWithError("Error inserting record");
+			returnWithError("Error updating record");
 		}
 		$conn->close();
 	}
@@ -38,7 +42,7 @@
 		return json_decode(file_get_contents('php://input'), true);
 	}
 
-	function sendResultInfoAsJson($obj)
+	function sendResultInfoAsJson( $obj )
 	{
 		header('Content-type: application/json');
 		echo $obj;
