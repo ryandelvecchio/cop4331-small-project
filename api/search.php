@@ -10,8 +10,8 @@
 	}
 	else
 	{
-    $userQuery = $inData["userQuery"];
-    $userID = $inData["userID"];
+    $userQuery = $inData["query"];
+    $userID = $inData["user_id"];
 
     $sql =
       "SELECT * FROM contacts WHERE user_id={$userID}
@@ -19,7 +19,11 @@
 
 		$result = $conn->query($sql);
 
-    if ($result->num_rows > 0)
+		if (!$result)
+		{
+			returnWithError($conn->errno);
+		}
+    else if ($result->num_rows > 0)
     {
       $searchResults = array();
       while ($row = $result->fetch_assoc())
@@ -54,7 +58,7 @@
 
   function returnWithError($err)
 	{
-    $retValue = '{"results":,"error":"' . $err .'"}';
+		$retValue = '{"results":[], "error":"' . $err .'"}';
 		sendResultInfoAsJson($retValue);
 	}
 

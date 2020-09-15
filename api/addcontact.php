@@ -7,8 +7,6 @@
 	$lastname = $inData["lastname"];
 	$email = $inData["email"];
 	$phone = $inData["phone"];
-	// TODO: I'm pretty sure I set the DB to do this automatically
-	$createtime = date("Y-m-d h:i:sa");
 
 	include_once 'config.php';
 
@@ -18,17 +16,17 @@
 	}
 	else
 	{
-		$sql = "INSERT INTO contacts (firstname, lastname, email, phone, createtime, user_id) VALUES ('". $firstname ."','". $lastname ."','". $email ."','". $phone ."','". $createtime ."','". $user_id  ."')";
+		$sql = "INSERT INTO contacts (firstname, lastname, email, phone, user_id) VALUES ('". $firstname ."','". $lastname ."','". $email ."','". $phone ."','". $user_id  ."')";
 
 		$result = $conn->query($sql);
 
-		if ($result === TRUE)
+		if ($result)
 		{
-			returnWithInfo();
+			returnWithInfo($conn->insert_id);
 		}
 		else
 		{
-			returnWithError("Error inserting record");
+			returnWithError($conn->errno);
 		}
 		$conn->close();
 	}
@@ -46,13 +44,13 @@
 
 	function returnWithError($err)
 	{
-		$retValue = '{"success": "false", "error":"' . $err . '"}';
+		$retValue = '{"contact_id":0, "error":"' . $err . '"}';
 		sendResultInfoAsJson($retValue);
 	}
 
-	function returnWithInfo()
+	function returnWithInfo($contact_id)
 	{
-		$retValue = '{"success": "true", "error": ""}';
+		$retValue = '{"contact_id":'. $contact_id .', "error":"' . $err . '"}';
 		sendResultInfoAsJson($retValue);
 	}
 

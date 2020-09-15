@@ -18,10 +18,17 @@
 		$sql = "INSERT INTO users(username,password,firstname,lastname)
             VALUES('" . $username . "', '" . md5($password) . "', '" . $firstname . "', '" . $lastname . "')";
 
-    if ($result = $conn->query($sql) != TRUE )
+		$result = $conn->query($sql);
+
+    if (!$result)
 		{
-			returnWithError($conn->error);
+			returnWithError($conn->errno);
 		}
+		else
+		{
+			returnWithInfo($conn->insert_id);
+		}
+
 		$conn->close();
 	}
 
@@ -30,16 +37,22 @@
 		return json_decode(file_get_contents('php://input'), true);
 	}
 
-	function sendResultInfoAsJson( $obj )
+	function sendResultInfoAsJson($obj)
 	{
 		header('Content-type: application/json');
 		echo $obj;
 	}
 
-	function returnWithError( $err )
+	function returnWithError($err)
 	{
-		$retValue = '{"error":"' . $err . '"}';
-		sendResultInfoAsJson( $retValue );
+		$retValue = '{"user_id":0, "error":"' . $err . '"}';
+		sendResultInfoAsJson($retValue);
+	}
+
+	function returnWithInfo($user_id)
+	{
+		$retValue = '{"user_id":'. $user_id .', "error":"' . $err . '"}';
+		sendResultInfoAsJson($retValue);
 	}
 
 ?>
