@@ -50,7 +50,7 @@
 
 	function returnWithInfo($contact_id)
 	{
-		$retValue = '{"contact_id":"'. $contact_id .'", "error":"' . $err . '"}';
+		$retValue = '{"contact_id":'. $contact_id .', "error":"' . $err . '"}';
 		sendResultInfoAsJson($retValue);
 	}
 

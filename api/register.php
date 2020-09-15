@@ -22,7 +22,7 @@
 
     if (!$result)
 		{
-			returnWithError($conn->errorno);
+			returnWithError($conn->errno);
 		}
 		else
 		{
@@ -51,7 +51,7 @@
 
 	function returnWithInfo($user_id)
 	{
-		$retValue = '{"user_id":"'. $user_id .'", "error":"' . $err . '"}';
+		$retValue = '{"user_id":'. $user_id .', "error":"' . $err . '"}';
 		sendResultInfoAsJson($retValue);
 	}
 
