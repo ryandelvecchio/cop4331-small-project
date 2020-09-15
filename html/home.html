@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>User Home Page</title>
+  <title>User Home</title>
   <meta name="author" content="Group3FrontEnd">
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -30,7 +30,7 @@
     <header class="mb-auto">
       <nav>
         <h2 id="pageTitle">Contact Manager</h2>
-        <a class="nav-link active" id="homeButton" href="home.html">Sign Out</a>
+        <a class="nav-link active" id="homeButton" href="../index.html">Sign Out</a>
         <div class="nav-link">
           <div class="custom-control custom-switch">
             <input type="checkbox" class="custom-control-input" id="darkSwitch" />
@@ -44,52 +44,61 @@
   <br>
   <br>
   <br>
-    <div class="container">
+    <div class="regContainer">
       <div class="uTransbox">
         <!-- There must be a way to pass in the user's first name -->
-        <h1 class="display-4">Welcome "Name"</h1>
+        <h1 class="display-4 pl-2">Welcome</h1>
 
         <form>
-            <div class="form-group col-md-6">
-              <p>Choose an action:</p>
-
-              <!-- Search for users in the database -->
-              <input class="btn btn-dark" type="button" value="Search Users" onclick="searchUsers()"/>
-              <input class="hide" type="text" id="firstnameSearch" placeholder="First Name"/>
-              <input class="hide" type="text" id="lastnameSearch" placeholder="Last Name"/>
-              <input class="hide btn btn-primary" type="button" id="searchButton" value="Search" onclick="submitSearch()"/>
-              <p class="hide" id="searching">Searching For User...</p>
-            </div>
-            <div class="form-group col-md-6">
-              <!-- Update the  user's current records -->
-              <input type="button" class="btn btn-dark" value="Update Records" onclick="updateRecords()"/>
-              <input class="hide" type="text" id="updateFirst" placeholder="New First Name"/>
-              <input class="hide" type="text" id="updateLast" placeholder="New Last Name"/>
-              <input class="hide" type="text" id="updateEmail" placeholder="New Email"/>
-              <input class="hide" type="text" id="updatePhone" placeholder="New Phone Number"/>
-              <input class="hide btn btn-primary" type="button" id="updateButton" value="Update" onclick="submitUpdate()">
-              <p class="hide" id="updated">User Information Updated!</p>
+          <div class="form-group col-md-6">
+            <p>Choose an action:</p>
+            <!-- Add user contacts into the database -->
+            <input class="btn btn-dark" type="button" id="addContacts" value="Add Contact" onclick="add()"/>
+            <input class="hide" type="text" id="addFirst" placeholder="First Name"/>
+            <input class="hide" type="text" id="addLast" placeholder="Last Name"/>
+            <input class="hide" type="text" id="addEmail" placeholder="Email"/>
+            <input class="hide" type="text" id="addPhone" placeholder="Phone Number"/>
+            <input class="hide btn btn-primary" type="button" id="addButton" value="Add Contact" onclick="addContact()"/>
+            <p class="hide" id="added">Contact Addded!</p>
           </div>
-            <div class="form-group col-md-6">
-              <!-- Reset Password -->
-              <input class="btn btn-dark" type="button" value="Reset Password" onclick="resetPassword()"/>
-              <input class="hide" type="password" id="oldPW" placeholder="Old Password"/>
-              <input class="hide" type="password" id="newPW" placeholder="New Password"/>
-              <input class="hide" type="password" id="newPW2" placeholder="Confirm New Password"/>
-              <input class="hide btn btn-primary" type="button" id="resetButton" value="Reset Password" onclick="changePassword()"/>
-              <p class="hide" id="reset">Password Reset Successful!</p>
-            </div>
+          <div class="form-group col-md-6">
+            <!-- Search for users in the database -->
+            <input class="btn btn-dark" type="button" id="searchContacts" value="Search Contacts" onclick="searchUsers()"/>
+            <input class="hide" type="text" id="firstnameSearch" placeholder="First, Last, Phone, Email..."/>
+            <input class="hide btn btn-primary" type="button" id="searchButton" value="Search" onclick="submitSearch()"/>
+            <p class="hide" id="searching">Searching For User...</p>
+          </div>
+          <div class="form-group col-md-6">
+            <!-- Update the  user's current records -->
+            <input class="hide btn btn-primary" type="button" id="updateButton" value="Update Contact" onclick="updateRecords()"/>
+            <input class="hide" type="text" id="updateFirst" placeholder="New First Name"/>
+            <input class="hide" type="text" id="updateLast" placeholder="New Last Name"/>
+            <input class="hide" type="text" id="updateEmail" placeholder="New Email"/>
+            <input class="hide" type="text" id="updatePhone" placeholder="New Phone Number"/>
+            <input class="hide btn btn-primary" type="button" id="update" value="Update" onclick="submitUpdate()">
+            <p class="hide" id="updated">User Information Updated!</p>
+          </div>
+        </form>
     </div>
   </div>
-
   <script>
-
-  // Display input boxes for the user to search
+    // Display input boxes for the user to search
     function searchUsers()
     {
-      document.getElementById('textInput').className="show";
-      document.getElementById('textInput2').className="show";
+      document.getElementById('searchContacts').className="hide";
+      document.getElementById('firstnameSearch').className="show";
       document.getElementById('searchButton').className="show";
+
+    }
+    // Display input boxes for the user to add
+    function add()
+    {
+      document.getElementById('addContacts').className="hide";
+      document.getElementById('addFirst').className="show";
+      document.getElementById('addLast').className="show";
+      document.getElementById('addEmail').className="show";
+      document.getElementById('addPhone').className="show";
+      document.getElementById('addButton').className="show";
     }
     // Display input boxes for the user to update
     function updateRecords()
@@ -98,27 +107,20 @@
       document.getElementById('updateLast').className="show";
       document.getElementById('updateEmail').className="show";
       document.getElementById('updatePhone').className="show";
-      document.getElementById('updateButton').className="show";
-    }
-    // Display input boxes for the user to update password
-    function resetPassword()
-    {
-      document.getElementById('oldPW').className="show";
-      document.getElementById('newPW').className="show";
-      document.getElementById('newPW2').className="show";
-      document.getElementById('resetButton').className="show";
+      document.getElementById('update').className="show";
     }
     function submitSearch()
     {
       document.getElementById('searching').className="show";
+      document.getElementById('updateButton').className="show";
+    }
+    function addContact()
+    {
+      document.getElementById('added').className="show";
     }
     function submitUpdate()
     {
       document.getElementById('updated').className="show";
-    }
-    function changePassword()
-    {
-      document.getElementById('reset').className="show";
     }
   </script>
 </body>
