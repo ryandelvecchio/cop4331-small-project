@@ -71,6 +71,7 @@
           <div class="form-group col-md-6">
             <!-- Update the  user's current records -->
             <input class="hide btn btn-primary" type="button" id="updateButton" value="Update Contact" onclick="updateRecords()"/>
+            <input class="hide btn btn-primary" type="button" id="deleteButton" value="Delete" onclick="submitDelete()">
             <input class="hide" type="text" id="updateFirst" placeholder="New First Name"/>
             <input class="hide" type="text" id="updateLast" placeholder="New Last Name"/>
             <input class="hide" type="text" id="updateEmail" placeholder="New Email"/>
@@ -100,19 +101,26 @@
       document.getElementById('addPhone').className="show";
       document.getElementById('addButton').className="show";
     }
+    function submitSearch()
+    {
+      document.getElementById('searching').className="show";
+      document.getElementById('updateButton').className="show";
+      document.getElementById('deleteButton').className="show";
+    }
     // Display input boxes for the user to update
     function updateRecords()
     {
+      document.getElementById('updateButton').className="hide";
+      document.getElementById('deleteButton').className="hide";
       document.getElementById('updateFirst').className="show";
       document.getElementById('updateLast').className="show";
       document.getElementById('updateEmail').className="show";
       document.getElementById('updatePhone').className="show";
       document.getElementById('update').className="show";
     }
-    function submitSearch()
+    function submitDelete()
     {
-      document.getElementById('searching').className="show";
-      document.getElementById('updateButton').className="show";
+
     }
     function addContact()
     {
