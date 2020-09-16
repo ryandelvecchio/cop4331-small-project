@@ -18,13 +18,13 @@
 
 		$result = $conn->query($sql);
 
-		if ($result === TRUE)
+		if ($result)
 		{
 			returnWithInfo();
 		}
 		else
 		{
-			returnWithError("Error deleting record");
+			returnWithError($conn->errno);
 		}
 		$conn->close();
 	}
@@ -42,13 +42,13 @@
 
 	function returnWithError($err)
 	{
-		$retValue = '{"success": "false", "error":"' . $err . '"}';
+		$retValue = '{"error": "{$err}"}';
 		sendResultInfoAsJson($retValue);
 	}
 
 	function returnWithInfo()
 	{
-		$retValue = '{"success": "true", "error": ""}';
+		$retValue = '{"error": ""}';
 		sendResultInfoAsJson($retValue);
 	}
 

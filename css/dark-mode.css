@@ -8,12 +8,6 @@ body {
 head {
     font-style: normal;
 }
-.center {
-    margin: auto;
-    width: 40%;
-    border: 3px solid #333;
-    padding: 5px;
-}
 nav{
   width: 99%;
   margin: auto;
@@ -36,24 +30,30 @@ nav h2
   justify-content: space-between;
   flex: 9;
 }
-
-div.transbox
-{
-  position: relative;
-  margin: 30px:
-  padding: 15px;
-  max-width: 1400px;
-  background-color: #c2d1e0;
-  border: 5px solid #c2cae0;
-  opacity: 0.9;
+.center {
+    margin: auto;
+    width: 40%;
+    border: 3px solid #333;
+    padding: 5px;
 }
 .container
 {
+  margin: auto;
   display: flex;
 }
 .show
 {
   display:block;
+}
+div.transbox
+{
+  position: relative;
+  margin: 30px:
+  padding: 15px;
+  width: 450px;
+  background-color: #c2d1e0;
+  border: 5px solid #c2cae0;
+  opacity: 0.9;
 }
 div.regContainer
 {
@@ -76,7 +76,7 @@ div.uTransbox
   position: relative;
   margin: 15px;
   padding: 5px;
-  width: 450px;
+  width: 370px;
   background-color: #c2d1e0;
   border: 5px solid #c2cae0;
   opacity: 0.9;
@@ -106,6 +106,7 @@ div.uTransbox
   background-color: #fff;
   color: #333;
 }
+
 label {
   color: #fff !important;
 }
@@ -125,6 +126,12 @@ input[type=button]
 {
   background-color: #fff;
   color: #333;
+}
+input[type=text]
+{
+  background-color: #fff;
+  height: 40px;
+  width: 325px;
 }
 
 
@@ -181,7 +188,7 @@ input[type=button]
   position: relative;
   margin: 15px;
   padding: 5px;
-  width: 450px;
+  width: 370px;
   background-color: #8a99a8;
   border: 5px solid #c2cae0;
   opacity: 0.85;
@@ -198,6 +205,8 @@ input[type=button]
 [data-theme="dark"] input[type=text]
 {
   background-color: #aaa;
+  height: 40px;
+  width: 325px;
 }
 [data-theme="dark"] input[type=email]
 {
