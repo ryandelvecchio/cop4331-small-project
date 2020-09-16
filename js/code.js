@@ -13,9 +13,6 @@ function doLogin()
 	var login = document.getElementById("usrname").value;
 	var password = document.getElementById("passwrd").value;
 
-	//encode the password using md5.js hash function
-	//var hash = md5(password);
-
 	//document.getElementById("loginResult").innerHTML = "";
 
   //var jsonPayload = '{"login" : "' + login + '", "password" : "' + hash + '"}';
@@ -108,12 +105,10 @@ function doLogout()
 function addContact()
 {
 	// variables for JSON payload
-	// FIXME: Didn't see these fields in the HTML code so we need to make
-	// an input for them
-	var newFirstName = document.getElementById("newFirstName").value;
-	var newLastName = document.getElementById("newLastName").value;
-	var newEmail = document.getElementById("newEmail").value;
-	var newPhoneNumber = document.getElementById("newPhoneNumber").value;
+	var newFirstName = document.getElementById("addFirst").value;
+	var newLastName = document.getElementById("addLast").value;
+	var newEmail = document.getElementById("addEmail").value;
+	var newPhoneNumber = document.getElementById("addPhone").value;
 
 
 	document.getElementById("addResult").innerHTML = "";
@@ -149,18 +144,18 @@ function addContact()
 
 
 // Search for a contact by first name
-function searchContacts()
+function submitSearch()
 {
 	var srch = document.getElementById("firstnameSearch").value;
 
 
 	// FIXME: where is the search result in the register.HTML?
-	document.getElementById("colorSearchResult").innerHTML = "";
+	document.getElementById("SearchResult").innerHTML = "";
 
 	var searchList = "";
 
 	// json payload with first name to search and userID of person searching
-	var jsonPayload = '{"first name" : "' + srch + '","userId" : ' + userId + '}';
+	var jsonPayload = '{"search" : "' + srch + '","userId" : ' + userId + '}';
 
 	var url = urlBase + '/api/search.' + extension;
 
@@ -191,7 +186,7 @@ function searchContacts()
 				// FIXME: Not 100% sure what this does but I think it
 				// just displays the results as a paragraph. This may need to be worked
 				// in a bit better
-				document.getElementsByTagName("p")[0].innerHTML = SearchList;
+				document.getElementsByTagName("p")[0].innerHTML = searchList;
 			}
 		};
 		xhr.send(jsonPayload);
@@ -200,5 +195,107 @@ function searchContacts()
 	{
 		document.getElementById("SearchResult").innerHTML = err.message;
 	}
+
+}
+
+// Function to submit a change to a Contact
+function submitUpdate()
+{
+	// Get the elements from HTML and put in JSON payload
+	var updateFirst = document.getElementById("updateFirst").value;
+	var updateLast = document.getElementById("updateLast").value;
+	var updateEmail = document.getElementById("updateEmail").value;
+	var updatePhone = document.getElementById("updatePhone").value;
+
+	// FIXME: I think this may be a pop up but consult Brandon
+	document.getElementById("updateResult").innerHTML = "";
+
+	// JSON payload with all new contact info from HTML page
+	var jsonPayload = '{"first name" : "' + updateFirst + '", "last name" : ' + updateLast +
+	'", "email" : ' + updateEmail +  '", "phone number" : ' + updatePhone +
+	'", "userId" : ' + userId +  '}';
+
+	var url = urlBase + '/api/updatecontact.' + extension;
+
+	var xhr = new XMLHttpRequest();
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+	try
+	{
+		xhr.onreadystatechange = function()
+		{
+			if (this.readyState == 4 && this.status == 200)
+			{
+				document.getElementById("updateResult").innerHTML = "Contact Updated";
+			}
+		};
+		xhr.send(jsonPayload);
+	}
+	catch(err)
+	{
+		document.getElementById("udpateResult").innerHTML = err.message;
+	}
+
+}
+
+
+// Function to register a new user
+function doRegister()
+{
+	// FIXME: Not sure if I need this
+	window.location.href = "register.html";
+
+
+	// Get variables for JSON payload
+	var registerFirst = document.getElementById("inputFirstname").value;
+	var registerLast = document.getElementById("inputLastName").value;
+	var registerUsername = document.getElementById("inputUsername").value;
+	var registerPassword = document.getElementById("inputPassword").value;
+	var registerCPassword = document.getElementById("inputCPassword").value;
+
+	// compare the two passwords
+
+	var isEqual = registerUsername.localeCompare(registerCPassword);
+
+	document.getElementById("registerResult").innerHTML = "";
+
+	if (isEqual == 0)
+	{
+		// JSON payload with all new contact info from HTML page
+		var jsonPayload = '{"first name" : "' + registerFirst + '", "last name" : ' + registerlast +
+		'", "username" : ' + registerUsername +  '", "password" : ' + registerPassword + '}';
+
+		var url = urlBase + '/api/register.' + extension;
+
+		var xhr = new XMLHttpRequest();
+		xhr.open("POST", url, true);
+		xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+		try
+		{
+			xhr.onreadystatechange = function()
+			{
+				if (this.readyState == 4 && this.status == 200)
+				{
+					document.getElementById("updateResult").innerHTML = "Contact Updated";
+				}
+			};
+			xhr.send(jsonPayload);
+		}
+	catch(err)
+	{
+		document.getElementById("udpateResult").innerHTML = err.message;
+	}
+} else {
+	{
+		// FIXME: return an error message to the HTML
+		// That says the passwords do not match
+	}
+}
+}
+
+// Function to delete contact
+// Returns contact ID of user for JSON payload
+function deleteContact()
+{
 
 }
