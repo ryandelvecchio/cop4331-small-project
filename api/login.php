@@ -15,7 +15,7 @@
 	else
 	{
     $password_hash = md5($inData["password"]);
-		$sql = "SELECT user_id, firstname, lastname FROM users where username='" . $inData["username"] . "' and password='" . $password_hash . "'";
+		$sql = "SELECT user_id, firstname, lastname FROM users where username='{$inData["username"]}' and password='{$password_hash}'";
 		$result = $conn->query($sql);
 
 		if (!$result)
@@ -51,13 +51,13 @@
 
 	function returnWithError( $err )
 	{
-		$retValue = '{"user_id":0,"firstname":"","lastname":"","error":"' . $err . '"}';
+		$retValue = '{"user_id":0,"firstname":"","lastname":"","error":"{$err}"}';
 		sendResultInfoAsJson( $retValue );
 	}
 
 	function returnWithInfo( $firstname, $lastname, $id )
 	{
-		$retValue = '{"user_id":' . $id . ',"firstname":"' . $firstname . '","lastname":"' . $lastname . '","error":""}';
+		$retValue = '{"user_id":{$id},"firstname":"{$firstname}","lastname":"{$lastname}","error":""}';
 		sendResultInfoAsJson( $retValue );
 	}
 

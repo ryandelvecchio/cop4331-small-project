@@ -42,7 +42,7 @@
 
 	function returnWithError($err)
 	{
-		$retValue = '{"error": "' . $err . '"}';
+		$retValue = '{"error": "{$err}"}';
 		sendResultInfoAsJson($retValue);
 	}
 
