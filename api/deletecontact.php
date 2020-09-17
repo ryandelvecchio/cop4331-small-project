@@ -19,13 +19,10 @@
 		$result = $conn->query($sql);
 
 		if ($result)
-		{
 			returnWithInfo();
-		}
 		else
-		{
 			returnWithError($conn->errno);
-		}
+
 		$conn->close();
 	}
 
@@ -34,7 +31,7 @@
 		return json_decode(file_get_contents('php://input'), true);
 	}
 
-	function sendResultInfoAsJson( $obj )
+	function sendResultInfoAsJson($obj)
 	{
 		header('Content-type: application/json');
 		echo $obj;
@@ -42,7 +39,7 @@
 
 	function returnWithError($err)
 	{
-		$retValue = '{"error": "{$err}"}';
+		$retValue = '{"error": "' . $err . '"}';
 		sendResultInfoAsJson($retValue);
 	}
 
