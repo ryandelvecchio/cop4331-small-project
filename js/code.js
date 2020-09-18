@@ -15,25 +15,23 @@ function doLogin()
 
 	//document.getElementById("loginResult").innerHTML = "";
 
-  //var jsonPayload = '{"login" : "' + login + '", "password" : "' + hash + '"}';
 	var jsonPayload = '{"username" : "' + login + '", "password" : "' + password + '"}';
 	var url = 'api//login.' + extension;
 
 	var xhr = new XMLHttpRequest();
-	xhr.open("POST", url, true);
+	xhr.open("POST", url, false);
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 	try
 	{
 		xhr.send(jsonPayload);
 
-		var jsonObject = JSON.parse( xhr.responseText );
+		var jsonObject = JSON.parse(xhr.responseText);
 
-		userId = jsonObject.id;
+		userId = jsonObject.user_id;
 
-		if( userId < 1 )
+		if (userId < 1)
 		{
-			//document.getElementById("loginResult").innerHTML = "User/Password combination incorrect";
-			return;
+			throw jsonObject.error;
 		}
 
 		firstname = jsonObject.firstname;
@@ -41,11 +39,11 @@ function doLogin()
 
 		saveCookie();
 
-		window.location.href = "home.html";
+		window.location.href = "html/home.html";
 	}
 	catch(err)
 	{
-		//document.getElementById("loginResult").innerHTML = err.message;
+		alert(err);
 	}
 
 }
@@ -114,9 +112,9 @@ function addContact()
 	document.getElementById("addResult").innerHTML = "";
 
 	// JSON payload with all new contact info from HTML page
-	var jsonPayload = '{"user_id" : "' + userId +
-	'", "firstname" : ' + newFirstName +   '", "lastname" : ' + newLastName +
-	'", "email" : ' + newEmail +  '", "phone" : ' + newPhoneNumber + '}';
+	var jsonPayload = '{"first name" : "' + newFirstName + '", "last name" : ' + newLastName +
+	'", "email" : ' + newEmail +  '", "phone number" : ' + newPhoneNumber +
+	'", "userId" : ' + userId +  '}';
 
 	// FIXME: rename based on endpoint name for the PHP file
 	var url = urlBase + '/api/addcontact.' + extension;
@@ -143,7 +141,7 @@ function addContact()
 }
 
 
-// Search for a contact by first name
+// Search for a contact by any string
 function submitSearch()
 {
 	var srch = document.getElementById("firstnameSearch").value;
@@ -155,7 +153,7 @@ function submitSearch()
 	var searchList = "";
 
 	// json payload with first name to search and userID of person searching
-	var jsonPayload = '{"query" : "' + srch + '","user_id" : ' + userId + '}';
+	var jsonPayload = '{"search" : "' + srch + '","userId" : ' + userId + '}';
 
 	var url = urlBase + '/api/search.' + extension;
 
@@ -207,17 +205,13 @@ function submitUpdate()
 	var updateEmail = document.getElementById("updateEmail").value;
 	var updatePhone = document.getElementById("updatePhone").value;
 
-	// Load this with the ID of the contact the user is changing
-	var contactID = "";
-
 	// FIXME: I think this may be a pop up but consult Brandon
 	document.getElementById("updateResult").innerHTML = "";
 
 	// JSON payload with all new contact info from HTML page
-	// FIXME: need to pull contact ID of the contact that is being changed
-	var jsonPayload = '{"contact_id" : "' + contactID + '", "firstname" : ' + updateFirst +
-	'", "lastname" : ' + updateLast +  '", "email" : ' + updateEmail +
-	'", "phone" : ' + updatePhone +  '}';
+	var jsonPayload = '{"first name" : "' + updateFirst + '", "last name" : ' + updateLast +
+	'", "email" : ' + updateEmail +  '", "phone number" : ' + updatePhone +
+	'", "userId" : ' + userId +  '}';
 
 	var url = urlBase + '/api/updatecontact.' + extension;
 
@@ -266,9 +260,8 @@ function doRegister()
 	if (isEqual == 0)
 	{
 		// JSON payload with all new contact info from HTML page
-		var jsonPayload = '{"username" : "' + registerUsername + '", "password" : '
-		 + registerPassword +'", "firstname" : ' + registerFirst +
-		 '", "lastname" : ' + registerLast + '}';
+		var jsonPayload = '{"first name" : "' + registerFirst + '", "last name" : ' + registerlast +
+		'", "username" : ' + registerUsername +  '", "password" : ' + registerPassword + '}';
 
 		var url = urlBase + '/api/register.' + extension;
 
@@ -299,8 +292,8 @@ function doRegister()
 }
 
 // Function to delete contact
-// Sends Contact_ID of contact to delete
+// Returns contact ID of user for JSON payload
 function deleteContact()
 {
-	//var deleteID = document.getElementById("deleteMe").value;
+
 }
