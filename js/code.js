@@ -15,7 +15,11 @@ function doLogin()
 
 	//document.getElementById("loginResult").innerHTML = "";
 
-	var jsonPayload = '{"username" : "' + login + '", "password" : "' + password + '"}';
+	var jsonPayload = {
+		username: login,
+		password: password
+	}
+
 	var url = 'api//login.' + extension;
 
 	var xhr = new XMLHttpRequest();
@@ -23,7 +27,7 @@ function doLogin()
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 	try
 	{
-		xhr.send(jsonPayload);
+		xhr.send(JSON.stringify(jsonPayload));
 
 		var jsonObject = JSON.parse(xhr.responseText);
 
@@ -116,6 +120,14 @@ function addContact()
 	'", "email" : ' + newEmail +  '", "phone number" : ' + newPhoneNumber +
 	'", "userId" : ' + userId +  '}';
 
+	var jsonPayload = {
+		user_id: userId,
+		firstname: newFirstName,
+		lastname: newLastName,
+		email: newEmail,
+		phone: newPhoneNumber
+	}
+
 	// FIXME: rename based on endpoint name for the PHP file
 	var url = urlBase + '/api/addcontact.' + extension;
 
@@ -131,7 +143,7 @@ function addContact()
 				document.getElementById("addResult").innerHTML = "Contact Added to your list";
 			}
 		};
-		xhr.send(jsonPayload);
+		xhr.send(JSON.stringify(jsonPayload));
 	}
 	catch(err)
 	{
@@ -144,7 +156,7 @@ function addContact()
 // Search for a contact by any string
 function submitSearch()
 {
-	var srch = document.getElementById("firstnameSearch").value;
+	var query = document.getElementById("firstnameSearch").value;
 
 
 	// FIXME: where is the search result in the register.HTML?
@@ -152,8 +164,10 @@ function submitSearch()
 
 	var searchList = "";
 
-	// json payload with first name to search and userID of person searching
-	var jsonPayload = '{"search" : "' + srch + '","userId" : ' + userId + '}';
+	var jsonPayload = {
+		query: query,
+		user_id: userId
+	}
 
 	var url = urlBase + '/api/search.' + extension;
 
@@ -167,15 +181,15 @@ function submitSearch()
 			if (this.readyState == 4 && this.status == 200)
 			{
 				document.getElementById("SearchResult").innerHTML = "Processing Names...";
-				var jsonObject = JSON.parse( xhr.responseText );
+				var jsonObject = JSON.parse(xhr.responseText);
 
 				// build json array of results
-				for( var i=0; i<jsonObject.results.length; i++ )
+				for (var i = 0; i < jsonObject.results.length; i++)
 				{
 					searchList += jsonObject.results[i];
 
 					// Add a formatting break to each search result displayed
-					if( i < jsonObject.results.length - 1 )
+					if (i < jsonObject.results.length - 1)
 					{
 						searchList += "<br />\r\n";
 					}
@@ -187,7 +201,8 @@ function submitSearch()
 				document.getElementsByTagName("p")[0].innerHTML = searchList;
 			}
 		};
-		xhr.send(jsonPayload);
+
+		xhr.send(JSON.stringify(jsonPayload));
 	}
 	catch(err)
 	{
@@ -209,9 +224,13 @@ function submitUpdate()
 	document.getElementById("updateResult").innerHTML = "";
 
 	// JSON payload with all new contact info from HTML page
-	var jsonPayload = '{"first name" : "' + updateFirst + '", "last name" : ' + updateLast +
-	'", "email" : ' + updateEmail +  '", "phone number" : ' + updatePhone +
-	'", "userId" : ' + userId +  '}';
+	var jsonPayload = {
+		contact_id: contactID,
+		firstname: updateFirst,
+		lastname: updateLast,
+		email: updateEmail,
+		phone: updatePhone
+	}
 
 	var url = urlBase + '/api/updatecontact.' + extension;
 
@@ -227,7 +246,7 @@ function submitUpdate()
 				document.getElementById("updateResult").innerHTML = "Contact Updated";
 			}
 		};
-		xhr.send(jsonPayload);
+		xhr.send(JSON.stringify(jsonPayload));
 	}
 	catch(err)
 	{
