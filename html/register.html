@@ -5,10 +5,11 @@
   <meta name="author" content="Group3FrontEnd">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link href="css/styles.css" rel="stylesheet">
+  <link href="/css/styles.css" rel="stylesheet">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
   integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
   crossorigin="anonymous">
+  <script type="text/javascript" src="/js/code.js"></script>
 </head>
 
 <body>
@@ -20,18 +21,16 @@
 
     <h1 class="display-4">Register</h1>
 
-
-    <form role="form" action="register.php" method="post">
       <!-- First and Last Name Row -->
       <div class="form-row">
         <div class="form-group col-md-2">
           <label for="inputFirstName">First</label>
-          <input type="text" class="form-control" name="inputFirstName" required placeholder="Johnny">
+          <input type="text" class="form-control" id="inputFirstName" required placeholder="Johnny">
           <span class="text-danger"><?php if (isset($lastname_error)) echo $lastname_error; ?></span>
         </div>
         <div class="form-group col-md-2">
           <label for="inputLastName">Last</label>
-          <input type="text" class="form-control" name="inputLastName" required placeholder="Appleseed">
+          <input type="text" class="form-control" id="inputLastName" required placeholder="Appleseed">
           <span class="text-danger"><?php if (isset($firstname_error)) echo $firstname_error; ?></span>
         </div>
       </div>
@@ -39,8 +38,8 @@
       <!-- Username Row -->
       <div class="form-row">
         <div class="form-group col-md-2">
-          <label for="inputUsername">Username</label>
-          <input type="text" class="form-control" name="inputUsername" required placeholder="jseed2020">
+          <label for="inputUserName">Username</label>
+          <input type="text" class="form-control" id="inputUserName" required placeholder="jseed2020">
           <span class="text-danger"><?php if (isset($username_error)) echo $username_error; ?></span>
         </div>
       </div>
@@ -49,20 +48,20 @@
       <div class="form-row">
         <div class="form-group col-md-2">
           <label for="inputPassword">Password</label>
-          <input type="password" class="form-control" name="inputPassword" required placeholder="***********">
+          <input type="password" class="form-control" id="inputPassword" required placeholder="***********">
           <span class="text-danger"><?php if (isset($password_error)) echo $password_error; ?></span>
         </div>
         <div class="form-group col-md-2">
-          <label for="inputPassword">Confirm Password</label>
-          <input type="password" class="form-control" name="inputCPassword" required placeholder="***********">
+          <label for="inputCPassword">Confirm Password</label>
+          <input type="password" class="form-control" id="inputCPassword" required placeholder="***********">
           <span class="text-danger"><?php if (isset($cpassword_error)) echo $cpassword_error; ?></span>
         </div>
       </div>
 
-      <button type="submit" name="signup" class="btn btn-primary" onclick="doRegister()">Sign Up</button>
+      <button type="submit" id="signup" class="btn btn-primary" onclick="doRegister();">Sign Up</button>
 
       <button type="button" class="btn btn-primary">
-        <a href="index.html" style="color:inherit">Back</a>
+        <a href="../index.html" style="color:inherit">Back</a>
       </button>
     </form>
     <span class="text-success"><?php if (isset($successmsg)) { echo $successmsg; } ?></span>

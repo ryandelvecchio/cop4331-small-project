@@ -240,55 +240,43 @@ function submitUpdate()
 // Function to register a new user
 function doRegister()
 {
-	// FIXME: Not sure if I need this
-	window.location.href = "register.html";
-
-
 	// Get variables for JSON payload
-	var registerFirst = document.getElementById("inputFirstname").value;
+	var registerFirst = document.getElementById("inputFirstName").value;
 	var registerLast = document.getElementById("inputLastName").value;
-	var registerUsername = document.getElementById("inputUsername").value;
+	var registerUsername = document.getElementById("inputUserName").value;
 	var registerPassword = document.getElementById("inputPassword").value;
 	var registerCPassword = document.getElementById("inputCPassword").value;
 
-	// compare the two passwords
-
-	var isEqual = registerUsername.localeCompare(registerCPassword);
-
-	document.getElementById("registerResult").innerHTML = "";
-
-	if (isEqual == 0)
+	if (registerCPassword.localeCompare(registerPassword) != 0)
 	{
-		// JSON payload with all new contact info from HTML page
-		var jsonPayload = '{"first name" : "' + registerFirst + '", "last name" : ' + registerlast +
-		'", "username" : ' + registerUsername +  '", "password" : ' + registerPassword + '}';
+		alert("Passwords must match");
+		return;
+	}
 
-		var url = urlBase + '/api/register.' + extension;
+	var jsonPayload = {
+		username: registerUsername,
+		password: registerPassword,
+		firstname: registerFirst,
+		lastname: registerLast
+	};
 
-		var xhr = new XMLHttpRequest();
-		xhr.open("POST", url, true);
-		xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-		try
-		{
-			xhr.onreadystatechange = function()
-			{
-				if (this.readyState == 4 && this.status == 200)
-				{
-					document.getElementById("updateResult").innerHTML = "Contact Updated";
-				}
-			};
-			xhr.send(jsonPayload);
-		}
+	var url = '/api/register.' + extension;
+
+	var xhr = new XMLHttpRequest();
+	xhr.open("POST", url, false);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+	try
+	{
+		xhr.send(JSON.stringify(jsonPayload));
+		var jsonObject = JSON.parse(xhr.responseText);
+		if (jsonObject.user_id <= 0)
+			throw jsonObject.error;
+		alert(jsonObject.user_id);
+	}
 	catch(err)
 	{
-		document.getElementById("udpateResult").innerHTML = err.message;
+		alert(err);
 	}
-} else {
-	{
-		// FIXME: return an error message to the HTML
-		// That says the passwords do not match
-	}
-}
 }
 
 // Function to delete contact
