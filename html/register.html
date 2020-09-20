@@ -2,72 +2,87 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <title>Registration</title>
   <meta name="author" content="Group3FrontEnd">
   <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta property="og:image"
+    content="https://repository-images.githubusercontent.com/194995309/38db8f80-9db7-11e9-998f-43f2a26d9e0b">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link href="css/styles.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-  integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+  <meta property="og:title" content="Home">
+  <meta property="og:description" content="User Home Page">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
   crossorigin="anonymous">
+  <link rel="stylesheet" href="../css/dark-mode.css">
 </head>
 
-<body>
+<body style="body">
 
-  <h1 id=title class=display-4>Contact Manager</h1>
+  <div class="container d-flex p-3 mx-auto flex-column">
+    <header class="mb-auto">
+      <nav>
+        <h2 id="pageTitle">Contact Manager</h2>
+        <a class="nav-link active" id="homeButton" href="../index.html">Sign Out</a>
+        <div class="nav-link">
+          <div class="custom-control custom-switch">
+            <input type="checkbox" class="custom-control-input" id="darkSwitch" />
+            <label class="custom-control-label" for="darkSwitch" id="nightMode">Night Mode </label>
+          </div>
+          <script src="../js/dark-mode-switch.min.js"></script>
+        </div>
+      </nav>
+    </header>
+  </div>
   <br>
 
-  <div style = "max-width: 1400px; margin: 1; padding: 15px">
+  <div class="regContainer">
+    <div class="regTransbox">
 
-    <h1 class="display-4">Register</h1>
+      <h1 class="display-4">Register</h1>
 
-
-    <form role="form" action="register.php" method="post">
-      <!-- First and Last Name Row -->
-      <div class="form-row">
-        <div class="form-group col-md-2">
-          <label for="inputFirstName">First</label>
-          <input type="text" class="form-control" name="inputFirstName" required placeholder="Johnny">
-          <span class="text-danger"><?php if (isset($lastname_error)) echo $lastname_error; ?></span>
+      <form role="form" action="register.php" method="post">
+        <!-- First and Last Name Row -->
+        <div class="form-row">
+          <div class="form-group col-md-4 pl-2">
+            <label for="inputFirstName">First</label>
+            <input type="text" class="form-control" name="inputFirstName" placeholder="Johnny">
+          </div>
         </div>
-        <div class="form-group col-md-2">
-          <label for="inputLastName">Last</label>
-          <input type="text" class="form-control" name="inputLastName" required placeholder="Appleseed">
-          <span class="text-danger"><?php if (isset($firstname_error)) echo $firstname_error; ?></span>
+        <div class="form-row">
+          <div class="form-group col-md-4 pl-2">
+            <label for="inputLastName">Last</label>
+            <input type="text" class="form-control" name="inputLastName" placeholder="Appleseed">
+          </div>
         </div>
-      </div>
 
-      <!-- Username Row -->
-      <div class="form-row">
-        <div class="form-group col-md-2">
-          <label for="inputUsername">Username</label>
-          <input type="text" class="form-control" name="inputUsername" required placeholder="jseed2020">
-          <span class="text-danger"><?php if (isset($username_error)) echo $username_error; ?></span>
+        <!-- Username Row -->
+        <div class="form-row">
+          <div class="form-group col-md-4 pl-2">
+            <label for="inputUsername">Username</label>
+            <input type="text" class="form-control" name="inputUsername" placeholder="jseed2020">
+          </div>
         </div>
-      </div>
 
-      <!-- Password and Confirm Password Row -->
-      <div class="form-row">
-        <div class="form-group col-md-2">
-          <label for="inputPassword">Password</label>
-          <input type="password" class="form-control" name="inputPassword" required placeholder="***********">
-          <span class="text-danger"><?php if (isset($password_error)) echo $password_error; ?></span>
+        <!-- Password and Confirm Password Row -->
+        <div class="form-row">
+          <div class="form-group col-md-4 pl-2">
+            <label for="inputPassword">Password</label>
+            <input type="password" class="form-control" name="inputPassword" placeholder="***********">
+          </div>
+          <div class="form-group col-md-4 pl-2">
+            <label for="inputPassword">Confirm Password</label>
+            <input type="password" class="form-control" name="inputCPassword" placeholder="***********">
+          </div>
         </div>
-        <div class="form-group col-md-2">
-          <label for="inputPassword">Confirm Password</label>
-          <input type="password" class="form-control" name="inputCPassword" required placeholder="***********">
-          <span class="text-danger"><?php if (isset($cpassword_error)) echo $cpassword_error; ?></span>
-        </div>
-      </div>
 
-      <button type="submit" name="signup" class="btn btn-primary" onclick="doRegister()">Sign Up</button>
-
-      <button type="button" class="btn btn-primary">
-        <a href="index.html" style="color:inherit">Back</a>
-      </button>
-    </form>
-    <span class="text-success"><?php if (isset($successmsg)) { echo $successmsg; } ?></span>
-    <span class="text-danger"><?php if (isset($errormsg)) { echo $errormsg; } ?></span>
+        <button type="submit" name="signup" class="btn btn-primary" id="button" onclick="doRegister()">Sign Up</button>
+        <button type="button" class="btn btn-primary" id="button">
+          <a href="index.html" style="color:inherit">Back</a>
+        </button>
+      </form>
+    </div>
   </div>
+
 
   <script>
 
