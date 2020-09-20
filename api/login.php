@@ -35,6 +35,7 @@
 		{
 			returnWithError("No Records Found");
 		}
+
 		$conn->close();
 	}
 
@@ -43,21 +44,21 @@
 		return json_decode(file_get_contents('php://input'), true);
 	}
 
-	function sendResultInfoAsJson( $obj )
+	function sendResultInfoAsJson($obj)
 	{
 		header('Content-type: application/json');
 		echo $obj;
 	}
 
-	function returnWithError( $err )
+	function returnWithError($err)
 	{
-		$retValue = '{"user_id":0,"firstname":"","lastname":"","error":"{$err}"}';
+		$retValue = '{"user_id":0,"firstname":"","lastname":"","error":"' . $err . '"}';
 		sendResultInfoAsJson( $retValue );
 	}
 
-	function returnWithInfo( $firstname, $lastname, $id )
+	function returnWithInfo($firstname, $lastname, $id)
 	{
-		$retValue = '{"user_id":{$id},"firstname":"{$firstname}","lastname":"{$lastname}","error":""}';
+		$retValue = $retValue = '{"user_id":' . $id . ',"firstname":"' . $firstname . '","lastname":"' . $lastname . '","error":""}';
 		sendResultInfoAsJson( $retValue );
 	}
 
