@@ -252,7 +252,7 @@ function submitUpdate()
 	}
 	catch(err)
 	{
-		document.getElementById("udpateResult").innerHTML = err.message;
+		document.getElementById("updateResult").innerHTML = err.message;
 	}
 
 }
