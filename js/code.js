@@ -305,7 +305,7 @@ function doRegister()
 function deleteContact(contactID)
 {
 	var jsonPayload = {
-		contact_id: contactID;
+		contact_id: contactID,
 	}
 
 	var url = '/api/deletecontact.' + extension;

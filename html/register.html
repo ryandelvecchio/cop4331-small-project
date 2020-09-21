@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
   crossorigin="anonymous">
   <link rel="stylesheet" href="../css/dark-mode.css">
-  <script type="text/javascript" src="/js/code.js"></script>
+  <script type="text/javascript" src="../js/code.js"></script>
 
 </head>
 
@@ -42,18 +42,17 @@
 
       <h1 class="display-4">Register</h1>
 
-      <form role="form" action="register.php" method="post">
         <!-- First and Last Name Row -->
         <div class="form-row">
           <div class="form-group col-md-4 pl-2">
             <label for="inputFirstName">First</label>
-            <input type="text" class="form-control" name="inputFirstName" placeholder="Johnny">
+            <input type="text" class="form-control" id="inputFirstName" placeholder="Johnny">
           </div>
         </div>
         <div class="form-row">
           <div class="form-group col-md-4 pl-2">
             <label for="inputLastName">Last</label>
-            <input type="text" class="form-control" name="inputLastName" placeholder="Appleseed">
+            <input type="text" class="form-control" id="inputLastName" placeholder="Appleseed">
           </div>
         </div>
 
@@ -61,7 +60,7 @@
         <div class="form-row">
           <div class="form-group col-md-4 pl-2">
             <label for="inputUsername">Username</label>
-            <input type="text" class="form-control" name="inputUsername" placeholder="jseed2020">
+            <input type="text" class="form-control" id="inputUserName" placeholder="jseed2020">
           </div>
         </div>
 
@@ -69,17 +68,17 @@
         <div class="form-row">
           <div class="form-group col-md-4 pl-2">
             <label for="inputPassword">Password</label>
-            <input type="password" class="form-control" name="inputPassword" placeholder="***********">
+            <input type="password" class="form-control" id="inputPassword" placeholder="***********">
           </div>
           <div class="form-group col-md-4 pl-2">
             <label for="inputPassword">Confirm Password</label>
-            <input type="password" class="form-control" name="inputCPassword" placeholder="***********">
+            <input type="password" class="form-control" id="inputCPassword" placeholder="***********">
           </div>
         </div>
 
-        <button type="submit" name="signup" class="btn btn-primary" id="button" onclick="doRegister()">Sign Up</button>
+        <button type="submit" name="signup" class="btn btn-primary" id="button" onclick="doRegister();">Sign Up</button>
         <button type="button" class="btn btn-primary" id="button">
-          <a href="index.html" style="color:inherit">Back</a>
+          <a href="/index.html" style="color:inherit">Back</a>
         </button>
       </form>
     </div>
