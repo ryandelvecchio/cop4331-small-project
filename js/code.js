@@ -65,7 +65,7 @@ function readCookie()
 	userId = -1;
 	var data = document.cookie;
 	var splits = data.split(",");
-	for(var i = 0; i < splits.length; i++)
+	for (var i = 0; i < splits.length; i++)
 	{
 		var thisOne = splits[i].trim();
 		var tokens = thisOne.split("=");
@@ -83,13 +83,13 @@ function readCookie()
 		}
 	}
 
-	if( userId < 0 )
+	if (userId < 0)
 	{
 		window.location.href = "index.html";
 	}
 	else
 	{
-		document.getElementById("usrname").innerHTML = "Logged in as " + firstname + " " + lastname;
+		window.location.href = "/html/home.html";
 	}
 }
 
