@@ -1,6 +1,6 @@
 <?php
 
-	// TODO: Should probably not allow users to delete other users contacts lol...
+	//  TODO: Should probably not allow users to delete other users contacts lol...
 
 	$inData = getRequestInfo();
 

@@ -5,4 +5,4 @@
 * home will correspond to the USER DASHBOARD PAGE
   * This where you manage contacts
 * register will correspond to the USER REGISTRATION PAGE
-  * This is where you create a new user account
+  * This is where you can create a new user account
