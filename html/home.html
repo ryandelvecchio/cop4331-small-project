@@ -12,7 +12,6 @@
   <meta property="og:description" content="User Home Page">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
   crossorigin="anonymous">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <link rel="stylesheet" href="../css/dark-mode.css">
 </head>
 <style>
@@ -47,10 +46,9 @@
   <br>
     <div class="regContainer">
       <div class="uTransbox">
-        <!-- There must be a way to pass in the user's first name -->
-        <h1 class="display-4 pl-2">Welcome</h1>
+        <h1 id="welcomeText" class="display-4 pl-2"></h1>
 
-        <form>
+        <form id="addForm">
           <div class="form-group col-md-6">
             <p>Choose an action:</p>
             <!-- Add user contacts into the database -->
@@ -59,36 +57,88 @@
             <input class="hide" type="text" id="addLast" placeholder="Last Name"/>
             <input class="hide" type="text" id="addEmail" placeholder="Email"/>
             <input class="hide" type="text" id="addPhone" placeholder="Phone Number"/>
-            <input class="hide btn btn-primary" type="button" id="addButton" value="Add Contact" onclick="addContact()"/>
-            <p class="hide" id="added">Contact Addded!</p>
+            <input class="hide btn btn-primary" type="button" role="button" id="addButton" value="Add Contact" onclick="addContact()"/>
+            <p id="addedStatus"></p>
           </div>
+        </form>
           <div class="form-group col-md-6">
             <!-- Search for users in the database -->
             <input class="btn btn-dark" type="button" id="searchContacts" value="Search Contacts" onclick="searchUsers()"/>
-            <input class="hide" type="text" id="firstnameSearch" placeholder="First, Last, Phone, Email..."/>
+            <input class="hide" type="text" id="query" placeholder="First, Last, Phone, Email..."/>
             <input class="hide btn btn-primary" type="button" id="searchButton" value="Search" onclick="submitSearch()"/>
-            <p class="hide" id="searching">Searching For User...</p>
+            <p id="searchStatus"></p>
           </div>
-          <div id = "resultContainer",class="form-group col-md-6">
-            <!-- Update the  user's current records -->
-            <input class="hide btn btn-primary" type="button" id="updateButton" value="Update Contact" onclick="updateRecords()"/>
-            <input class="hide btn btn-primary" type="button" id="deleteButton" value="Delete" onclick="submitDelete()">
-            <input class="hide" type="text" id="updateFirst" placeholder="New First Name"/>
-            <input class="hide" type="text" id="updateLast" placeholder="New Last Name"/>
-            <input class="hide" type="text" id="updateEmail" placeholder="New Email"/>
-            <input class="hide" type="text" id="updatePhone" placeholder="New Phone Number"/>
-            <input class="hide btn btn-primary" type="button" id="update" value="Update" onclick="submitUpdate()">
-            <p class="hide" id="updated">User Information Updated!</p>
+          <div id="resultContainer" class="form-group col-md-6">
+            
           </div>
-        </form>
     </div>
   </div>
+
+  <div class="modal" id="updateModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Update Contact</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <!-- Update the  user's current records -->
+          <!-- TODO: fix white label text -->
+          <div class="form-row">
+            <div class="form-group col-md-4 pl-2">
+              <label for="updateFirst">First Name</label>
+              <input type="text" class="form-control" id="updateFirst">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-4 pl-2">
+              <label for="updateLast">Last Name</label>
+              <input type="text" class="form-control" id="updateLast">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-4 pl-2">
+              <label for="updatePhone">Phone</label>
+              <input type="text" class="form-control" id="updatePhone">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-4 pl-2">
+              <label for="updateEmail">Email</label>
+              <input type="text" class="form-control" id="updateEmail">
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary">Submit Update</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script src="../js/code.js"></script>
+
   <script>
+    $( document ).ready(function() {
+        readCookie();
+        enforceSession();
+        $('#welcomeText').text(`Welcome ${firstname}`);
+    });
+    
     // Display input boxes for the user to search
     function searchUsers()
     {
       document.getElementById('searchContacts').className="hide";
-      document.getElementById('firstnameSearch').className="show";
+      document.getElementById('query').className="show";
       document.getElementById('searchButton').className="show";
 
     }
@@ -101,35 +151,6 @@
       document.getElementById('addEmail').className="show";
       document.getElementById('addPhone').className="show";
       document.getElementById('addButton').className="show";
-    }
-    function submitSearch()
-    {
-      document.getElementById('searching').className="show";
-      document.getElementById('updateButton').className="show";
-      document.getElementById('deleteButton').className="show";
-    }
-    // Display input boxes for the user to update
-    function updateRecords()
-    {
-      document.getElementById('updateButton').className="hide";
-      document.getElementById('deleteButton').className="hide";
-      document.getElementById('updateFirst').className="show";
-      document.getElementById('updateLast').className="show";
-      document.getElementById('updateEmail').className="show";
-      document.getElementById('updatePhone').className="show";
-      document.getElementById('update').className="show";
-    }
-    function submitDelete()
-    {
-
-    }
-    function addContact()
-    {
-      document.getElementById('added').className="show";
-    }
-    function submitUpdate()
-    {
-      document.getElementById('updated').className="show";
     }
   </script>
 </body>
