@@ -6,10 +6,6 @@ var lastname = "";
 
 function doLogin()
 {
-	userId = 0;
-	firstname = "";
-	lastname = "";
-
 	var login = document.getElementById("usrname").value;
 	var password = document.getElementById("passwrd").value;
 
@@ -65,7 +61,7 @@ function readCookie()
 	userId = -1;
 	var data = document.cookie;
 	var splits = data.split(",");
-	for(var i = 0; i < splits.length; i++)
+	for (var i = 0; i < splits.length; i++)
 	{
 		var thisOne = splits[i].trim();
 		var tokens = thisOne.split("=");
@@ -83,13 +79,13 @@ function readCookie()
 		}
 	}
 
-	if( userId < 0 )
+	if (userId < 0)
 	{
 		window.location.href = "index.html";
 	}
 	else
 	{
-		document.getElementById("usrname").innerHTML = "Logged in as " + firstname + " " + lastname;
+		window.location.href = "/html/home.html";
 	}
 }
 
@@ -162,6 +158,7 @@ function submitSearch()
 	// FIXME: where is the search result in the register.HTML?
 	document.getElementById("SearchResult").innerHTML = "";
 
+	// empty search list to start
 	var searchList = "";
 
 	var jsonPayload = {
@@ -183,22 +180,11 @@ function submitSearch()
 				document.getElementById("SearchResult").innerHTML = "Processing Names...";
 				var jsonObject = JSON.parse(xhr.responseText);
 
-				// build json array of results
+				// append each search result to the list of results
 				for (var i = 0; i < jsonObject.results.length; i++)
 				{
-					searchList += jsonObject.results[i];
-
-					// Add a formatting break to each search result displayed
-					if (i < jsonObject.results.length - 1)
-					{
-						searchList += "<br />\r\n";
-					}
+					addSearchResult(jsonObject.results[i]);
 				}
-
-				// FIXME: Not 100% sure what this does but I think it
-				// just displays the results as a paragraph. This may need to be worked
-				// in a bit better
-				document.getElementsByTagName("p")[0].innerHTML = searchList;
 			}
 		};
 
@@ -209,6 +195,18 @@ function submitSearch()
 		document.getElementById("SearchResult").innerHTML = err.message;
 	}
 
+}
+
+// Function that will append an individual search result to the list
+function addSearchResult(result)
+{
+	$('#resultContainer').append(`
+        <div id="${result.contact_id}">
+            <span>${result.firstname} ${result.lastname}</span>
+            <input class="hide btn btn-primary" type="button" id="deleteButton" value="Delete" onclick="deleteContact(this.parentNode.id)">
+            <input class="hide btn btn-primary" type="button" id="updateButton" value="Update" onclick="submitupdate(this.parentNode.id)"/>
+        </div>
+    `);
 }
 
 // Function to submit a change to a Contact
@@ -250,7 +248,7 @@ function submitUpdate()
 	}
 	catch(err)
 	{
-		document.getElementById("udpateResult").innerHTML = err.message;
+		document.getElementById("updateResult").innerHTML = err.message;
 	}
 
 }
@@ -300,7 +298,31 @@ function doRegister()
 
 // Function to delete contact
 // Returns contact ID of user for JSON payload
-function deleteContact()
+function deleteContact(contactID)
 {
+	var jsonPayload = {
+		contact_id: contactID,
+	}
 
+	var url = '/api/deletecontact.' + extension;
+
+	var xhr = new XMLHttpRequest();
+	xhr.open("POST", url, false);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+	try
+	{
+		// Send the contact_id
+		xhr.send(JSON.stringify(jsonPayload));
+		var jsonObject = JSON.parse(xhr.responseText);
+		if (jsonObject.user_id <= 0)
+			throw jsonObject.error;
+		alert(jsonObject.user_id);
+
+		// Remove the user from the HTML search Display
+		$(`#${contactID}`).remove();
+	}
+	catch(err)
+	{
+		alert(err);
+	}
 }
