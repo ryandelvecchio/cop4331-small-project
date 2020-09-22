@@ -6,10 +6,6 @@ var lastname = "";
 
 function doLogin()
 {
-	userId = 0;
-	firstname = "";
-	lastname = "";
-
 	var login = document.getElementById("usrname").value;
 	var password = document.getElementById("passwrd").value;
 
