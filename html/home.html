@@ -121,54 +121,6 @@
     </div>
   </div>
 
-  <div class="modal" id="addModal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Add Contact</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <!-- Update the  user's current records -->
-          <!-- TODO: fix white label text -->
-          <div class="form-row">
-            <div class="form-group col-md-4 pl-2">
-              <label for="updateFirst">First Name</label>
-              <input type="text" class="form-control" id="updateFirst">
-            </div>
-          </div>
-
-          <div class="form-row">
-            <div class="form-group col-md-4 pl-2">
-              <label for="updateLast">Last Name</label>
-              <input type="text" class="form-control" id="updateLast">
-            </div>
-          </div>
-
-          <div class="form-row">
-            <div class="form-group col-md-4 pl-2">
-              <label for="updatePhone">Phone</label>
-              <input type="text" class="form-control" id="updatePhone">
-            </div>
-          </div>
-
-          <div class="form-row">
-            <div class="form-group col-md-4 pl-2">
-              <label for="updateEmail">Email</label>
-              <input type="text" class="form-control" id="updateEmail">
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary">Submit Contact</button>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <div class="modal" id="updateModal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -235,6 +187,7 @@
       document.getElementById('searchContacts').className="hide";
       document.getElementById('query').className="show";
       document.getElementById('searchButton').className="show";
+
     }
     // Display window for the user to add
     function add()
