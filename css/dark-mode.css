@@ -2,38 +2,15 @@
 /*Dark Theme references provided by Christian Oliff
  https://github.com/coliff/dark-mode-switch/commit/00e0ed339aca6938063f87ce398055259755410e
 */
+
+/* Dark Mountain background */
 [data-theme="dark"]
 {
   background-color: #222 !important;
   background-image: url("../images/night-mode-frontpage.png");
 }
 
-[data-theme="dark"] .bg-light
-{
-  background-color: #333 !important;
-}
-
-[data-theme="dark"] .bg-white
-{
-  background-color: #000 !important;
-}
-
-[data-theme="dark"] .bg-black
-{
-  background-color: #eee !important;
-}
-[data-theme="dark"] h1
-{
-  color: #333 !important;
-}
-[data-theme="dark"] h2
-{
-  color: #aaa !important;
-}
-[data-theme="dark"] p
-{
-  color: #333 !important;
-}
+/* transparent boxes to hold content (edited to be consistent with night mode) */
 [data-theme="dark"] div.transbox
 {
   position: relative;
@@ -44,6 +21,7 @@
   border: 5px solid #c2cae0;
   opacity: 0.85;
 }
+/* register transparent box (night mode) */
 [data-theme="dark"] div.regTransbox
 {
   position: relative;
@@ -54,6 +32,7 @@
   border: 5px solid #c2cae0;
   opacity: 0.85;
 }
+/*  user home page transparent box (night mode) */
 [data-theme="dark"] div.uTransbox
 {
   position: relative;
@@ -64,6 +43,7 @@
   border: 5px solid #c2cae0;
   opacity: 0.85;
 }
+/*  user home page transparent box to update contacts (night mode) */
 [data-theme="dark"] div.uTransbox2
 {
   display: none;
@@ -75,6 +55,7 @@
   border: 5px solid #c2cae0;
   opacity: 0.85;
 }
+/* user home page transparent box to add contact (night mode) */
 [data-theme="dark"] div.addTransbox
 {
   display: none;
@@ -86,22 +67,8 @@
   border: 5px solid #c2cae0;
   opacity: 0.85;
 }
-[data-theme="dark"] #mojaveTitle
-{
-  color: #333 !important;
-}
-[data-theme="dark"] #updateTitle
-{
-  color: #333 !important;
-}
-[data-theme="dark"] #signIn
-{
-  color: #333 !important;
-}
-[data-theme="dark"] label
-{
-  color: #333 !important;
-}
+
+/* Night mode input text boxes */
 [data-theme="dark"] input[type=text]
 {
   background-color: #aaa;
@@ -120,10 +87,43 @@
 {
   background-color: #aaa;
 }
+/* END: Night mode input text boxes */
+
 [data-theme="dark"] input[type=button]
 {
   background-color: #333;
   color: #fff;
+}
+
+
+/* Texts buttons, and titles in night mode will be of color grey */
+[data-theme="dark"] h1
+{
+  color: #333 !important;
+}
+[data-theme="dark"] h2
+{
+  color: #aaa !important;
+}
+[data-theme="dark"] p
+{
+  color: #333 !important;
+}
+[data-theme="dark"] label
+{
+  color: #333 !important;
+}
+[data-theme="dark"] #mojaveTitle
+{
+  color: #333 !important;
+}
+[data-theme="dark"] #updateTitle
+{
+  color: #333 !important;
+}
+[data-theme="dark"] #signIn
+{
+  color: #333 !important;
 }
 [data-theme="dark"] #button
 {

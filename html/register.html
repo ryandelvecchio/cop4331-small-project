@@ -3,31 +3,26 @@
 <html>
 <head>
   <title>Registration</title>
-  <meta name="author"
-    content="Group3FrontEnd">
+  <meta name="author" content="Group3FrontEnd">
   <meta charset="utf-8">
-  <meta http-equiv="x-ua-compatible"
-    content="ie=edge">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta property="og:image"
     content="https://repository-images.githubusercontent.com/194995309/38db8f80-9db7-11e9-998f-43f2a26d9e0b">
-  <meta name="viewport"
-    content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta property="og:title"
-    content="Home">
-  <meta property="og:description"
-    content="User Home Page">
+  <meta name="viewport"  content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta property="og:title" content="Home">
+  <meta property="og:description" content="User Home Page">
   <link rel="stylesheet"
     href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
     integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
     crossorigin="anonymous">
-  <link rel="stylesheet"
-    href="../css/dark-mode.css">
-  <link rel="stylesheet"
-    href="../css/styles.css">
+  <link rel="stylesheet" href="../css/dark-mode.css">
+  <link rel="stylesheet" href="../css/styles.css">
 </head>
 
 <body style="body">
-
+  <!-- Nav bar for Title, Sign Out, and Night Mode-->
+  <!-- Dark Theme references provided by Christian Oliff
+   https://github.com/coliff/dark-mode-switch/commit/00e0ed339aca6938063f87ce398055259755410e -->
   <div class="container d-flex p-3 mx-auto flex-column">
     <header class="mb-auto">
       <nav>
@@ -43,6 +38,7 @@
       </nav>
     </header>
   </div>
+  <!-- END:  Dark Theme references provided by Christian Oliff -->
   <br>
 
   <div class="regContainer">
@@ -79,11 +75,10 @@
             <input type="password" class="form-control" id="inputCPassword" placeholder="***********">
           </div>
         </div>
-
         <div class="form-row">
           <span id="registerStatus"></span>
         </div>
-
+        <!-- Add new user to the database -->
         <button type="submit" name="signup" class="btn btn-primary" id="button" onclick="doRegister();">Sign Up</button>
         <button type="button" class="btn btn-primary" id="button">
           <a href="/index.html" style="color:inherit">Back</a>

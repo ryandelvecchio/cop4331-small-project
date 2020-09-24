@@ -1,23 +1,4 @@
-#title
-{
-  background-color: black;
-  color: white;
-  text-align: center;
-}
-.hide
-{
-  display:none;
-}
-.show
-{
-  display:block;
-}
-#myHeader
-{
-  background-color: grey;
-  color: white;
-  text-align: center;
-}
+/* Mountain background  */
 body
 {
     background-image: url("../images/day-mode-frontpage.png");
@@ -25,10 +6,8 @@ body
     background-size: cover;
     position: relative;
 }
-head
-{
-    font-style: normal;
-}
+
+/* Style for page title, Sign Out button, and Night Mode Switch */
 nav
 {
   width: 99%;
@@ -52,6 +31,19 @@ nav h2
   justify-content: space-between;
   flex: 9;
 }
+/* END: Style for page title, Sign Out button, and Night Mode Switch */
+
+/* hidden text boxes will display after button click */
+.hide
+{
+  display:none;
+}
+.show
+{
+  display:block;
+}
+/* END: hidden text boxes will display after button click */
+
 .center
 {
     margin: auto;
@@ -59,15 +51,21 @@ nav h2
     border: 3px solid #333;
     padding: 5px;
 }
+
+/* containters */
 .container
 {
   margin: auto;
   display: flex;
 }
-.show
+div.regContainer
 {
-  display:block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
+/* transparent boxes to hold content */
 div.transbox
 {
   position: relative;
@@ -78,12 +76,7 @@ div.transbox
   border: 5px solid #c2cae0;
   opacity: 0.9;
 }
-div.regContainer
-{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+/* register transparent box */
 div.regTransbox
 {
   position: relative;
@@ -94,6 +87,7 @@ div.regTransbox
   border: 5px solid #c2cae0;
   opacity: 0.9;
 }
+/* user home page transparent box */
 div.uTransbox
 {
   position: relative;
@@ -104,6 +98,7 @@ div.uTransbox
   border: 5px solid #c2cae0;
   opacity: 0.9;
 }
+/* user home page transparent box (update contact) */
 div.uTransbox2
 {
   display: none;
@@ -115,6 +110,7 @@ div.uTransbox2
   border: 5px solid #c2cae0;
   opacity: 0.85;
 }
+/* user home page transparent box (add contact) */
 div.addTransbox
 {
   display: none;
@@ -127,6 +123,7 @@ div.addTransbox
   opacity: 0.85;
 }
 
+/* Default day mode text and buttons will be of color white */
 #mojaveTitle
 {
   color: #fff !important;
@@ -160,7 +157,6 @@ div.addTransbox
   background-color: #fff;
   color: #333;
 }
-
 label
 {
   color: #fff !important;
@@ -188,39 +184,10 @@ input[type=text]
   height: 40px;
   width: 325px;
 }
-div.form-popup
-{
-  display: none;
-  position: relative;
-  border: 5px solid: #c2d1e0;
-}
-div.form-container
-{
-  max-width: 300px;
-  padding: 10px;
-  background-color: white;
-}
-div.form-container input[type=text]:focus
-{
-  background-color: #ddd;
-  outline: none;
-}
-div.form-container .button
-{
-  background-color: #4CAF50;
-  color: white;
-  padding: 16px 20px;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-  margin-bottom:10px;
-  opacity: 0.8;
-}
-div.form-container .btn:hover
-{
-  opacity: 1;
-}
-/* The Modal (background) for delete popup */
+
+
+/* The Modal (background) for confirm delete popup */
+/* <!-- Referenced from w3schools  https://www.w3schools.com/howto/howto_css_delete_modal.asp --> */
 .modal
 {
   display: none; /* Hidden by default */
@@ -231,7 +198,7 @@ div.form-container .btn:hover
   width: 100%; /* Full width */
   height: 100%; /* Full height */
   overflow: auto; /* Enable scroll if needed */
-  background-color: #474e5d;
+  background-color: #867979;
   opacity: 0.95;
   padding-top: 50px;
 }
@@ -251,7 +218,6 @@ hr
   border: 1px solid #f1f1f1;
   margin-bottom: 25px;
 }
-
 /* The Modal Close Button (x) */
 .close
 {
@@ -270,7 +236,7 @@ hr
   cursor: pointer;
 }
 
-/* Clear floats */
+/* Clear floats, ensure everything is in the container */
 .clearfix::after
 {
   content: "";
@@ -316,3 +282,4 @@ hr
 {
   position: relative;
 }
+/* END: w3schools modal reference */
