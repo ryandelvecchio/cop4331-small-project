@@ -1,166 +1,37 @@
 
-body {
-    background-image: url("../images/day-mode-frontpage.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: relative;
-}
-head {
-    font-style: normal;
-}
-nav{
-  width: 99%;
-  margin: auto;
-  min-height: 10vh;
-  padding: 1rem 0rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-nav a
-{
-    display: flex;
-    justify-content: space-between;
-    flex: 1;
-    text-align: center;
-}
-nav h2
-{
-  display: flex;
-  justify-content: space-between;
-  flex: 9;
-}
-.center {
-    margin: auto;
-    width: 40%;
-    border: 3px solid #333;
-    padding: 5px;
-}
-.container
-{
-  margin: auto;
-  display: flex;
-}
-.show
-{
-  display:block;
-}
-div.transbox
-{
-  position: relative;
-  margin: 30px:
-  padding: 15px;
-  width: 450px;
-  background-color: #c2d1e0;
-  border: 5px solid #c2cae0;
-  opacity: 0.9;
-}
-div.regContainer
-{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-div.regTransbox
-{
-  position: relative;
-  margin: 1px;
-  padding: 15px;
-  width: 500px;
-  background-color: #c2d1e0;
-  border: 5px solid #c2cae0;
-  opacity: 0.9;
-}
-div.uTransbox
-{
-  position: relative;
-  margin: 15px;
-  padding: 5px;
-  width: 370px;
-  background-color: #c2d1e0;
-  border: 5px solid #c2cae0;
-  opacity: 0.9;
-}
-
-#mojaveTitle {
-  color: #fff !important;
-}
-#signIn {
-  color: #fff !important;
-}
-#homeButton {
-  color: #fff !important;
-}
-#hUsername {
-  color: #fff !important;
-}
-#hPassword {
-  color: #fff !important;
-}
-#register
-{
-  color: #fff !important;
-}
-#button
-{
-  background-color: #fff;
-  color: #333;
-}
-
-label {
-  color: #fff !important;
-}
-h1
-{
-  color: #fff;
-}
-h2
-{
-  color: #fff;
-}
-p
-{
-  color: #fff;
-}
-input[type=button]
-{
-  background-color: #fff;
-  color: #333;
-}
-input[type=text]
-{
-  background-color: #fff;
-  height: 40px;
-  width: 325px;
-}
-
-
 /*Dark Theme references provided by Christian Oliff
  https://github.com/coliff/dark-mode-switch/commit/00e0ed339aca6938063f87ce398055259755410e
 */
-[data-theme="dark"] {
+[data-theme="dark"]
+{
   background-color: #222 !important;
   background-image: url("../images/night-mode-frontpage.png");
 }
 
-[data-theme="dark"] .bg-light {
+[data-theme="dark"] .bg-light
+{
   background-color: #333 !important;
 }
 
-[data-theme="dark"] .bg-white {
+[data-theme="dark"] .bg-white
+{
   background-color: #000 !important;
 }
 
-[data-theme="dark"] .bg-black {
+[data-theme="dark"] .bg-black
+{
   background-color: #eee !important;
 }
-[data-theme="dark"] h1 {
+[data-theme="dark"] h1
+{
   color: #333 !important;
 }
-[data-theme="dark"] h2 {
+[data-theme="dark"] h2
+{
   color: #aaa !important;
 }
-[data-theme="dark"] p {
+[data-theme="dark"] p
+{
   color: #333 !important;
 }
 [data-theme="dark"] div.transbox
@@ -193,13 +64,42 @@ input[type=text]
   border: 5px solid #c2cae0;
   opacity: 0.85;
 }
-[data-theme="dark"] #mojaveTitle {
+[data-theme="dark"] div.uTransbox2
+{
+  display: none;
+  position: relative;
+  margin: 15px;
+  padding: 5px;
+  width: 370px;
+  background-color: #8a99a8;
+  border: 5px solid #c2cae0;
+  opacity: 0.85;
+}
+[data-theme="dark"] div.addTransbox
+{
+  display: none;
+  position: relative;
+  margin: 15px;
+  padding: 5px;
+  width: 370px;
+  background-color: #8a99a8;
+  border: 5px solid #c2cae0;
+  opacity: 0.85;
+}
+[data-theme="dark"] #mojaveTitle
+{
   color: #333 !important;
 }
-[data-theme="dark"] #signIn {
+[data-theme="dark"] #updateTitle
+{
   color: #333 !important;
 }
-[data-theme="dark"] label {
+[data-theme="dark"] #signIn
+{
+  color: #333 !important;
+}
+[data-theme="dark"] label
+{
   color: #333 !important;
 }
 [data-theme="dark"] input[type=text]
@@ -230,22 +130,23 @@ input[type=text]
   background-color: #333;
   color: #fff;
 }
-[data-theme="dark"] #homeButton {
+[data-theme="dark"] #homeButton
+{
   color: #aaa !important;
 }
-[data-theme="dark"] #nightMode {
+[data-theme="dark"] #nightMode
+{
   color: #aaa !important;
 }
-[data-theme="dark"] #hUsername {
+[data-theme="dark"] #hUsername
+{
   color: #333 !important;
 }
-[data-theme="dark"] #hPassword {
+[data-theme="dark"] #hPassword
+{
   color: #333 !important;
 }
 [data-theme="dark"] #register
 {
   color: #333 !important;
-}
-.rounded{
-  position: relative;
 }
