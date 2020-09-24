@@ -126,7 +126,7 @@ function addContact() {
 function submitSearch() {
     $('#searchStatus').text('Searching...');
 
-    let query = document.getElementById("query").value;
+    let query = document.getElementById("searchBox").value;
 
     $('#resultContainer').empty();
 
