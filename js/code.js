@@ -102,8 +102,6 @@ function addContact() {
 
     let url = '/api/addcontact.php';
 
-    console.log(JSON.stringify(jsonPayload))
-
     let xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
@@ -171,29 +169,31 @@ function submitSearch() {
 
 // Function that will append an individual search result to the list
 function addSearchResult(result) {
+    // probably a better way to do this, but i think each button should have a unique id
+    let updateButtonId = "updateButton_" + result.contact_id;
+    let deleteButtonId = "deleteButton_" + result.contact_id;
     $('#resultContainer').append(`
         <div id="${result.contact_id}">
             <span>${result.firstname} ${result.lastname}</span>
-            <input class="btn btn-primary" type="button" id="deleteButton" value="Delete" onclick="deleteContact(this.parentNode.id)">
-            <input class="btn btn-primary" type="button" id="updateButton" value="Update" onclick="updateContact(this.parentNode.id)"/>
+            <input class="btn btn-primary" type="button" id="${deleteButtonId}" value="Delete" onclick="deleteContact(this.parentNode.id)" class="show">
+            <input class="btn btn-primary" type="button" id="${updateButtonId}" value="Update" onclick="showUpdateRecordsElements(this.parentNode.id)" class="show"/>
         </div>
     `);
 }
 
-function updateContact(contact_id) {
-    $('#updateModal').modal('show');
-}
-
 // Function to submit a change to a Contact
-function submitUpdate(contact_id) {
+function submitContactUpdate()
+{
+    let contact_id = document.getElementById("uContainer").getAttribute("data-contact_id");
+
     // Get the elements from HTML and put in JSON payload
-    let firstname = document.getElementById("updateFirst").value;
-    let lastname = document.getElementById("updateLast").value;
-    let email = document.getElementById("updateEmail").value;
-    let phone = document.getElementById("updatePhone").value;
+    let firstname = document.getElementById("uFirst").value;
+    let lastname = document.getElementById("uLast").value;
+    let email = document.getElementById("uEmail").value;
+    let phone = document.getElementById("uPhone").value;
 
     // FIXME: I think this may be a pop up but consult Brandon
-    document.getElementById("updateResult").innerHTML = "";
+    // document.getElementById("updateResult").innerHTML = "";
 
     // JSON payload with all new contact info from HTML page
     let jsonPayload = {
@@ -212,12 +212,13 @@ function submitUpdate(contact_id) {
     try {
         xhr.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("updateResult").innerHTML = "Contact Updated";
+                $('#uForm').trigger('reset');
+                document.getElementById("updatedStatus").innerHTML = "Contact Updated";
             }
         };
         xhr.send(JSON.stringify(jsonPayload));
     } catch (err) {
-        document.getElementById("updateResult").innerHTML = err.message;
+        document.getElementById("updatedStatus").innerHTML = err.message;
     }
 
 }

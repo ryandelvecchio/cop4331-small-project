@@ -59,8 +59,6 @@
           <p>Choose an action:</p>
           <!-- Add user contacts into the database -->
           <input class="btn btn-dark" type="button" id="addContacts" value="Add Contact" onclick="showAddContactElements()"/>
-          <input class="hide btn btn-primary" type="button" id="addButton" value="Add Contact" onclick="addContact()"/>
-          <p id="addedStatus"></p>
         </div>
         <div class="form-group col-md-6">
           <!-- Search for contacts in the database -->
@@ -84,47 +82,47 @@
         <h3 class="display-5" id="updateTitle">Add Contact</h3>
         <!-- Add First Name -->
         <label for="aFirst"><b>First</b></label>
-        <input type="text" placeholder="First Name" name="aFirst" required>
+        <input type="text" placeholder="First Name" id="addFirst" required>
         <!-- Add Last Name -->
         <label for="aLast"><b>Last</b></label>
-        <input type="text" placeholder="Last Name" name="aLast" required>
+        <input type="text" placeholder="Last Name" id="addLast" required>
         <!-- Add Email -->
         <label for="aEmail"><b>Email</b></label>
-        <input type="text" placeholder="Email" name="aEmail" required>
+        <input type="text" placeholder="Email" id="addEmail" required>
         <!-- Add Phone Number -->
         <label for="aPhone"><b>Phone</b></label>
-        <input type="text" placeholder="Phone Number" name="aPhone" required>
+        <input type="text" placeholder="Phone Number" id="addPhone" required>
         <!-- Add Button and Close Button -->
-        <button id="button" type="submit" class="btn btn-dark" onclick="submitAdd()">Add</button>
+        <button id="button" type="submit" class="btn btn-dark" onclick="addContact()">Add</button>
         <button id="button" type="submit" class="btn btn-dark" onclick="closeAddForm()">Close</button>
         <!-- Confirmation Message -->
-        <p class="hide" id="added">Contact Added!</p>
+        <p id="addedStatus"></p>
       </div>
     </div>
   </div>
 
   <!-- additional transbox will appear to update a contact-->
   <div class="regContainer">
-    <div class="uTransbox2" id="uContainer">
+    <div class="uTransbox2" id="uContainer" data-contact_id="">
       <div class="pl-2" id="uForm">
         <h3 class="display-5" id="updateTitle">Update Contact</h3>
         <!-- Update First Name -->
         <label for="uFirst"><b>First</b></label>
-        <input type="text" placeholder="New First Name" name="uFirst" required>
+        <input type="text" placeholder="New First Name" id="uFirst" required>
         <!-- Update Last Name -->
         <label for="uLast"><b>Last</b></label>
-        <input type="text" placeholder="New Last Name" name="uLast" required>
+        <input type="text" placeholder="New Last Name" id="uLast" required>
         <!-- Update Email -->
         <label for="uEmail"><b>Email</b></label>
-        <input type="text" placeholder="New Email" name="uEmail" required>
+        <input type="text" placeholder="New Email" id="uEmail" required>
         <!-- Update Phone Number -->
         <label for="uPhone"><b>Phone</b></label>
-        <input type="text" placeholder="New Phone Number" name="uPhone" required>
+        <input type="text" placeholder="New Phone Number" id="uPhone" required>
 
-        <button id="button" type="submit" class="btn btn-dark" onclick="showUpdate();submitUpdate()">Update</button>
+        <button id="button" type="submit" class="btn btn-dark" onclick="submitContactUpdate()">Update</button>
         <button id="button" type="submit" class="btn btn-dark" onclick="closeUpdateForm()">Close</button>
         <!-- Confirmation Message -->
-        <p class="hide" id="added">Contact Information Updated!</p>
+        <p id="updatedStatus"></p>
       </div>
     </div>
   </div>
@@ -148,10 +146,10 @@
   <!-- END: Referenced from w3schools  https://www.w3schools.com/howto/howto_css_delete_modal.asp -->
 
 
-  <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  <script src="../js/code.js"></script> -->
+  <script src="../js/code.js"></script>
 
   <script>
     $( document ).ready(function()
@@ -174,34 +172,37 @@
     {
       document.getElementById("addContainer").style.display = "block";
       document.getElementById("addForm").style.display = "block";
-      document.getElementById('deleted').className = "hide";
+      //document.getElementById('deleted').className = "hide";
     }
     // Display search result buttons and text
     function showSearchResultElements()
     {
-      document.getElementById('updateButton').className="show";
-      document.getElementById('deleteButton').className="show";
+      //document.getElementById('updateButton').className="show";
+      //document.getElementById('deleteButton').className="show";
     }
     // Display window the user to update
-    function showUpdateRecordsElements()
+    function showUpdateRecordsElements(contact_id)
     {
       document.getElementById("uContainer").style.display = "block";
       document.getElementById("uForm").style.display = "block";
-      document.getElementById('updateButton').className="hide";
-      document.getElementById('deleteButton').className="hide";
-      document.getElementById('deleted').className = "hide";
+
+      document.getElementById("uContainer").setAttribute("data-contact_id", contact_id);
+      //document.getElementById('updateButton').className="hide";
+      //document.getElementById('deleteButton').className="hide";
+      // document.getElementById('deleted').className = "hide";
     }
     // Close contact add window
     function closeAddForm()
     {
+      document.getElementById('addedStatus').innerHTML = "";
       document.getElementById("addForm").style.display = "none";
       document.getElementById("addContainer").style.display = "none";
-      document.getElementById('added').className="hide";
     }
 
     // Close update contact window
     function closeUpdateForm()
     {
+      document.getElementById('updatedStatus').innerHTML = "";
       document.getElementById("uForm").style.display = "none";
       document.getElementById("uContainer").style.display = "none";
     }
@@ -220,12 +221,6 @@
       }
     }
     // END: Referenced from w3schools  https://www.w3schools.com/howto/howto_css_delete_modal.asp
-
-    // Show add contact
-    function submitAdd()
-    {
-      document.getElementById('added').className="show";
-    }
 
     // Show update contact
     function showUpdate()
