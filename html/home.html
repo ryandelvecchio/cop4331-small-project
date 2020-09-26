@@ -130,15 +130,15 @@
 
   <!-- Modal window for delete user confirmation -->
   <!-- Referenced from w3schools  https://www.w3schools.com/howto/howto_css_delete_modal.asp -->
-  <div id="deleteModal" class="modal">
+  <div id="deleteModal" class="modal" data-contact_id="">
     <span onclick="document.getElementById('deleteModal').style.display='none'">×</span>
     <form class="modal-content">
       <div class="delContainer">
         <h1 class="pl-2">Delete Contact</h1>
         <p class="pl-2">Are you sure you want to delete this contact?</p>
         <div class="clearfix">
-          <button type="button" onclick="document.getElementById('deleteModal').style.display='none'" class="cancelbtn">Cancel</button>
-          <button type="button" onclick="showConfirmDelete()" class="deletebtn">Delete</button>
+          <button type="button" onclick="closeDeleteModal();" class="cancelbtn">Cancel</button>
+          <button type="button" onclick="deleteContact();closeDeleteModal();" class="deletebtn">Delete</button>
         </div>
       </div>
     </form>
@@ -209,9 +209,13 @@
 
     // Open delete confirmation window
     // Referenced from w3schools  https://www.w3schools.com/howto/howto_css_delete_modal.asp
-    function openDeleteConfirmation()
+    function showDeleteConfirmationElements(contact_id)
     {
-      document.getElementById('deleteModal').style.display='block';
+      let modal = document.getElementById('deleteModal');
+
+      modal.setAttribute("data-contact_id", contact_id);
+      modal.style.display='block';
+
       window.onclick = function(event)
       {
         if (event.target == modal)
@@ -227,11 +231,11 @@
     {
       document.getElementById('updated').className="show";
     }
-    // Show delete contact
-    function showConfirmDelete()
+
+    function closeDeleteModal()
     {
       document.getElementById('deleteModal').style.display='none';
-      document.getElementById('deleted').className = "show";
+      //document.getElementById('deleted').className = "show";
     }
   </script>
 </body>

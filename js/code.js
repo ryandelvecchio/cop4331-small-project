@@ -175,7 +175,7 @@ function addSearchResult(result) {
     $('#resultContainer').append(`
         <div id="${result.contact_id}">
             <span>${result.firstname} ${result.lastname}</span>
-            <input class="btn btn-primary" type="button" id="${deleteButtonId}" value="Delete" onclick="deleteContact(this.parentNode.id)" class="show">
+            <input class="btn btn-primary" type="button" id="${deleteButtonId}" value="Delete" onclick="showDeleteConfirmationElements(this.parentNode.id)" class="show">
             <input class="btn btn-primary" type="button" id="${updateButtonId}" value="Update" onclick="showUpdateRecordsElements(this.parentNode.id)" class="show"/>
         </div>
     `);
@@ -270,7 +270,10 @@ function doRegister() {
 
 // Function to delete contact
 // Returns contact ID of user for JSON payload
-function deleteContact(contact_id) {
+function deleteContact() {
+
+    let contact_id = document.getElementById("deleteModal").getAttribute("data-contact_id");
+
     let jsonPayload = {
         contact_id
     }
