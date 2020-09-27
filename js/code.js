@@ -102,6 +102,8 @@ function addContact() {
 
     let url = '/api/addcontact.php';
 
+    console.log(JSON.stringify(jsonPayload))
+
     let xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
@@ -124,7 +126,7 @@ function addContact() {
 function submitSearch() {
     $('#searchStatus').text('Searching...');
 
-    let query = document.getElementById("searchBox").value;
+    let query = document.getElementById("query").value;
 
     $('#resultContainer').empty();
 
@@ -169,31 +171,29 @@ function submitSearch() {
 
 // Function that will append an individual search result to the list
 function addSearchResult(result) {
-    // probably a better way to do this, but i think each button should have a unique id
-    let updateButtonId = "updateButton_" + result.contact_id;
-    let deleteButtonId = "deleteButton_" + result.contact_id;
     $('#resultContainer').append(`
         <div id="${result.contact_id}">
             <span>${result.firstname} ${result.lastname}</span>
-            <input class="btn btn-primary" type="button" id="${deleteButtonId}" value="Delete" onclick="showDeleteConfirmationElements(this.parentNode.id)" class="show">
-            <input class="btn btn-primary" type="button" id="${updateButtonId}" value="Update" onclick="showUpdateRecordsElements(this.parentNode.id)" class="show"/>
+            <input class="btn btn-primary" type="button" id="deleteButton" value="Delete" onclick="deleteContact(this.parentNode.id)">
+            <input class="btn btn-primary" type="button" id="updateButton" value="Update" onclick="updateContact(this.parentNode.id)"/>
         </div>
     `);
 }
 
-// Function to submit a change to a Contact
-function submitContactUpdate()
-{
-    let contact_id = document.getElementById("uContainer").getAttribute("data-contact_id");
+function updateContact(contact_id) {
+    $('#updateModal').modal('show');
+}
 
+// Function to submit a change to a Contact
+function submitUpdate(contact_id) {
     // Get the elements from HTML and put in JSON payload
-    let firstname = document.getElementById("uFirst").value;
-    let lastname = document.getElementById("uLast").value;
-    let email = document.getElementById("uEmail").value;
-    let phone = document.getElementById("uPhone").value;
+    let firstname = document.getElementById("updateFirst").value;
+    let lastname = document.getElementById("updateLast").value;
+    let email = document.getElementById("updateEmail").value;
+    let phone = document.getElementById("updatePhone").value;
 
     // FIXME: I think this may be a pop up but consult Brandon
-    // document.getElementById("updateResult").innerHTML = "";
+    document.getElementById("updateResult").innerHTML = "";
 
     // JSON payload with all new contact info from HTML page
     let jsonPayload = {
@@ -212,13 +212,15 @@ function submitContactUpdate()
     try {
         xhr.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-                $('#uForm').trigger('reset');
-                document.getElementById("updatedStatus").innerHTML = "Contact Updated";
+                document.getElementById("updateResult").innerHTML = "Contact Updated";
+
+                // Hide the search results if a contact is updated
+                document.getElementById("resultContainer").className = "hide";
             }
         };
         xhr.send(JSON.stringify(jsonPayload));
     } catch (err) {
-        document.getElementById("updatedStatus").innerHTML = err.message;
+        alert(err);
     }
 
 }
@@ -270,10 +272,7 @@ function doRegister() {
 
 // Function to delete contact
 // Returns contact ID of user for JSON payload
-function deleteContact() {
-
-    let contact_id = document.getElementById("deleteModal").getAttribute("data-contact_id");
-
+function deleteContact(contact_id) {
     let jsonPayload = {
         contact_id
     }
