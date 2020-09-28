@@ -1,6 +1,6 @@
 <?php
 	// Connec to database
-	$conn = new mysqli("161.35.52.252", "root", "password", "contactmanager");
+	$conn = new mysqli("IP", "username", "password", "database");
 
 	// Check connection
 	if (!$conn)
