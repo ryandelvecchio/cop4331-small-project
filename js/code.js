@@ -3,15 +3,15 @@ let firstname = "";
 let lastname = "";
 
 function doLogin() {
-    let username = document.getElementById("username").value;
-    let password = document.getElementById("password").value;
+    const username = $('#username').val();
+    const password = $('#password').val();
 
-    let jsonPayload = {
+    const jsonPayload = {
         username,
         password
     }
 
-    let url = '/api/login.php';
+    const url = '/api/login.php';
 
     let xhr = new XMLHttpRequest();
     xhr.open("POST", url, false);
@@ -81,10 +81,10 @@ function doLogout() {
 // Returns a JSON payload with new contact info
 function addContact() {
     // letiables for JSON payload
-    let firstname = document.getElementById("addFirst").value;
-    let lastname = document.getElementById("addLast").value;
-    let email = document.getElementById("addEmail").value;
-    let phone = document.getElementById("addPhone").value;
+    const firstname = $('#addFirst').val();
+    const lastname = $('#addLast').val();
+    const email = $('#addEmail').val();
+    const phone = $('#addPhone').val();
 
     $('#addedStatus').text('');
 
@@ -92,7 +92,7 @@ function addContact() {
         return $('#addedStatus').text('Please fill out all fields.');
     }
 
-    let jsonPayload = {
+    const jsonPayload = {
         user_id,
         firstname,
         lastname,
@@ -100,9 +100,7 @@ function addContact() {
         phone
     }
 
-    let url = '/api/addcontact.php';
-
-    console.log(JSON.stringify(jsonPayload))
+    const url = '/api/addcontact.php';
 
     let xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
@@ -126,19 +124,16 @@ function addContact() {
 function submitSearch() {
     $('#searchStatus').text('Searching...');
 
-    let query = document.getElementById("query").value;
+    const query = $('#searchBox').val();
 
     $('#resultContainer').empty();
 
-    // empty search list to start
-    let searchList = "";
-
-    let jsonPayload = {
-        query: query,
-        user_id: user_id
+    const jsonPayload = {
+        query,
+        user_id
     }
 
-    let url = '/api/search.php';
+    const url = '/api/search.php';
 
     let xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
@@ -150,7 +145,7 @@ function submitSearch() {
                 let response = JSON.parse(xhr.responseText);
 
                 if (response.results.length === 0) {
-                	return $('#searchStatus').text('No results found.');
+                    return $('#searchStatus').text('No results found.');
                 }
 
                 // append each search result to the list of results
@@ -174,29 +169,29 @@ function addSearchResult(result) {
     $('#resultContainer').append(`
         <div id="${result.contact_id}">
             <span>${result.firstname} ${result.lastname}</span>
-            <input class="btn btn-primary" type="button" id="deleteButton" value="Delete" onclick="deleteContact(this.parentNode.id)">
-            <input class="btn btn-primary" type="button" id="updateButton" value="Update" onclick="updateContact(this.parentNode.id)"/>
+            <input class="btn btn-primary" type="button" id="deleteButton" value="Delete" onclick="showDeleteConfirmationElements(this.parentNode.id)">
+            <input class="btn btn-primary" type="button" id="updateButton" value="Update" onclick="showUpdateRecordsElements(this.parentNode.id)"/>
         </div>
     `);
 }
 
-function updateContact(contact_id) {
-    $('#updateModal').modal('show');
+function closeUpdateForm() {
+    $('#updateForm').trigger("reset");
+    document.getElementById("uForm").style.display = "none";
+    document.getElementById("uContainer").style.display = "none";
 }
 
 // Function to submit a change to a Contact
-function submitUpdate(contact_id) {
+function submitUpdate() {
     // Get the elements from HTML and put in JSON payload
-    let firstname = document.getElementById("updateFirst").value;
-    let lastname = document.getElementById("updateLast").value;
-    let email = document.getElementById("updateEmail").value;
-    let phone = document.getElementById("updatePhone").value;
-
-    // FIXME: I think this may be a pop up but consult Brandon
-    document.getElementById("updateResult").innerHTML = "";
+    const contact_id = $('#uContainer').attr('data-contact_id');
+    const firstname = $('#updateFirst').val();
+    const lastname = $('#updateLast').val();
+    const email = $('#updateEmail').val();
+    const phone = $('#updatePhone').val();
 
     // JSON payload with all new contact info from HTML page
-    let jsonPayload = {
+    const jsonPayload = {
         contact_id,
         firstname,
         lastname,
@@ -204,7 +199,7 @@ function submitUpdate(contact_id) {
         phone
     }
 
-    let url = '/api/updatecontact.php';
+    const url = '/api/updatecontact.php';
 
     let xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
@@ -212,15 +207,14 @@ function submitUpdate(contact_id) {
     try {
         xhr.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("updateResult").innerHTML = "Contact Updated";
-
-                // Hide the search results if a contact is updated
-                document.getElementById("resultContainer").className = "hide";
+                $('#updatedStatus').text('Contact Updated');
+                $('#resultContainer').empty();
+                closeUpdateForm();
             }
         };
         xhr.send(JSON.stringify(jsonPayload));
     } catch (err) {
-        alert(err);
+        $('#updatedStatus').text(err.message);
     }
 
 }
@@ -229,25 +223,25 @@ function submitUpdate(contact_id) {
 // Function to register a new user
 function doRegister() {
     // Get letiables for JSON payload
-    let firstname = document.getElementById("inputFirstName").value;
-    let lastname = document.getElementById("inputLastName").value;
-    let username = document.getElementById("inputUserName").value;
-    let password = document.getElementById("inputPassword").value;
-    let passwordC = document.getElementById("inputCPassword").value;
+    const firstname = $('#registerFirst').val();
+    const lastname = $('#registerLast').val();
+    const username = $('#registerUsername').val();
+    const password = $('#registerPassword').val();
+    const passwordC = $('#registerCPassword').val();
 
     if (passwordC.localeCompare(password) != 0) {
         $('#registerStatus').text('Passwords do not match.');
         return;
     }
 
-    let jsonPayload = {
+    const jsonPayload = {
         username,
         password,
         firstname,
         lastname
     };
 
-    let url = '/api/register.php';
+    const url = '/api/register.php';
 
     let xhr = new XMLHttpRequest();
     xhr.open("POST", url, false);
@@ -272,12 +266,14 @@ function doRegister() {
 
 // Function to delete contact
 // Returns contact ID of user for JSON payload
-function deleteContact(contact_id) {
-    let jsonPayload = {
+function deleteContact() {
+    const contact_id = $('#deleteModal').attr('data-contact_id');
+
+    const jsonPayload = {
         contact_id
     }
 
-    let url = '/api/deletecontact.php';
+    const url = '/api/deletecontact.php';
 
     let xhr = new XMLHttpRequest();
     xhr.open("POST", url, false);

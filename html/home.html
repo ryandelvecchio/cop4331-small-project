@@ -1,24 +1,21 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <title>User Home</title>
-  <meta name="author" content="Group3FrontEnd">
-  <meta charset="utf-8">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <meta property="og:image"
-    content="https://repository-images.githubusercontent.com/194995309/38db8f80-9db7-11e9-998f-43f2a26d9e0b">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta property="og:title" content="Home">
-  <meta property="og:description" content="User Home Page">
-  <link rel="stylesheet"
-    href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
-    crossorigin="anonymous">
-  <link rel="stylesheet" href="../css/dark-mode.css">
-  <link rel="stylesheet" href="../css/styles.css">
+    <title>User Home</title>
+    <meta name="author" content="Group3FrontEnd">
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta property="og:image" content="https://repository-images.githubusercontent.com/194995309/38db8f80-9db7-11e9-998f-43f2a26d9e0b">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta property="og:title" content="Home">
+    <meta property="og:description" content="User Home Page">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/dark-mode.css">
+    <link rel="stylesheet" href="../css/styles.css">
 </head>
 <style>
-  .hide
+    .hide
   {
     display:none;
   }
@@ -27,216 +24,193 @@
     display:block;
   }
 </style>
+
 <body style="body">
-  <!-- Nav bar for Title, Sign Out, and Night Mode-->
-  <!-- Dark Theme references provided by Christian Oliff
+    <!-- Nav bar for Title, Sign Out, and Night Mode-->
+    <!-- Dark Theme references provided by Christian Oliff
    https://github.com/coliff/dark-mode-switch/commit/00e0ed339aca6938063f87ce398055259755410e -->
-  <div class="container d-flex p-3 mx-auto flex-column">
-    <header class="mb-auto">
-      <nav>
-        <h2 id="pageTitle">Contact Manager</h2>
-        <a class="nav-link active" id="homeButton" href="../index.html">Sign Out</a>
-        <div class="nav-link">
-          <div class="custom-control custom-switch">
-            <input type="checkbox" class="custom-control-input" id="darkSwitch" />
-            <label class="custom-control-label" for="darkSwitch" id="nightMode">Night Mode </label>
-          </div>
-          <script src="../js/dark-mode-switch.min.js"></script>
-        </div>
-      </nav>
-    </header>
-  </div>
-  <!-- END:  Dark Theme references provided by Christian Oliff -->
-  <br>
-  <br>
-  <!-- Contains inital user actions; either add contact or search contacts -->
-  <div class="regContainer">
-    <div class="uTransbox">
-      <!-- will display unique title depending on user name -->
-      <h1 id="welcomeText" class="display-4 pl-2"></h1>
-      <form>
-        <div class="form-group col-md-6">
-          <p>Choose an action:</p>
-          <!-- Add user contacts into the database -->
-          <input class="btn btn-dark" type="button" id="addContacts" value="Add Contact" onclick="showAddContactElements()"/>
-        </div>
-        <div class="form-group col-md-6">
-          <!-- Search for contacts in the database -->
-          <input class="btn btn-dark" type="button" id="searchContacts" value="Search Contacts" onclick="showSearchElements()"/>
-          <input class="hide" type="text" id="searchBox" placeholder="First, Last, Phone, Email..."/>
-          <input id="searchButton" type="button" class="hide btn btn-dark" onclick="showSearchResultElements();submitSearch();" value="Search">
-          <p id="searchStatus"></p>
-        </div>
-        <div id = "resultContainer" class="form-group col-md-6 pl-3">
-          <!-- Update the  user's current records -->
-          <input class="hide btn btn-primary" type="button" id="updateButton" value="Update Contact" onclick="showUpdateRecordsElements()"/>
-          <input class="hide btn btn-primary" type="button" id="deleteButton" value="Delete" onclick="deleteContact();openDeleteConfirmation();"/>
-          <p class="hide" id="deleted">Contact Deleted!</p>
-        </div>
-      </form>
+    <div class="container d-flex p-3 mx-auto flex-column">
+        <header class="mb-auto">
+            <nav>
+                <h2 id="pageTitle">Contact Manager</h2>
+                <a class="nav-link active" id="homeButton" href="../index.html">Sign Out</a>
+                <div class="nav-link">
+                    <div class="custom-control custom-switch">
+                        <input type="checkbox" class="custom-control-input" id="darkSwitch" />
+                        <label class="custom-control-label" for="darkSwitch" id="nightMode">Night Mode </label>
+                    </div>
+                    <script src="../js/dark-mode-switch.min.js"></script>
+                </div>
+            </nav>
+        </header>
     </div>
-  <!-- additional transbox will appear to add a contact-->
-  <div class="regContainer">
-    <div class="addTransbox" id="addContainer">
-      <div class="pl-2" id="addForm">
-        <h3 class="display-5" id="updateTitle">Add Contact</h3>
-        <!-- Add First Name -->
-        <label for="aFirst"><b>First</b></label>
-        <input type="text" placeholder="First Name" id="addFirst" required>
-        <!-- Add Last Name -->
-        <label for="aLast"><b>Last</b></label>
-        <input type="text" placeholder="Last Name" id="addLast" required>
-        <!-- Add Email -->
-        <label for="aEmail"><b>Email</b></label>
-        <input type="text" placeholder="Email" id="addEmail" required>
-        <!-- Add Phone Number -->
-        <label for="aPhone"><b>Phone</b></label>
-        <input type="text" placeholder="Phone Number" id="addPhone" required>
-        <!-- Add Button and Close Button -->
-        <button id="button" type="submit" class="btn btn-dark" onclick="addContact()">Add</button>
-        <button id="button" type="submit" class="btn btn-dark" onclick="closeAddForm()">Close</button>
-        <!-- Confirmation Message -->
-        <p id="addedStatus"></p>
-      </div>
-    </div>
-  </div>
-
-  <!-- additional transbox will appear to update a contact-->
-  <div class="regContainer">
-    <div class="uTransbox2" id="uContainer" data-contact_id="">
-      <div class="pl-2" id="uForm">
-        <h3 class="display-5" id="updateTitle">Update Contact</h3>
-        <!-- Update First Name -->
-        <label for="uFirst"><b>First</b></label>
-        <input type="text" placeholder="New First Name" id="uFirst" required>
-        <!-- Update Last Name -->
-        <label for="uLast"><b>Last</b></label>
-        <input type="text" placeholder="New Last Name" id="uLast" required>
-        <!-- Update Email -->
-        <label for="uEmail"><b>Email</b></label>
-        <input type="text" placeholder="New Email" id="uEmail" required>
-        <!-- Update Phone Number -->
-        <label for="uPhone"><b>Phone</b></label>
-        <input type="text" placeholder="New Phone Number" id="uPhone" required>
-
-        <button id="button" type="submit" class="btn btn-dark" onclick="submitContactUpdate()">Update</button>
-        <button id="button" type="submit" class="btn btn-dark" onclick="closeUpdateForm()">Close</button>
-        <!-- Confirmation Message -->
-        <p id="updatedStatus"></p>
-      </div>
-    </div>
-  </div>
-</div>
-
-  <!-- Modal window for delete user confirmation -->
-  <!-- Referenced from w3schools  https://www.w3schools.com/howto/howto_css_delete_modal.asp -->
-  <div id="deleteModal" class="modal" data-contact_id="">
-    <span onclick="document.getElementById('deleteModal').style.display='none'">×</span>
-    <form class="modal-content">
-      <div class="delContainer">
-        <h1 class="pl-2">Delete Contact</h1>
-        <p class="pl-2">Are you sure you want to delete this contact?</p>
-        <div class="clearfix">
-          <button type="button" onclick="closeDeleteModal();" class="cancelbtn">Cancel</button>
-          <button type="button" onclick="deleteContact();closeDeleteModal();" class="deletebtn">Delete</button>
+    <!-- END:  Dark Theme references provided by Christian Oliff -->
+    <br>
+    <br>
+    <!-- Contains inital user actions; either add contact or search contacts -->
+    <div class="regContainer">
+        <div class="uTransbox">
+            <!-- will display unique title depending on user name -->
+            <h1 id="welcomeText" class="display-4 pl-2"></h1>
+            <form>
+                <div class="form-group col-md-6">
+                    <p>Choose an action:</p>
+                    <!-- Add user contacts into the database -->
+                    <input class="btn btn-dark" type="button" id="addContacts" value="Add Contact" onclick="showAddContactElements()" />
+                </div>
+                <div class="form-group col-md-6">
+                    <!-- Search for contacts in the database -->
+                    <input class="btn btn-dark" type="button" id="searchContacts" value="Search Contacts" onclick="showSearchElements()" />
+                    <input class="hide" type="text" id="searchBox" placeholder="First, Last, Phone, Email..." />
+                    <input id="searchButton" type="button" class="hide btn btn-dark" onclick="showSearchResultElements();submitSearch();" value="Search">
+                    <p id="searchStatus"></p>
+                </div>
+                <div id="resultContainer" class="form-group col-md-6 pl-3">
+                    <!-- Update the  user's current records -->
+                    <input class="hide btn btn-primary" type="button" id="updateButton" value="Update Contact" onclick="showUpdateRecordsElements()" />
+                    <input class="hide btn btn-primary" type="button" id="deleteButton" value="Delete" onclick="deleteContact();openDeleteConfirmation();" />
+                    <p class="hide" id="deleted">Contact Deleted!</p>
+                </div>
+            </form>
         </div>
-      </div>
-    </form>
-  </div>
-  <!-- END: Referenced from w3schools  https://www.w3schools.com/howto/howto_css_delete_modal.asp -->
-
-
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  <script src="../js/code.js"></script>
-
-  <script>
-    $( document ).ready(function()
-    {
+        <!-- additional transbox will appear to add a contact-->
+        <div class="regContainer">
+            <div class="addTransbox" id="addContainer">
+                <div class="pl-2" id="addForm">
+                    <h3 class="display-5" id="updateTitle">Add Contact</h3>
+                    <!-- Add First Name -->
+                    <label for="aFirst"><b>First</b></label>
+                    <input type="text" placeholder="First Name" id="addFirst" required>
+                    <!-- Add Last Name -->
+                    <label for="aLast"><b>Last</b></label>
+                    <input type="text" placeholder="Last Name" id="addLast" required>
+                    <!-- Add Email -->
+                    <label for="aEmail"><b>Email</b></label>
+                    <input type="text" placeholder="Email" id="addEmail" required>
+                    <!-- Add Phone Number -->
+                    <label for="aPhone"><b>Phone</b></label>
+                    <input type="text" placeholder="Phone Number" id="addPhone" required>
+                    <!-- Add Button and Close Button -->
+                    <button id="button" type="submit" class="btn btn-dark" onclick="addContact()">Add</button>
+                    <button id="button" type="submit" class="btn btn-dark" onclick="closeAddForm()">Close</button>
+                    <!-- Confirmation Message -->
+                    <p id="addedStatus"></p>
+                </div>
+            </div>
+        </div>
+        <!-- additional transbox will appear to update a contact-->
+        <div class="regContainer">
+            <div class="uTransbox2" id="uContainer" data-contact_id="">
+                <div class="pl-2" id="uForm">
+                    <h3 class="display-5" id="updateTitle">Update Contact</h3>
+                    <form id="updateForm" action="#">
+                        <!-- Update First Name -->
+                        <label for="updateFirst"><b>First</b></label>
+                        <input type="text" placeholder="New First Name" id="updateFirst" required>
+                        <!-- Update Last Name -->
+                        <label for="updateLast"><b>Last</b></label>
+                        <input type="text" placeholder="New Last Name" id="updateLast" required>
+                        <!-- Update Email -->
+                        <label for="updateEmail"><b>Email</b></label>
+                        <input type="text" placeholder="New Email" id="updateEmail" required>
+                        <!-- Update Phone Number -->
+                        <label for="updatePhone"><b>Phone</b></label>
+                        <input type="text" placeholder="New Phone Number" id="updatePhone" required>
+                        <button id="button" type="button" class="btn btn-dark" onclick="submitUpdate()">Update</button>
+                        <button id="button" type="button" class="btn btn-dark" onclick="closeUpdateForm()">Close</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal window for delete user confirmation -->
+    <!-- Referenced from w3schools  https://www.w3schools.com/howto/howto_css_delete_modal.asp -->
+    <div id="deleteModal" class="modal" data-contact_id="">
+        <span onclick="document.getElementById('deleteModal').style.display='none'">×</span>
+        <form class="modal-content">
+            <div class="delContainer">
+                <h1 class="pl-2">Delete Contact</h1>
+                <p class="pl-2">Are you sure you want to delete this contact?</p>
+                <div class="clearfix">
+                    <button type="button" onclick="closeDeleteModal();" class="cancelbtn">Cancel</button>
+                    <button type="button" onclick="deleteContact();closeDeleteModal();" class="deletebtn">Delete</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <!-- END: Referenced from w3schools  https://www.w3schools.com/howto/howto_css_delete_modal.asp -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="../js/code.js"></script>
+    <script>
+    $(document).ready(function() {
         readCookie();
         enforceSession();
         $('#welcomeText').text(`Welcome ${firstname}`);
     });
 
     // Display input boxes for the user to search
-    function showSearchElements()
-    {
-      document.getElementById('searchContacts').className="hide";
-      document.getElementById('searchBox').className="show";
-      document.getElementById('searchButton').className="show";
+    function showSearchElements() {
+        document.getElementById('searchContacts').className = "hide";
+        document.getElementById('searchBox').className = "show";
+        document.getElementById('searchButton').className = "show";
 
     }
     // Display window for the user to add
-    function showAddContactElements()
-    {
-      document.getElementById("addContainer").style.display = "block";
-      document.getElementById("addForm").style.display = "block";
-      //document.getElementById('deleted').className = "hide";
+    function showAddContactElements() {
+        document.getElementById("addContainer").style.display = "block";
+        document.getElementById("addForm").style.display = "block";
+        //document.getElementById('deleted').className = "hide";
     }
     // Display search result buttons and text
-    function showSearchResultElements()
-    {
-      //document.getElementById('updateButton').className="show";
-      //document.getElementById('deleteButton').className="show";
+    function showSearchResultElements() {
+        //document.getElementById('updateButton').className="show";
+        //document.getElementById('deleteButton').className="show";
     }
     // Display window the user to update
-    function showUpdateRecordsElements(contact_id)
-    {
-      document.getElementById("uContainer").style.display = "block";
-      document.getElementById("uForm").style.display = "block";
+    function showUpdateRecordsElements(contact_id) {
+        document.getElementById("uContainer").style.display = "block";
+        document.getElementById("uForm").style.display = "block";
 
-      document.getElementById("uContainer").setAttribute("data-contact_id", contact_id);
-      //document.getElementById('updateButton').className="hide";
-      //document.getElementById('deleteButton').className="hide";
-      // document.getElementById('deleted').className = "hide";
+        document.getElementById("uContainer").setAttribute("data-contact_id", contact_id);
+        //document.getElementById('updateButton').className="hide";
+        //document.getElementById('deleteButton').className="hide";
+        // document.getElementById('deleted').className = "hide";
     }
     // Close contact add window
-    function closeAddForm()
-    {
-      document.getElementById('addedStatus').innerHTML = "";
-      document.getElementById("addForm").style.display = "none";
-      document.getElementById("addContainer").style.display = "none";
-    }
-
-    // Close update contact window
-    function closeUpdateForm()
-    {
-      document.getElementById('updatedStatus').innerHTML = "";
-      document.getElementById("uForm").style.display = "none";
-      document.getElementById("uContainer").style.display = "none";
+    function closeAddForm() {
+        document.getElementById('addedStatus').innerHTML = "";
+        document.getElementById("addForm").style.display = "none";
+        document.getElementById("addContainer").style.display = "none";
     }
 
     // Open delete confirmation window
     // Referenced from w3schools  https://www.w3schools.com/howto/howto_css_delete_modal.asp
-    function showDeleteConfirmationElements(contact_id)
-    {
-      let modal = document.getElementById('deleteModal');
+    function showDeleteConfirmationElements(contact_id) {
+        let modal = document.getElementById('deleteModal');
 
-      modal.setAttribute("data-contact_id", contact_id);
-      modal.style.display='block';
+        modal.setAttribute("data-contact_id", contact_id);
+        modal.style.display = 'block';
 
-      window.onclick = function(event)
-      {
-        if (event.target == modal)
-        {
-          modal.style.display = "none";
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
         }
-      }
     }
     // END: Referenced from w3schools  https://www.w3schools.com/howto/howto_css_delete_modal.asp
 
     // Show update contact
-    function showUpdate()
-    {
-      document.getElementById('updated').className="show";
+    function showUpdate() {
+        document.getElementById('updated').className = "show";
     }
 
-    function closeDeleteModal()
-    {
-      document.getElementById('deleteModal').style.display='none';
-      //document.getElementById('deleted').className = "show";
+    function closeDeleteModal() {
+        document.getElementById('deleteModal').style.display = 'none';
+        //document.getElementById('deleted').className = "show";
     }
-  </script>
+    </script>
 </body>
+
 </html>
