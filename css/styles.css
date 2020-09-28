@@ -5,6 +5,12 @@ body
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
+    padding-bottom: 100px;
+    margin: 0 auto;
+}
+.bg-image
+{
+
 }
 
 /* Style for page title, Sign Out button, and Night Mode Switch */
@@ -156,6 +162,10 @@ div.addTransbox
 {
   background-color: #fff;
   color: #333;
+}
+#resultContainer
+{
+  border: 1px solid black;
 }
 label
 {
