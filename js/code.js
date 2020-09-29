@@ -85,6 +85,7 @@ function addContact() {
     const lastname = $('#addLast').val();
     const email = $('#addEmail').val();
     const phone = $('#addPhone').val();
+    const fav_activity = $('#addActivity').val();
 
     $('#addedStatus').text('');
 
@@ -97,7 +98,8 @@ function addContact() {
         firstname,
         lastname,
         email,
-        phone
+        phone,
+        fav_activity
     }
 
     const url = '/api/addcontact.php';
@@ -168,7 +170,7 @@ function submitSearch() {
 function addSearchResult(result) {
     $('#resultContainer').append(`
         <div id="${result.contact_id}">
-            <span>${result.firstname} ${result.lastname}</span>
+            <span>${result.firstname} ${result.lastname} ${result.email} ${result.phone} ${result.fav_activity}</span>
             <input class="btn btn-primary" type="button" id="deleteButton" value="Delete" onclick="showDeleteConfirmationElements(this.parentNode.id)">
             <input class="btn btn-primary" type="button" id="updateButton" value="Update" onclick="showUpdateRecordsElements(this.parentNode.id)"/>
         </div>
@@ -189,6 +191,7 @@ function submitUpdate() {
     const lastname = $('#updateLast').val();
     const email = $('#updateEmail').val();
     const phone = $('#updatePhone').val();
+    const fav_activity = $('updateActivity').val();
 
     // JSON payload with all new contact info from HTML page
     const jsonPayload = {
@@ -196,7 +199,8 @@ function submitUpdate() {
         firstname,
         lastname,
         email,
-        phone
+        phone,
+        fav_activity
     }
 
     const url = '/api/updatecontact.php';

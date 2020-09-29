@@ -61,7 +61,7 @@
                 <div class="form-group col-md-6">
                     <!-- Search for contacts in the database -->
                     <input class="btn btn-dark" type="button" id="searchContacts" value="Search Contacts" onclick="showSearchElements()" />
-                    <input class="hide" type="text" id="searchBox" placeholder="First, Last, Phone, Email..." />
+                    <input class="hide" type="text" id="searchBox" placeholder="First, Last, Email, Phone, Activity..." />
                     <input id="searchButton" type="button" class="hide btn btn-dark" onclick="showSearchResultElements();submitSearch();" value="Search">
                     <p id="searchStatus"></p>
                 </div>
@@ -90,6 +90,9 @@
                     <!-- Add Phone Number -->
                     <label for="aPhone"><b>Phone</b></label>
                     <input type="text" placeholder="Phone Number" id="addPhone" required>
+                    <!-- Add Favorite Activity -->
+                    <label for="aActivity"><b>Favorite Outdoor Activity</b></label>
+                    <input type="text" placeholder="Activity" id="addActivity" required>
                     <!-- Add Button and Close Button -->
                     <button id="button" type="submit" class="btn btn-dark" onclick="addContact()">Add</button>
                     <button id="button" type="submit" class="btn btn-dark" onclick="closeAddForm()">Close</button>
@@ -116,6 +119,9 @@
                         <!-- Update Phone Number -->
                         <label for="updatePhone"><b>Phone</b></label>
                         <input type="text" placeholder="New Phone Number" id="updatePhone" required>
+                        <!-- Update Phone Number -->
+                        <label for="updateActivity"><b>Activity</b></label>
+                        <input type="text" placeholder="New Favorite Activity" id="updateActivity" required>
                         <button id="button" type="button" class="btn btn-dark" onclick="submitUpdate()">Update</button>
                         <button id="button" type="button" class="btn btn-dark" onclick="closeUpdateForm()">Close</button>
                     </form>
