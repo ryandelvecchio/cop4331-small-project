@@ -10,6 +10,7 @@
   background-image: url("../images/night-mode-frontpage.png");
 }
 /* camping man logo (night mode) */
+/* provided by https://www.freepngimg.com/png/25627-outdoor-sports-activities-transparent-image */
 [data-theme="dark"] .invertPNG
 {
   filter: invert(0%);
@@ -155,6 +156,14 @@
   color: #333 !important;
 }
 [data-theme="dark"] #register
+{
+  color: #333 !important;
+}
+[data-theme="dark"] #regTitle
+{
+  color: #333 !important;
+}
+[data-theme="dark"] #welcomeText
 {
   color: #333 !important;
 }
