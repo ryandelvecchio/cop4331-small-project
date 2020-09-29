@@ -9,6 +9,14 @@
   background-color: #222 !important;
   background-image: url("../images/night-mode-frontpage.png");
 }
+/* camping man logo (night mode) */
+[data-theme="dark"] .invertPNG
+{
+  filter: invert(0%);
+  height: 250px;
+  width: 350px;
+  padding-top: 45px;
+}
 
 /* transparent boxes to hold content (edited to be consistent with night mode) */
 [data-theme="dark"] div.transbox
