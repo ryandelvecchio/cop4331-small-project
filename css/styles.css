@@ -9,6 +9,7 @@ body
     margin: 0 auto;
 }
 /* camping man logo (day mode) */
+/* provided by https://www.freepngimg.com/png/25627-outdoor-sports-activities-transparent-image */
 .invertPNG
 {
   filter: invert(45%);
@@ -16,10 +17,6 @@ body
   width: 350px;
   padding-top: 45px;
   padding-left: 45px;
-}
-.bg-image
-{
-
 }
 
 /* Style for page title, Sign Out button, and Night Mode Switch */
@@ -99,7 +96,7 @@ div.regTransbox
   position: relative;
   margin: 1px;
   padding: 15px;
-  width: 700px;
+  width: 500px;
   background-color: #c2d1e0;
   border: 5px solid #c2cae0;
   opacity: 0.9;
@@ -110,7 +107,7 @@ div.uTransbox
   position: relative;
   margin: 15px;
   padding: 5px;
-  width: 700x;
+  width: 550px;
   background-color: #c2d1e0;
   border: 5px solid #c2cae0;
   opacity: 0.9;
@@ -161,15 +158,11 @@ table th, table td
 /* Default day mode text and buttons will be of color white */
 #mojaveTitle
 {
-  color: #fff !important;
+  color: #777 !important;
 }
 #updateTitle
 {
-  color: #fff !important;
-}
-#signIn
-{
-  color: #fff !important;
+  color: #777 !important;
 }
 #homeButton
 {
@@ -177,25 +170,37 @@ table th, table td
 }
 #hUsername
 {
-  color: #fff !important;
+  color: #777 !important;
 }
 #hPassword
 {
-  color: #fff !important;
+  color: #777 !important;
 }
 #register
 {
-  color: #fff !important;
+  color: #777 !important;
 }
 #button
 {
-  background-color: #fff;
-  color: #333;
+  background-color: #777;
+  color: #fff;
+}
+#nightMode
+{
+  color: #fff !important;
+}
+#welcomeText
+{
+  color: #777 !important;
+}
+#regTitle
+{
+  color: #777 !important;
 }
 
 label
 {
-  color: #fff !important;
+  color: #777 !important;
 }
 h1
 {
@@ -207,7 +212,7 @@ h2
 }
 p
 {
-  color: #fff;
+  color: #777;
 }
 input[type=button]
 {
