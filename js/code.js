@@ -128,7 +128,7 @@ function submitSearch() {
 
     const query = $('#searchBox').val();
 
-    $('#resultContainer').empty();
+    $("#resultTableBody").empty();
 
     const jsonPayload = {
         query,
@@ -143,11 +143,11 @@ function submitSearch() {
     try {
         xhr.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-                $('#searchStatus').text('Processing results...');
+                //$('#searchStatus').text('Processing results...');
                 let response = JSON.parse(xhr.responseText);
 
                 if (response.results.length === 0) {
-                    return $('#searchStatus').text('No results found.');
+                    //return $('#searchStatus').text('No results found.');
                 }
 
                 // append each search result to the list of results
@@ -155,26 +155,31 @@ function submitSearch() {
                     addSearchResult(response.results[i]);
                 }
 
-                $('#searchStatus').text('');
+                //$('#searchStatus').text('');
             }
         };
 
         xhr.send(JSON.stringify(jsonPayload));
     } catch (err) {
-        $('#searchStatus').text(err.message);
+        //$('#searchStatus').text(err.message);
     }
 
 }
 
 // Function that will append an individual search result to the list
 function addSearchResult(result) {
-    $('#resultContainer').append(`
-        <div id="${result.contact_id}">
-            <span>${result.firstname} ${result.lastname} ${result.email} ${result.phone} ${result.fav_activity}</span>
-            <input class="btn btn-primary" type="button" id="deleteButton" value="Delete" onclick="showDeleteConfirmationElements(this.parentNode.id)">
-            <input class="btn btn-primary" type="button" id="updateButton" value="Update" onclick="showUpdateRecordsElements(this.parentNode.id)"/>
-        </div>
-    `);
+
+  $("#resultTableBody").append(`
+      <tr id="${result.contact_id}">
+        <td>${result.firstname}</td>
+        <td>${result.lastname}</td>
+        <td>${result.email}</td>
+        <td>${result.phone}</td>
+        <td>${result.fav_activity}</td>
+        <td><input class="btn btn-primary" type="button" "deleteButton" value="Delete" onclick="showDeleteConfirmationElements(${result.contact_id})"></td>
+        <td><input class="btn btn-primary" type="button" value="Update" onclick="showUpdateRecordsElements(${result.contact_id})"></td>
+      </tr>
+      `);
 }
 
 function closeUpdateForm() {

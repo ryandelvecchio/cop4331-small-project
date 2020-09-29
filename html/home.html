@@ -32,7 +32,7 @@
     <div class="container d-flex p-3 mx-auto flex-column">
         <header class="mb-auto">
             <nav>
-                <h2 id="pageTitle">Contact Manager</h2>
+                <h2 id="pageTitle">Outdoor Contacts</h2>
                 <a class="nav-link active" id="homeButton" href="../index.html">Sign Out</a>
                 <div class="nav-link">
                     <div class="custom-control custom-switch">
@@ -63,13 +63,27 @@
                     <input class="btn btn-dark" type="button" id="searchContacts" value="Search Contacts" onclick="showSearchElements()" />
                     <input class="hide" type="text" id="searchBox" placeholder="First, Last, Email, Phone, Activity..." />
                     <input id="searchButton" type="button" class="hide btn btn-dark" onclick="showSearchResultElements();submitSearch();" value="Search">
-                    <p id="searchStatus"></p>
+                    <!-- <p id="searchStatus"></p> -->
                 </div>
                 <div id="resultContainer" class="form-group col-md-6 pl-3">
                     <!-- Update the  user's current records -->
                     <input class="hide btn btn-primary" type="button" id="updateButton" value="Update Contact" onclick="showUpdateRecordsElements()" />
                     <input class="hide btn btn-primary" type="button" id="deleteButton" value="Delete" onclick="deleteContact();openDeleteConfirmation();" />
-                    <p class="hide" id="deleted">Contact Deleted!</p>
+                    <!-- Store the search results in a table -->
+                    <!-- Reference https://www.tutorialrepublic.com/faq/how-to-add-remove-table-rows-dynamically-using-jquery.php -->
+                    <table id="resultTable">
+                      <thead>
+                        <tr>
+                            <th>Firstname</th>
+                            <th>Lastname</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Favorite Activity</th>
+                        </tr>
+                      </thead>
+                      <tbody id="resultTableBody">
+                      </tbody>
+                    </table>
                 </div>
             </form>
         </div>
