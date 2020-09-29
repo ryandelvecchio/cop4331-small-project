@@ -50,26 +50,22 @@
     <!-- Contains inital user actions; either add contact or search contacts -->
     <div class="regContainer">
         <div class="uTransbox">
+          <div>
             <!-- will display unique title depending on user name -->
             <h1 id="welcomeText" class="display-4 pl-2"></h1>
-            <form>
-                <div class="form-group col-md-6">
-                    <p>Choose an action:</p>
-                    <!-- Add user contacts into the database -->
-                    <input class="btn btn-dark" type="button" id="addContacts" value="Add Contact" onclick="showAddContactElements()" />
-                </div>
-                <div class="form-group col-md-6">
-                    <!-- Search for contacts in the database -->
-                    <input class="btn btn-dark" type="button" id="searchContacts" value="Search Contacts" onclick="showSearchElements()" />
-                    <input class="hide" type="text" id="searchBox" placeholder="First, Last, Email, Phone, Activity..." />
-                    <input id="searchButton" type="button" class="hide btn btn-dark" onclick="showSearchResultElements();submitSearch();" value="Search">
-                    <!-- <p id="searchStatus"></p> -->
-                </div>
+            <form style="float:left">
+                  <!-- Search for contacts in the database -->
+                  <input type="text" id="searchBox" placeholder="First, Last, Email, Phone, Activity..." />
+                  <input class ="btn btn-dark" id="searchButton" type="button" onclick="showSearchResultElements();submitSearch();" value="Search">
+            </form>
+          </div>
+            <!-- Add user contacts into the database -->
+            <input class="btn btn-dark" type="button" id="addContacts" value="Add Contact" onclick="showAddContactElements()" /
                 <div id="resultContainer" class="form-group col-md-6 pl-3">
                     <!-- Update the  user's current records -->
-                    <input class="hide btn btn-primary" type="button" id="updateButton" style="background-color: green; background-image: url(\images\updatePencil.svg)" value="Update Contact" onclick="showUpdateRecordsElements()" />
-                    <input class="hide btn btn-primary" type="button" id="deleteButton" style="background-color: red; background-image: url(\images\trashCan.svg)" value="Delete" onclick="deleteContact();openDeleteConfirmation();" />
-                    <!-- Store the search results in a table -->
+                    <!-- <input class="hide btn btn-primary" type="button" id="updateButton" style="background-color: green; background-image: url(/images/updatePencil.svg)" value="Update Contact" onclick="showUpdateRecordsElements()" />
+                    <input class="hide btn btn-primary" type="button" id="deleteButton" style="background-color: red; background-image: url(/images/trashCan.svg)" value="Delete" onclick="deleteContact();openDeleteConfirmation();" />
+                     Store the search results in a table -->
                     <!-- Reference https://www.tutorialrepublic.com/faq/how-to-add-remove-table-rows-dynamically-using-jquery.php -->
                     <table id="resultTable">
                       <thead>
@@ -85,7 +81,6 @@
                       </tbody>
                     </table>
                 </div>
-            </form>
         </div>
         <!-- additional transbox will appear to add a contact-->
         <div class="regContainer">
@@ -167,7 +162,7 @@
     $(document).ready(function() {
         readCookie();
         enforceSession();
-        $('#welcomeText').text(`Welcome ${firstname}`);
+        $('#welcomeText').text(`Welcome, ${firstname}!`);
     });
 
     // Display input boxes for the user to search

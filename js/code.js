@@ -176,8 +176,12 @@ function addSearchResult(result) {
         <td>${result.email}</td>
         <td>${result.phone}</td>
         <td>${result.fav_activity}</td>
-        <td><input class="btn btn-primary" type="button" "deleteButton" value="Delete" onclick="showDeleteConfirmationElements(${result.contact_id})"></td>
-        <td><input class="btn btn-primary" type="button" value="Update" onclick="showUpdateRecordsElements(${result.contact_id})"></td>
+        <td>
+          <button style="background-color: transparent; background-repeat: no-repeat; background-image: url(/images/trashCan.svg); width: 1.5em; height: 1.5em; background-position: center; border-radius: 2px; border-style: none" onclick="showDeleteConfirmationElements(${result.contact_id})">
+        </td>
+        <td>
+          <button style="background-color: transparent; background-repeat: no-repeat; background-image: url(/images/updatePencil.svg); width: 1.5em; height: 1.5em; background-position: center; border-radius: 2px; border-style: none" onclick="showUpdateRecordsElements(${result.contact_id})">
+        </td>
       </tr>
       `);
 }
@@ -196,7 +200,7 @@ function submitUpdate() {
     const lastname = $('#updateLast').val();
     const email = $('#updateEmail').val();
     const phone = $('#updatePhone').val();
-    const fav_activity = $('updateActivity').val();
+    const fav_activity = $('#updateActivity').val();
 
     // JSON payload with all new contact info from HTML page
     const jsonPayload = {

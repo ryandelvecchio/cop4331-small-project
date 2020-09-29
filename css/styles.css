@@ -110,7 +110,7 @@ div.uTransbox
   position: relative;
   margin: 15px;
   padding: 5px;
-  width: 700x;
+  width: 700px;
   background-color: #c2d1e0;
   border: 5px solid #c2cae0;
   opacity: 0.9;
@@ -149,7 +149,7 @@ table
 
 table, th, td
 {
-    border: 1px solid #cdcdcd;
+    border: 1px solid #c2d1e0;
 }
 
 table th, table td
@@ -219,6 +219,8 @@ input[type=text]
   background-color: #fff;
   height: 40px;
   width: 325px;
+  border-style: none;
+  border-radius: 2px;
 }
 
 
