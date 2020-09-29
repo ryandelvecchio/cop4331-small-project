@@ -7,6 +7,7 @@
 	$lastname = $inData["lastname"];
 	$email = $inData["email"];
 	$phone = $inData["phone"];
+	$fav_activity = $inData["fav_activity"];
 
 	include_once 'config.php';
 
@@ -21,7 +22,8 @@
 			firstname='{$firstname}',
 			lastname='{$lastname}',
 			email='{$email}',
-			phone='{$phone}'
+			phone='{$phone}',
+			fav_activity='{$fav_activity}',
 			WHERE contact_id={$contact_id}";
 
 		$result = $conn->query($sql);

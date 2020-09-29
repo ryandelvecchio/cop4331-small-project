@@ -14,7 +14,7 @@
     $userID = $inData["user_id"];
 
     $sql = "SELECT * FROM contacts WHERE user_id={$userID}
-			AND (firstname LIKE '%{$userQuery}%' OR lastname LIKE '%{$userQuery}%' OR phone LIKE '%{$userQuery}%' OR email LIKE '%{$userQuery}%')";
+			AND (firstname LIKE '%{$userQuery}%' OR lastname LIKE '%{$userQuery}%' OR phone LIKE '%{$userQuery}%' OR email LIKE '%{$userQuery}%' OR fav_activity LIKE '%{$userQuery}%')";
 
 		$result = $conn->query($sql);
 
@@ -28,11 +28,12 @@
 
       while ($row = $result->fetch_assoc())
       {
-        $contact = array('firstname' => $row['firstname'],
-                         'lastname'  => $row['lastname'],
-                         'phone'     => $row['phone'],
-                         'email'     => $row['email'],
-                         'contact_id' => intval($row['contact_id']));
+        $contact = array('firstname' 		=> $row['firstname'],
+                         'lastname'  		=> $row['lastname'],
+                         'phone'     		=> $row['phone'],
+                         'email'     		=> $row['email'],
+												 'fav_activity' => $row['fav_activity'],
+                         'contact_id' 	=> intval($row['contact_id']));
 
         array_push($searchResults, $contact);
       }
@@ -43,7 +44,7 @@
 		{
 			returnWithError("No Records Found");
 		}
-		
+
 		$conn->close();
 	}
 

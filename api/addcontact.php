@@ -7,6 +7,7 @@
 	$lastname = $inData["lastname"];
 	$email = $inData["email"];
 	$phone = $inData["phone"];
+	$fav_activity = $inData["fav_activity"];
 
 	include_once 'config.php';
 
@@ -16,7 +17,7 @@
 	}
 	else
 	{
-		$sql = "INSERT INTO contacts (firstname, lastname, email, phone, user_id) VALUES ('{$firstname}','{$lastname}','{$email}','{$phone}','{$user_id}')";
+		$sql = "INSERT INTO contacts (firstname, lastname, email, phone, fav_activity, user_id) VALUES ('{$firstname}','{$lastname}','{$email}','{$phone}','{$fav_activity}','{$user_id}')";
 
 		$result = $conn->query($sql);
 
