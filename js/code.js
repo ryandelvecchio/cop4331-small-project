@@ -177,10 +177,10 @@ function addSearchResult(result) {
         <td>${result.phone}</td>
         <td>${result.fav_activity}</td>
         <td>
-          <button style="background-color: transparent; background-repeat: no-repeat; background-image: url(/images/trashCan.svg); width: 1.5em; height: 1.5em; background-position: center; border-radius: 2px; border-style: none" onclick="showDeleteConfirmationElements(${result.contact_id})">
+          <button style="background-color: transparent; background-repeat: no-repeat; background-image: url(/images/trashCan.svg); width: 1.5em; height: 1.5em; background-position: center; border-radius: 2px; border-style: none" onclick="showDeleteConfirmationElements(this.parentNode.parentNode)">
         </td>
         <td>
-          <button style="background-color: transparent; background-repeat: no-repeat; background-image: url(/images/updatePencil.svg); width: 1.5em; height: 1.5em; background-position: center; border-radius: 2px; border-style: none" onclick="showUpdateRecordsElements(${result.contact_id})">
+          <button style="background-color: transparent; background-repeat: no-repeat; background-image: url(/images/updatePencil.svg); width: 1.5em; height: 1.5em; background-position: center; border-radius: 2px; border-style: none" onclick="showUpdateRecordsElements(this.parentNode.parentNode)">
         </td>
       </tr>
       `);
@@ -195,7 +195,7 @@ function closeUpdateForm() {
 // Function to submit a change to a Contact
 function submitUpdate() {
     // Get the elements from HTML and put in JSON payload
-    const contact_id = $('#uContainer').attr('data-contact_id');
+    const contact_id = $('#updateModal').attr('data-contact_id');
     const firstname = $('#updateFirst').val();
     const lastname = $('#updateLast').val();
     const email = $('#updateEmail').val();
@@ -219,19 +219,29 @@ function submitUpdate() {
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
     try {
         xhr.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
+            if (this.readyState == 4 && this.status == 200)
+            {
+                let response = JSON.parse(xhr.responseText);
+                if (response.error == "")
+                  updateRow(jsonPayload, contact_id);
                 $('#updatedStatus').text('Contact Updated');
-                $('#resultContainer').empty();
-                closeUpdateForm();
             }
         };
         xhr.send(JSON.stringify(jsonPayload));
     } catch (err) {
         $('#updatedStatus').text(err.message);
     }
-
 }
 
+function updateRow(jsonPayload, contact_id)
+{
+  let row = document.getElementById(contact_id);
+  row.children[0].textContent = jsonPayload.firstname;
+  row.children[1].textContent = jsonPayload.lastname;
+  row.children[2].textContent = jsonPayload.email;
+  row.children[3].textContent = jsonPayload.phone;
+  row.children[4].textContent = jsonPayload.fav_activity;
+}
 
 // Function to register a new user
 function doRegister() {
@@ -278,7 +288,6 @@ function doRegister() {
 }
 
 // Function to delete contact
-// Returns contact ID of user for JSON payload
 function deleteContact() {
     const contact_id = $('#deleteModal').attr('data-contact_id');
 

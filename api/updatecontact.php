@@ -26,8 +26,6 @@
 			fav_activity='{$fav_activity}'
 			WHERE contact_id={$contact_id}";
 
-			echo $sql;
-
 		$result = $conn->query($sql);
 
 		if ($result)
