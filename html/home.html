@@ -49,68 +49,68 @@
     <br>
     <!-- Contains inital user actions; either add contact or search contacts -->
     <div class="regContainer">
-        <div class="uTransbox">
-          <div>
-            <!-- will display unique title depending on user name -->
-            <h1 id="welcomeText" class="display-4 pl-2"></h1>
-            <form style="float:left">
-                  <!-- Search for contacts in the database -->
-                  <input type="text" id="searchBox" placeholder="First, Last, Email, Phone, Activity..." />
-                  <input class ="btn btn-dark" id="searchButton" type="button" onclick="showSearchResultElements();submitSearch();" value="Search">
-            </form>
-          </div>
+      <div class="uTransbox">
+        <!-- will display unique title depending on user name -->
+        <h1 id="welcomeText" class="display-4 pl-2"></h1>
+          <div class="form-group pl-3">
+            <!-- Search for contacts in the database -->
+            <input type="text" id="searchBox" placeholder="First, Last, Email, Phone, Activity...">
+            <input class="btn btn-dark" id="searchButton" type="button" onclick="showSearchResultElements();submitSearch();" value="Search">
             <!-- Add user contacts into the database -->
-            <input class="btn btn-dark" type="button" id="addContacts" value="Add Contact" onclick="showAddContactElements()" /
-                <div id="resultContainer" class="form-group col-md-6 pl-3">
-                    <!-- Update the  user's current records -->
-                    <!-- <input class="hide btn btn-primary" type="button" id="updateButton" style="background-color: green; background-image: url(/images/updatePencil.svg)" value="Update Contact" onclick="showUpdateRecordsElements()" />
-                    <input class="hide btn btn-primary" type="button" id="deleteButton" style="background-color: red; background-image: url(/images/trashCan.svg)" value="Delete" onclick="deleteContact();openDeleteConfirmation();" />
-                     Store the search results in a table -->
-                    <!-- Reference https://www.tutorialrepublic.com/faq/how-to-add-remove-table-rows-dynamically-using-jquery.php -->
-                    <table id="resultTable">
-                      <thead>
-                        <tr>
-                            <th>Firstname</th>
-                            <th>Lastname</th>
-                            <th>Email</th>
-                            <th>Phone</th>
-                            <th>Favorite Activity</th>
-                        </tr>
-                      </thead>
-                      <tbody id="resultTableBody">
-                      </tbody>
-                    </table>
-                </div>
+            <input class="btn btn-dark" type="button" id="addContacts" value="Add Contact" onclick="showAddContactElements()">
+          </div>
+        <div id="resultContainer" class="form-group col-md-6 pl-3">
+          <!-- Update the  user's current records -->
+          <!-- <input class="hide btn btn-primary" type="button" id="updateButton" style="background-color: green; background-image: url(/images/updatePencil.svg)" value="Update Contact" onclick="showUpdateRecordsElements()" />
+          <input class="hide btn btn-primary" type="button" id="deleteButton" style="background-color: red; background-image: url(/images/trashCan.svg)" value="Delete" onclick="deleteContact();openDeleteConfirmation();" />
+           Store the search results in a table -->
+          <!-- Reference https://www.tutorialrepublic.com/faq/how-to-add-remove-table-rows-dynamically-using-jquery.php -->
+          <table id="resultTable">
+            <thead>
+              <tr>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Favorite Activity</th>
+              </tr>
+            </thead>
+            <tbody id="resultTableBody"></tbody>
+          </table>
         </div>
-        <!-- additional transbox will appear to add a contact-->
+      </div>
+      <!-- additional transbox will appear to add a contact-->
+      <div class="modal" id="addModal">
         <div class="regContainer">
-            <div class="addTransbox" id="addContainer">
-                <div class="pl-2" id="addForm">
-                    <h3 class="display-5" id="updateTitle">Add Contact</h3>
-                    <!-- Add First Name -->
-                    <label for="aFirst"><b>First</b></label>
-                    <input type="text" placeholder="First Name" id="addFirst" required>
-                    <!-- Add Last Name -->
-                    <label for="aLast"><b>Last</b></label>
-                    <input type="text" placeholder="Last Name" id="addLast" required>
-                    <!-- Add Email -->
-                    <label for="aEmail"><b>Email</b></label>
-                    <input type="text" placeholder="Email" id="addEmail" required>
-                    <!-- Add Phone Number -->
-                    <label for="aPhone"><b>Phone</b></label>
-                    <input type="text" placeholder="Phone Number" id="addPhone" required>
-                    <!-- Add Favorite Activity -->
-                    <label for="aActivity"><b>Favorite Outdoor Activity</b></label>
-                    <input type="text" placeholder="Activity" id="addActivity" required>
-                    <!-- Add Button and Close Button -->
-                    <button id="button" type="submit" class="btn btn-dark" onclick="addContact()">Add</button>
-                    <button id="button" type="submit" class="btn btn-dark" onclick="closeAddForm()">Close</button>
-                    <!-- Confirmation Message -->
-                    <p id="addedStatus"></p>
-                </div>
-            </div>
+          <div class="addTransbox" id="addContainer" data-contact_id="">
+              <div class="pl-2" id="addForm">
+                  <h3 class="display-5" id="updateTitle">Add Contact</h3>
+                  <!-- Add First Name -->
+                  <label for="aFirst"><b>First</b></label>
+                  <input type="text" placeholder="First Name" id="addFirst" required>
+                  <!-- Add Last Name -->
+                  <label for="aLast"><b>Last</b></label>
+                  <input type="text" placeholder="Last Name" id="addLast" required>
+                  <!-- Add Email -->
+                  <label for="aEmail"><b>Email</b></label>
+                  <input type="text" placeholder="Email" id="addEmail" required>
+                  <!-- Add Phone Number -->
+                  <label for="aPhone"><b>Phone</b></label>
+                  <input type="text" placeholder="Phone Number" id="addPhone" required>
+                  <!-- Add Favorite Activity -->
+                  <label for="aActivity"><b>Favorite Outdoor Activity</b></label>
+                  <input type="text" placeholder="Activity" id="addActivity" required>
+                  <!-- Add Button and Close Button -->
+                  <button id="button" type="submit" class="btn btn-dark" onclick="addContact()">Add</button>
+                  <button id="button" type="submit" class="btn btn-dark" onclick="closeAddForm(); closeAddModal();">Close</button>
+                  <!-- Confirmation Message -->
+                  <p id="addedStatus"></p>
+              </div>
+          </div>
         </div>
-        <!-- additional transbox will appear to update a contact-->
+      </div>
+      <!-- additional transbox will appear to update a contact-->
+      <div class="modal" id="updateModal">
         <div class="regContainer">
             <div class="uTransbox2" id="uContainer" data-contact_id="">
                 <div class="pl-2" id="uForm">
@@ -137,6 +137,7 @@
                 </div>
             </div>
         </div>
+      </div>
     </div>
     <!-- Modal window for delete user confirmation -->
     <!-- Referenced from w3schools  https://www.w3schools.com/howto/howto_css_delete_modal.asp -->
@@ -172,12 +173,12 @@
         document.getElementById('searchButton').className = "show";
 
     }
-    // Display window for the user to add
-    function showAddContactElements() {
-        document.getElementById("addContainer").style.display = "block";
-        document.getElementById("addForm").style.display = "block";
-        //document.getElementById('deleted').className = "hide";
-    }
+    // // Display window for the user to add
+    // function showAddContactElements() {
+    //     document.getElementById("addContainer").style.display = "block";
+    //     document.getElementById("addForm").style.display = "block";
+    //     //document.getElementById('deleted').className = "hide";
+    // }
     // Display search result buttons and text
     function showSearchResultElements() {
         //document.getElementById('updateButton').className="show";
@@ -214,6 +215,34 @@
             }
         }
     }
+    function showAddContactElements() {
+        let modal = document.getElementById('addModal');
+
+        // modal.setAttribute("data-contact_id", contact_id);
+        modal.style.display = 'block';
+        document.getElementById("addContainer").style.display = "block";
+        document.getElementById("addForm").style.display = "block";
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    }
+    function showUpdateRecordsElements() {
+        let modal = document.getElementById('updateModal');
+
+        // modal.setAttribute("data-contact_id", contact_id);
+        modal.style.display = 'block';
+        document.getElementById("uContainer").style.display = "block";
+        document.getElementById("uForm").style.display = "block";
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    }
     // END: Referenced from w3schools  https://www.w3schools.com/howto/howto_css_delete_modal.asp
 
     // Show update contact
@@ -224,6 +253,12 @@
     function closeDeleteModal() {
         document.getElementById('deleteModal').style.display = 'none';
         //document.getElementById('deleted').className = "show";
+    }
+    function closeAddModal() {
+        document.getElementById('addModal').style.display = 'none';
+    }
+    function closeUpdateModal() {
+        document.getElementById('updateModal').style.display = 'none';
     }
     </script>
 </body>
