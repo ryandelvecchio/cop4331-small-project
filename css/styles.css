@@ -240,7 +240,13 @@ input[type=text]
   border-style: none;
   border-radius: 2px;
 }
-
+/* Style for show password checkbox */
+input[type=checkbox]
+{
+  margin: 2px;
+  width: 18px;
+  height: 18px;
+}
 
 /* The Modal (background) for confirm delete popup */
 /* <!-- Referenced from w3schools  https://www.w3schools.com/howto/howto_css_delete_modal.asp --> */
