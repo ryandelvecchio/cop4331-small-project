@@ -276,14 +276,17 @@ function doRegister() {
                 if (response.error === '') {
                     window.location.href = '../index.html';
                 } else {
-                    //TODO: handle registration errors
+                    if (response.error == "1062")
+                      $('#registerStatus').text('Username already taken');
+                    else
+                      $('#registerStatus').text('Registration Unsuccessful ERROR ' + response.error);
                 }
             }
         };
 
         xhr.send(JSON.stringify(jsonPayload));
     } catch (err) {
-        $('#registerStatus').text('Unknown error, please try again later.');
+        $('#registerStatus').text('Registration Unsuccessful ERROR: Unknown');
     }
 }
 
