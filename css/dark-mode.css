@@ -96,6 +96,12 @@
 {
   background-color: #aaa;
 }
+
+[data-theme="dark"] input[type=usernametext]
+{
+  background-color: #aaa;
+}
+
 /* END: Night mode input text boxes */
 
 [data-theme="dark"] input[type=button]

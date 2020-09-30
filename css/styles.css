@@ -240,6 +240,10 @@ input[type=text]
   border-style: none;
   border-radius: 2px;
 }
+input[type=usernametext]
+{
+  background-color: #fff;
+}
 /* Style for show password checkbox */
 input[type=checkbox]
 {
