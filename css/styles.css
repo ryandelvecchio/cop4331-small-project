@@ -84,7 +84,7 @@ div.transbox
   position: relative;
   margin: 30px:
   padding: 15px;
-  width: 750px;
+  width: 1400px;
   height: 350px;
   background-color: #c2d1e0;
   border: 5px solid #c2cae0;
@@ -176,6 +176,14 @@ table th, table td
 {
   color: #777 !important;
 }
+#username
+{
+  width: 325px;
+}
+#password
+{
+  width: 325px;
+}
 #register
 {
   color: #777 !important;
@@ -196,6 +204,11 @@ table th, table td
 #regTitle
 {
   color: #777 !important;
+}
+#resultTable
+{
+  position: fixed;
+  width: 100%;
 }
 
 label
