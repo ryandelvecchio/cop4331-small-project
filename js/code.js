@@ -24,7 +24,8 @@ function doLogin() {
         user_id = jsonObject.user_id;
 
         if (user_id <= 0) {
-            throw jsonObject.error;
+          $('#loginStatus').text('Invalid Username/Password');
+          return;
         }
 
         firstname = jsonObject.firstname;
@@ -34,7 +35,7 @@ function doLogin() {
 
         window.location.href = "html/home.html";
     } catch (err) {
-        alert(err);
+        $('#loginStatus').text('Unknown Error');
     }
 
 }
@@ -143,7 +144,6 @@ function submitSearch() {
     try {
         xhr.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-                //$('#searchStatus').text('Processing results...');
                 let response = JSON.parse(xhr.responseText);
 
                 if (response.results.length === 0) {
