@@ -241,11 +241,19 @@ input[type=text]
   border-radius: 2px;
 }
 /* Style for show password checkbox */
-input[type=checkbox]
+input[type=checkbox].form-check-input
 {
+  background-color: #fff;
+  border-style: none;
   margin: 2px;
   width: 18px;
   height: 18px;
+}
+
+.tab
+{
+  padding-left: 23px;
+  color: grey; 
 }
 
 /* The Modal (background) for confirm delete popup */

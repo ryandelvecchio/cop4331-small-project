@@ -96,12 +96,20 @@
 {
   background-color: #aaa;
 }
+[data-theme="dark"] input[type=checkbox]
+{
+  background-color: #aaa;
+}
 /* END: Night mode input text boxes */
 
 [data-theme="dark"] input[type=button]
 {
   background-color: #333;
   color: #fff;
+}
+[data-theme="dark"] .tab
+{
+  color: #333; 
 }
 
 
