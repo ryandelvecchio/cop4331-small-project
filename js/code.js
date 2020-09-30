@@ -171,15 +171,15 @@ function addSearchResult(result) {
 
   $("#resultTableBody").append(`
       <tr id="${result.contact_id}">
-        <td>${result.firstname}</td>
-        <td>${result.lastname}</td>
-        <td>${result.email}</td>
-        <td>${result.phone}</td>
-        <td>${result.fav_activity}</td>
-        <td>
+        <td style="word-wrap: break-word">${result.firstname}</td>
+        <td style="word-wrap: break-word">${result.lastname}</td>
+        <td style="word-wrap: break-word">${result.email}</td>
+        <td style="word-wrap: break-word">${result.phone}</td>
+        <td style="word-wrap: break-word">${result.fav_activity}</td>
+        <td style="word-wrap: break-word">
           <button style="background-color: transparent; background-repeat: no-repeat; background-image: url(/images/trashCan.svg); width: 1.5em; height: 1.5em; background-position: center; border-radius: 2px; border-style: none" onclick="showDeleteConfirmationElements(this.parentNode.parentNode)">
         </td>
-        <td>
+        <td style="word-wrap: break-word">
           <button style="background-color: transparent; background-repeat: no-repeat; background-image: url(/images/updatePencil.svg); width: 1.5em; height: 1.5em; background-position: center; border-radius: 2px; border-style: none" onclick="showUpdateRecordsElements(this.parentNode.parentNode)">
         </td>
       </tr>

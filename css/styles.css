@@ -207,7 +207,7 @@ table th, table td
 }
 #resultTable
 {
-  position: fixed;
+  position: auto;
   width: 650px;
 }
 
