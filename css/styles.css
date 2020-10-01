@@ -107,7 +107,7 @@ div.uTransbox
   position: relative;
   margin: 15px;
   padding: 5px;
-  width: 700px;
+  width: 850px;
   background-color: #c2d1e0;
   border: 5px solid #c2cae0;
   opacity: 0.9;
@@ -257,7 +257,7 @@ input[type=checkbox].form-check-input
 .tab
 {
   padding-left: 23px;
-  color: grey; 
+  color: grey;
 }
 
 /* The Modal (background) for confirm delete popup */
