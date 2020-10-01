@@ -2,7 +2,7 @@ let user_id = -1;
 let firstname = "";
 let lastname = "";
 
-function doLogin() {
+async function doLogin() {
     const username = $('#username').val();
     const password = $('#password').val();
 
@@ -13,27 +13,40 @@ function doLogin() {
 
     const url = '/api/login.php';
 
-    let xhr = new XMLHttpRequest();
-    xhr.open("POST", url, false);
-    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    const settings = {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(jsonPayload)
+    }
+
     try {
-        xhr.send(JSON.stringify(jsonPayload));
+        const response = await fetch(url, settings);
+        if (response.ok) {
+            const data = await response.json();
+            if (data.error) {
+                $('#loginStatus').text(data.error);
+                return;
+            }
 
-        let jsonObject = JSON.parse(xhr.responseText);
+            user_id = data.user_id;
 
-        user_id = jsonObject.user_id;
+            if (user_id <= 0) {
+                $('#loginStatus').text('Invalid Username/Password');
+                return;
+            }
 
-        if (user_id <= 0) {
-          $('#loginStatus').text('Invalid Username/Password');
-          return;
+            firstname = data.firstname;
+            lastname = data.lastname;
+
+            saveCookie();
+
+            window.location.href = "html/home.html";
+        } else {
+            $('#loginStatus').text(data.error);
         }
-
-        firstname = jsonObject.firstname;
-        lastname = jsonObject.lastname;
-
-        saveCookie();
-
-        window.location.href = "html/home.html";
     } catch (err) {
         $('#loginStatus').text('Unknown Error');
     }
@@ -80,7 +93,7 @@ function doLogout() {
 
 // Add a new contact
 // Returns a JSON payload with new contact info
-function addContact() {
+async function addContact() {
     // letiables for JSON payload
     const firstname = $('#addFirst').val();
     const lastname = $('#addLast').val();
@@ -105,26 +118,33 @@ function addContact() {
 
     const url = '/api/addcontact.php';
 
-    let xhr = new XMLHttpRequest();
-    xhr.open("POST", url, true);
-    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-    try {
-        xhr.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                $('#addedStatus').text('Contact added to your list');
-                $('#addForm').trigger('reset');
-            }
-        };
-        xhr.send(JSON.stringify(jsonPayload));
-    } catch (err) {
-        $('#addedStatus').text(err.message);
+    const settings = {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(jsonPayload)
     }
 
+    const response = await fetch(url, settings);
+    if (response.ok) {
+        const data = await response.json();
+        if (data.error) {
+            $('#addedStatus').text(data.error);
+            return;
+        }
+
+        $('#addedStatus').text('Contact added to your list');
+        $('#addForm').trigger('reset');
+    } else {
+        $('#addedStatus').text(data.error);
+    }
 }
 
 
 // Search for a contact by any string
-function submitSearch() {
+async function submitSearch() {
     $('#searchStatus').text('Searching...');
 
     const query = $('#searchBox').val();
@@ -138,38 +158,41 @@ function submitSearch() {
 
     const url = '/api/search.php';
 
-    let xhr = new XMLHttpRequest();
-    xhr.open("POST", url, true);
-    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-    try {
-        xhr.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                let response = JSON.parse(xhr.responseText);
-
-                if (response.results.length === 0) {
-                    //return $('#searchStatus').text('No results found.');
-                }
-
-                // append each search result to the list of results
-                for (let i = 0; i < response.results.length; i++) {
-                    addSearchResult(response.results[i]);
-                }
-
-                //$('#searchStatus').text('');
-            }
-        };
-
-        xhr.send(JSON.stringify(jsonPayload));
-    } catch (err) {
-        //$('#searchStatus').text(err.message);
+    const settings = {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(jsonPayload)
     }
 
+    const response = await fetch(url, settings);
+    if (response.ok) {
+        const data = await response.json();
+        if (data.error) {
+            $('#searchStatus').text(data.error);
+            return;
+        }
+
+        const results = data.results;
+
+        if (results.length === 0) {
+            $('#searchStatus').text('No results found');
+            return;
+        }
+
+        // append each search result to the list of results
+        for (let i = 0; i < data.results.length; i++) {
+            addSearchResult(data.results[i]);
+        }
+    }
 }
 
 // Function that will append an individual search result to the list
 function addSearchResult(result) {
 
-  $("#resultTableBody").append(`
+    $("#resultTableBody").append(`
       <tr id="${result.contact_id}">
         <td style="word-wrap: break-word">${result.firstname}</td>
         <td style="word-wrap: break-word">${result.lastname}</td>
@@ -193,7 +216,7 @@ function closeUpdateForm() {
 }
 
 // Function to submit a change to a Contact
-function submitUpdate() {
+async function submitUpdate() {
     // Get the elements from HTML and put in JSON payload
     const contact_id = $('#updateModal').attr('data-contact_id');
     const firstname = $('#updateFirst').val();
@@ -214,37 +237,39 @@ function submitUpdate() {
 
     const url = '/api/updatecontact.php';
 
-    let xhr = new XMLHttpRequest();
-    xhr.open("POST", url, true);
-    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-    try {
-        xhr.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200)
-            {
-                let response = JSON.parse(xhr.responseText);
-                if (response.error == "")
-                  updateRow(jsonPayload, contact_id);
-                $('#updatedStatus').text('Contact Updated');
-            }
-        };
-        xhr.send(JSON.stringify(jsonPayload));
-    } catch (err) {
-        $('#updatedStatus').text(err.message);
+    const settings = {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(jsonPayload)
+    }
+
+    const response = await fetch(url, settings);
+    if (response.ok) {
+        const data = await response.json();
+        if (data.error) {
+            $('#updateStatus').text(data.error);
+            return;
+        }
+
+        updateRow(jsonPayload, contact_id);
+        $('#updatedStatus').text('Contact Updated');
     }
 }
 
-function updateRow(jsonPayload, contact_id)
-{
-  let row = document.getElementById(contact_id);
-  row.children[0].textContent = jsonPayload.firstname;
-  row.children[1].textContent = jsonPayload.lastname;
-  row.children[2].textContent = jsonPayload.email;
-  row.children[3].textContent = jsonPayload.phone;
-  row.children[4].textContent = jsonPayload.fav_activity;
+function updateRow(jsonPayload, contact_id) {
+    let row = document.getElementById(contact_id);
+    row.children[0].textContent = jsonPayload.firstname;
+    row.children[1].textContent = jsonPayload.lastname;
+    row.children[2].textContent = jsonPayload.email;
+    row.children[3].textContent = jsonPayload.phone;
+    row.children[4].textContent = jsonPayload.fav_activity;
 }
 
 // Function to register a new user
-function doRegister() {
+async function doRegister() {
     // Get letiables for JSON payload
     const firstname = $('#registerFirst').val();
     const lastname = $('#registerLast').val();
@@ -266,32 +291,30 @@ function doRegister() {
 
     const url = '/api/register.php';
 
-    let xhr = new XMLHttpRequest();
-    xhr.open("POST", url, false);
-    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-    try {
-        xhr.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                let response = JSON.parse(xhr.responseText);
-                if (response.error === '') {
-                    window.location.href = '../index.html';
-                } else {
-                    if (response.error == "1062")
-                      $('#registerStatus').text('Username already taken');
-                    else
-                      $('#registerStatus').text('Registration Unsuccessful ERROR ' + response.error);
-                }
-            }
-        };
+    const settings = {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(jsonPayload)
+    }
 
-        xhr.send(JSON.stringify(jsonPayload));
-    } catch (err) {
-        $('#registerStatus').text('Registration Unsuccessful ERROR: Unknown');
+    const response = await fetch(url, settings);
+    if (response.ok) {
+        const data = await response.json();
+
+        if (data.error) {
+            $('#registerStatus').text(data.error);
+            return;
+        }
+
+        window.location.href = '../index.html';
     }
 }
 
 // Function to delete contact
-function deleteContact() {
+async function deleteContact() {
     const contact_id = $('#deleteModal').attr('data-contact_id');
 
     const jsonPayload = {
@@ -300,24 +323,25 @@ function deleteContact() {
 
     const url = '/api/deletecontact.php';
 
-    let xhr = new XMLHttpRequest();
-    xhr.open("POST", url, false);
-    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-    try {
-        xhr.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                let response = JSON.parse(xhr.responseText);
-                if (response.error === '') {
-                    // Remove the user from the HTML search Display
-                    $(`#${contact_id}`).remove();
-                } else {
-                    //TODO: handle delete errors
-                }
-            }
-        };
-        // Send the contact_id
-        xhr.send(JSON.stringify(jsonPayload));
-    } catch (err) {
-        alert(err);
+    const settings = {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(jsonPayload)
+    }
+
+    const response = await fetch(url, settings);
+    if (response.ok) {
+        const data = await response.json();
+
+        if (data.error) {
+            return;
+        }
+
+        $(`#${contact_id}`).remove();
+
+        window.location.href = '../index.html';
     }
 }

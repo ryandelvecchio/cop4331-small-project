@@ -1,108 +1,106 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <title>Contact Manager</title>
-  <meta name="author" content="Brandon Mitchell">
-  <meta charset="utf-8">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <meta property="og:image"
-    content="https://repository-images.githubusercontent.com/194995309/38db8f80-9db7-11e9-998f-43f2a26d9e0b">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta property="og:title" content="Contact Manager">
-  <meta property="og:description" content="User Home Page">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-  integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
-  crossorigin="anonymous">
-  <link rel="stylesheet" href="css/dark-mode.css">
-  <link rel="stylesheet" href="css/styles.css">
+    <title>Contact Manager</title>
+    <meta name="author" content="Brandon Mitchell">
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta property="og:image" content="https://repository-images.githubusercontent.com/194995309/38db8f80-9db7-11e9-998f-43f2a26d9e0b">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta property="og:title" content="Contact Manager">
+    <meta property="og:description" content="User Home Page">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/dark-mode.css">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <style>
-
 </style>
-<body style="body">
-  <!-- Nav bar for Title, Sign Out, and Night Mode-->
-  <!-- Dark Theme references provided by Christian Oliff
-   https://github.com/coliff/dark-mode-switch/commit/00e0ed339aca6938063f87ce398055259755410e -->
-  <div class="container d-flex p-3 mx-auto flex-column">
-    <header class="mb-auto">
-      <nav>
-        <h2 id="pageTitle">Outdoor Contacts</h2>
-        <div class="nav-link">
-        <div class="custom-control custom-switch">
-          <input type="checkbox" class="custom-control-input" id="darkSwitch" />
-          <label class="custom-control-label" for="darkSwitch" id="nightMode">Night Mode</label>
-        </div>
-        <script src="js/dark-mode-switch.min.js"></script>
-        </div>
-      </nav>
-    </header>
-  </div>
-  <!-- END:  Dark Theme references provided by Christian Oliff -->
-  <br>
-  <br>
-  <br>
-  <br>
-  <!-- Contains inital user actions; enter sign in or register -->
-  <div class="container">
-      <div class="transbox">
-        <div class="row">
-          <div class="col-md-5">
-            <h1 class="display-4 pl-2" id="mojaveTitle">Sign In:</h1>
-            <form>
-              <div class = "form-group col-md-10 pl-2">
-                <label for="username" id="hUsername">Username:</label>
-                <input type="usernametext" class="form-control" id="username">
-              </div>
-              <div class = "form-group col-md-10 pl-2">
-                <label for="password" id="hPassword">Password:</label>
-                <input type="password" class="form-control" id="password">
-                <!-- Show password checkbox -->
-                <input type="checkbox" class="form-check-input" id="showPass" onclick="showPassword();">
-                <span class="tab"> Show Password </span>
-                <script>
-                  function showPassword()
-                  {
-                    var txt = document.getElementById("password");
 
-                    if(!(txt.type === "password"))
-                    {
-                      txt.type = "password";
-                    } else {
-                      txt.type = "text";
-                    }
-                  }
-                </script>
-                <!-- End of show password checkbox -->
-              </div>
-              <div class = "form-group col-md-10 pl-2">
-                <!-- Submit credentials -->
-                <div class="form-row">
-                  <span id="loginStatus" style="margin: 2px; color: red;"></span>
+<body style="body">
+    <!-- Nav bar for Title, Sign Out, and Night Mode-->
+    <!-- Dark Theme references provided by Christian Oliff
+   https://github.com/coliff/dark-mode-switch/commit/00e0ed339aca6938063f87ce398055259755410e -->
+    <div class="container d-flex p-3 mx-auto flex-column">
+        <header class="mb-auto">
+            <nav>
+                <h2 id="pageTitle">Outdoor Contacts</h2>
+                <div class="nav-link">
+                    <div class="custom-control custom-switch">
+                        <input type="checkbox" class="custom-control-input" id="darkSwitch" />
+                        <label class="custom-control-label" for="darkSwitch" id="nightMode">Night Mode</label>
+                    </div>
+                    <script src="js/dark-mode-switch.min.js"></script>
                 </div>
-                <button type="button" class="btn btn-light" id="button" onclick="doLogin();">
-                  <a style="color:inherit">Sign In</a>
-                </button>
-                <br>
-                <!-- Redirect user to registration page (register.html) -->
-                <a href="html/register.html" id="register" class"btn btn-primary pl-2"
-                role="button"><strong>New User? Register Here</strong></a>
-              </div>
-            </form>
-          </div>
-        <div class="col-md-7 pl-5">
-          <div class="row">
-              <!-- Display home page icon -->
-              <div class="pl-2">
-                <img class="invertPNG" src="images/outdoors.png" alt="...">
-              </div>
-          </div>
-        </div>
-      </div>
+            </nav>
+        </header>
     </div>
-  </div>
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  <script src="../js/code.js"></script>
+    <!-- END:  Dark Theme references provided by Christian Oliff -->
+    <br>
+    <br>
+    <br>
+    <br>
+    <!-- Contains inital user actions; enter sign in or register -->
+    <div class="container">
+        <div class="transbox">
+            <div class="row">
+                <div class="col-md-5">
+                    <h1 class="display-4 pl-2" id="mojaveTitle">Sign In:</h1>
+                    <form id="loginForm" action="#" onsubmit="doLogin(); return false;">
+                        <div class="form-group col-md-10 pl-2">
+                            <label for="username" id="hUsername">Username:</label>
+                            <input type="usernametext" class="form-control" id="username" required>
+                        </div>
+                        <div class="form-group col-md-10 pl-2">
+                            <label for="password" id="hPassword">Password:</label>
+                            <input type="password" class="form-control" id="password" required>
+                            <!-- Show password checkbox -->
+                            <input type="checkbox" class="form-check-input" id="showPass" onclick="showPassword();">
+                            <span class="tab"> Show Password </span>
+                            <script>
+                                function showPassword()
+                            {
+                                var txt = document.getElementById("password");
+
+                                if(!(txt.type === "password"))
+                                {
+                                  txt.type = "password";
+                                } else {
+                                  txt.type = "text";
+                                }
+                            }
+                        </script>
+                            <!-- End of show password checkbox -->
+                        </div>
+                        <div class="form-group col-md-10 pl-2">
+                            <!-- Submit credentials -->
+                            <div class="form-row">
+                                <span id="loginStatus" style="margin: 2px; color: red;"></span>
+                            </div>
+                            <button type="submit" class="btn btn-light" id="button">
+                                <a style="color:inherit">Sign In</a>
+                            </button>
+                            <br>
+                            <!-- Redirect user to registration page (register.html) -->
+                            <a href="html/register.html" id="register" class"btn btn-primary pl-2" role="button"><strong>New User? Register Here</strong></a>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-7 pl-5">
+                    <div class="row">
+                        <!-- Display home page icon -->
+                        <div class="pl-2">
+                            <img class="invertPNG" src="images/outdoors.png" alt="...">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="../js/code.js"></script>
 </body>
+
 </html>
