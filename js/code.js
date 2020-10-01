@@ -182,6 +182,8 @@ async function submitSearch() {
             return;
         }
 
+        $('#searchStatus').text('');
+
         // append each search result to the list of results
         for (let i = 0; i < data.results.length; i++) {
             addSearchResult(data.results[i]);
@@ -341,7 +343,5 @@ async function deleteContact() {
         }
 
         $(`#${contact_id}`).remove();
-
-        window.location.href = '../index.html';
     }
 }
