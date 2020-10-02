@@ -210,6 +210,10 @@ table th, table td
   position: auto;
   width: 650px;
 }
+#tHeader
+{
+  width: 200px;
+}
 
 label
 {
