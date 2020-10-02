@@ -107,7 +107,7 @@ div.uTransbox
   position: relative;
   margin: 15px;
   padding: 5px;
-  width: 850px;
+  width: 950px;
   background-color: #c2d1e0;
   border: 5px solid #c2cae0;
   opacity: 0.9;
@@ -208,9 +208,13 @@ table th, table td
 #resultTable
 {
   position: auto;
-  width: 650px;
+  width: 900px;
 }
 #tHeader
+{
+  width: 100px;
+}
+#tHeader2
 {
   width: 200px;
 }
