@@ -59,7 +59,7 @@
                 <!-- Add user contacts into the database -->
                 <input class="btn btn-dark" type="button" id="addContacts" value="Add Contact" onclick="showAddContactElements()">
             </div>
-            <span id="searchStatus"></span>
+            <span id="searchStatus" style="padding-left: 1rem!important"></span>
             <div id="resultContainer" class="form-group col-md-6 pl-3">
                 <!-- Update the  user's current records -->
                 <!-- <input class="hide btn btn-primary" type="button" id="updateButton" style="background-color: green; background-image: url(/images/updatePencil.svg)" value="Update Contact" onclick="showUpdateRecordsElements()" />
@@ -270,6 +270,12 @@
 
     function closeAddModal() {
         document.getElementById('addModal').style.display = 'none';
+        document.getElementById('addFirst').value = "";
+        document.getElementById('addLast').value = "";
+        document.getElementById('addEmail').value = "";
+        document.getElementById('addPhone').value = "";
+        document.getElementById('addActivity').value = "";
+
     }
 
     function closeUpdateModal() {
