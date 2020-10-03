@@ -213,9 +213,11 @@ table th, table td
 #tHeader
 {
   width: 100px;
+  font-size: smaller;
 }
 #tHeader2
 {
+  font-size: smaller;
   width: 200px;
 }
 
