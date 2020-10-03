@@ -106,6 +106,7 @@ div.uTransbox
 {
   position: relative;
   margin: 15px;
+  height: auto;
   padding: 5px;
   width: 950px;
   background-color: #c2d1e0;
