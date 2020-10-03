@@ -84,6 +84,10 @@
   height: 40px;
   width: 325px;
 }
+[data-theme="dark"] table, th, td
+{
+    border: 1px solid #c2d1e0;
+}
 [data-theme="dark"] input[type=email]
 {
   background-color: #aaa;

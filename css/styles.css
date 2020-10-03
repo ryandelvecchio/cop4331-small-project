@@ -82,6 +82,7 @@ div.regContainer
 div.transbox
 {
   position: relative;
+  height: auto;
   margin: 30px:
   padding: 15px;
   width: 750px;
@@ -106,7 +107,6 @@ div.uTransbox
 {
   position: relative;
   margin: 15px;
-  height: auto;
   padding: 5px;
   width: 950px;
   background-color: #c2d1e0;
@@ -147,7 +147,7 @@ table
 
 table, th, td
 {
-    border: 1px solid #c2d1e0;
+    border: 1px solid #8a99a8;
 }
 
 table th, table td
