@@ -85,7 +85,6 @@ div.transbox
   height: auto;
   margin: 30px:
   padding: 15px;
-  height: auto;
   width: 750px;
   background-color: #c2d1e0;
   border: 5px solid #c2cae0;
@@ -142,7 +141,7 @@ table
 {
     width: 100%;
     margin-bottom: 20px;
-		border-collapse: collapse;
+    border-collapse: collapse;
 }
 
 table, th, td

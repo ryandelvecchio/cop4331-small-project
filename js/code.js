@@ -142,12 +142,6 @@ async function addContact() {
     }
 }
 
-function viewAll() {
-    $('#searchBox').val('');
-    submitSearch();
-}
-
-
 // Search for a contact by any string
 async function submitSearch() {
     $('#searchStatus').text('Searching...');

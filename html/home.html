@@ -53,15 +53,11 @@
             <!-- will display unique title depending on user name -->
             <h1 id="welcomeText" class="display-4 pl-2"></h1>
             <div class="form-group pl-3">
-            	<form id="searchForm" action="#" onsubmit="showSearchResultElements(); submitSearch(); return false;">
-            		<!-- Search for contacts in the database -->
-	                <input type="text" id="searchBox" placeholder="First, Last, Email, Phone, Activity..." required>
-	                <input class="btn btn-dark" id="searchButton" type="button" onclick="$('#searchForm').submit();" value="Search">
-            	</form>
+                <!-- Search for contacts in the database -->
+                <input type="text" id="searchBox" placeholder="First, Last, Email, Phone, Activity...">
+                <input class="btn btn-dark" id="searchButton" type="button" onclick="showSearchResultElements();submitSearch();" value="Search">
                 <!-- Add user contacts into the database -->
                 <input class="btn btn-dark" type="button" id="addContacts" value="Add Contact" onclick="showAddContactElements()">
-
-                <input class="btn btn-dark" id="searchButton" type="button" onclick="showSearchResultElements();viewAll();" value="View All">
             </div>
             <span id="searchStatus" style="padding-left: 1rem!important"></span>
             <div id="resultContainer" class="form-group col-md-6 pl-3">
