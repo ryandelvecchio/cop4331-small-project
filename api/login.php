@@ -14,13 +14,13 @@
 	}
 	else
 	{
-    $password_hash = md5($inData["password"]);
+    	$password_hash = md5($inData["password"]);
 		$sql = "SELECT user_id, firstname, lastname FROM users where username='{$inData["username"]}' and password='{$password_hash}'";
 		$result = $conn->query($sql);
 
 		if (!$result)
 		{
-			returnWithError($conn->errno);
+			returnWithError("Unknown Error");
 		}
 		else if ($result->num_rows > 0)
 		{

@@ -2,9 +2,9 @@
 
 	$inData = getRequestInfo();
 
-  $username = $inData["username"];
-  $password = $inData["password"];
-  $firstname = $inData["firstname"];
+  	$username = $inData["username"];
+  	$password = $inData["password"];
+  	$firstname = $inData["firstname"];
 	$lastname = $inData["lastname"];
 
  	include_once 'config.php';
@@ -20,15 +20,29 @@
 
 		$result = $conn->query($sql);
 
-    if (!$result)
-			returnWithError($conn->errno);
-		else
+    	if (!$result) 
+    	{
+    		$errno = $conn->errno;
+    		$errmsg;
+    		if ($errno == 1062) 
+    		{
+    			$errmsg = 'Username already exists';
+    		} else
+    		{
+    			$errmsg = 'Unknown error';
+    		}
+
+			returnWithError($errmsg);
+		}
+		else 
+		{
 			returnWithInfo($conn->insert_id);
+		}
 
 		$conn->close();
 	}
 
-  function getRequestInfo()
+  	function getRequestInfo()
 	{
 		return json_decode(file_get_contents('php://input'), true);
 	}
@@ -47,7 +61,7 @@
 
 	function returnWithInfo($user_id)
 	{
-		$retValue = '{"user_id":'. $user_id .', "error":"' . $err . '"}';
+		$retValue = '{"user_id":'. $user_id .', "error":""}';
 		sendResultInfoAsJson($retValue);
 	}
 
